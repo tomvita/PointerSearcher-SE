@@ -1,4 +1,4 @@
-This fork change the file formate used by the application and enable data exchage with EdiZon SE. 
+This fork change the file format used by the application and enable data exchage with EdiZon SE. 
 
 Features:
 1. Much smaller transfer size between switch and PC. 
