@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,9 @@ namespace PointerSearcher
         private List<List<IReverseOrderPath>> result;
         private CancellationTokenSource cancel = null;
         private double progressTotal;
+
+        public BinaryReader FileStream { get; private set; }
+
         private async void buttonRead_Click(object sender, EventArgs e)
         {
             SetProgressBar(0);
@@ -46,6 +50,13 @@ namespace PointerSearcher
                 {
                     throw new Exception("Invalid input" + Environment.NewLine + "Check highlighted cell");
                 }
+                reader.readsetup();
+                dataGridView1.Rows[0].Cells[1].Value = "0x" + Convert.ToString(reader.mainStartAddress(), 16);
+                dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
+                dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
+                dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
+                dataGridView1.Rows[0].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
+                dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
                 buttonSearch.Enabled = false;
                 buttonNarrowDown.Enabled = false;
                 buttonCancel.Enabled = true;
@@ -88,6 +99,7 @@ namespace PointerSearcher
             buttonRead.Enabled = false;
             buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = false;
+            textBox2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             SetProgressBar(0);
             try
             {
@@ -151,7 +163,9 @@ namespace PointerSearcher
             textBox1.Text = "";
             if (result.Count > 100)
             {
-                textBox1.Text = "too many results";
+                string str;
+                str = result.Count.ToString();
+                textBox1.Text = str + " results" + Environment.NewLine;
             }
             else if (result.Count > 0)
             {
@@ -171,17 +185,74 @@ namespace PointerSearcher
             }
         }
 
+        private void ExportPath()
+        {
+
+            if (result.Count > 0)
+            {
+                textBox1.Text = "Exporting result to file ... " + result.Count.ToString();
+                String filepath = textBox2.Text;
+                if ((filepath == "") || System.IO.File.Exists(filepath))
+                {
+                    textBox1.Text = "Book Mark File exist";
+                    return;
+                }
+                BinaryWriter BM;
+                try
+                {
+                    BM = new BinaryWriter(new FileStream(filepath, FileMode.Create, FileAccess.Write));
+                    BM.BaseStream.Seek(0, SeekOrigin.Begin);
+                    int magic = 0x4E5A4445;
+                    BM.Write(magic);
+                    long fileindex = 0;
+                    long depth = 0;
+                    long[] chain = new long[13];
+
+                    foreach (List<IReverseOrderPath> path in result)
+                    {
+
+                        BM.BaseStream.Seek(134 + fileindex * 8 * 14, SeekOrigin.Begin); // sizeof(pointer_chain_t)  Edizon header size = 134
+                        depth = 0;
+                        for (int i = path.Count - 1; i >= 0; i--)
+                        {
+                            if (path[i] is ReverseOrderPathOffset)
+                            {
+                                chain[depth] = (path[i] as ReverseOrderPathOffset).getOffset();
+                            }
+                            else
+                            {
+                                depth++;
+                                chain[depth] = 0;
+                            }
+                        }
+                        BM.Write(depth);
+                        for (long z = depth; z >= 0; z--)
+                            BM.Write(chain[z]);
+                        fileindex++;
+                    };
+                    for (long z = depth + 1; z < 13; z++)
+                        BM.Write(chain[z]);
+                    BM.BaseStream.Seek(5, SeekOrigin.Begin);
+                    BM.Write(result.Count * 8 * 14);
+                    BM.BaseStream.Close();
+                }
+                catch (IOException) { textBox1.Text = "Cannot create file"; }
+            }
+            else
+            {
+                textBox1.Text = "not found";
+            }
+        }
+
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.ColumnIndex == 0)
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.InitialDirectory = @"";
-                //[ファイルの種類]に表示される選択肢を指定する
-                //指定しないとすべてのファイルが表示される
-                ofd.Filter = "NoexsDumpFile(*.dmp)|*.dmp|All Files(*.*)|*.*";
+                ofd.Filter = "EdizonSE DumpFile(*.dmp*)|*.dmp*|All Files(*.*)|*.*";
                 ofd.FilterIndex = 1;
-                ofd.Title = "select Noexs dump file";
+                ofd.Title = "select EdiZon SE dump file";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = ofd.FileName;
@@ -207,6 +278,13 @@ namespace PointerSearcher
                     IDumpDataReader reader = CreateDumpDataReader(row, true);
                     if (reader != null)
                     {
+                        reader.readsetup();
+                        dataGridView1.Rows[i].Cells[1].Value = "0x" + Convert.ToString(reader.mainStartAddress(), 16);
+                        dataGridView1.Rows[i].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
+                        dataGridView1.Rows[i].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
+                        dataGridView1.Rows[i].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
+                        dataGridView1.Rows[i].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
+                        dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
                         long target = Convert.ToInt64(row.Cells[5].Value.ToString(), 16);
 
                         dumps.Add(reader, target);
@@ -285,20 +363,6 @@ namespace PointerSearcher
             long mainEnd = -1;
             long heapStart = -1;
             long heapEnd = -1;
-            long target = -1;
-
-            for (int i = 0; i <= 5; i++)
-            {
-                if (row.Cells[i] == null)
-                {
-                    row.Cells[i].Style.BackColor = Color.Red;
-                    canCreate = false;
-                }
-                else
-                {
-                    row.Cells[i].Style.BackColor = Color.White;
-                }
-            }
 
             if (row.Cells[0].Value != null)
             {
@@ -307,77 +371,6 @@ namespace PointerSearcher
             if ((path == "") || !System.IO.File.Exists(path))
             {
                 row.Cells[0].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            try
-            {
-                mainStart = Convert.ToInt64(row.Cells[1].Value.ToString(), 16);
-            }
-            catch
-            {
-                row.Cells[1].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            try
-            {
-                mainEnd = Convert.ToInt64(row.Cells[2].Value.ToString(), 16);
-            }
-            catch
-            {
-                row.Cells[2].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            try
-            {
-                heapStart = Convert.ToInt64(row.Cells[3].Value.ToString(), 16);
-            }
-            catch
-            {
-                row.Cells[3].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            try
-            {
-                heapEnd = Convert.ToInt64(row.Cells[4].Value.ToString(), 16);
-            }
-            catch
-            {
-                row.Cells[4].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            try
-            {
-                target = Convert.ToInt64(row.Cells[5].Value.ToString(), 16);
-            }
-            catch
-            {
-                row.Cells[5].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            if (!canCreate)
-            {
-                return null;
-            }
-            if (mainEnd <= mainStart)
-            {
-                row.Cells[1].Style.BackColor = Color.Red;
-                row.Cells[2].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            if (heapEnd <= heapStart)
-            {
-                row.Cells[3].Style.BackColor = Color.Red;
-                row.Cells[4].Style.BackColor = Color.Red;
-                canCreate = false;
-            }
-            if (allowUnknownTarget && (target == 0))
-            {
-                //if target address is set to 0,it means unknown address.
-            }
-            else if ((target < heapStart) || (heapEnd <= target))
-            {
-                //if not unknown,target should be located at heap region
-                row.Cells[5].Style.BackColor = Color.Red;
                 canCreate = false;
             }
             if (!canCreate)
@@ -413,6 +406,41 @@ namespace PointerSearcher
             {
                 cancel.Cancel();
             }
+        }
+
+        private void textBoxDepth_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Export_to_SE_Click(object sender, EventArgs e)
+        {
+            ExportPath();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

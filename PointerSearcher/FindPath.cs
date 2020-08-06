@@ -21,6 +21,11 @@ namespace PointerSearcher
         }
         private long offset;
 
+        public long getOffset()
+        {
+            return offset;
+        }
+
         public override String ToString(String org)
         {
             return org + "+" + offset.ToString("X2");

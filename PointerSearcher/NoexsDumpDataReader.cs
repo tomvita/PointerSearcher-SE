@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Xml.Schema;
 
 namespace PointerSearcher
 {
@@ -58,9 +59,13 @@ namespace PointerSearcher
         private long mainEndAddress;
         private long heapStartAddress;
         private long heapEndAddress;
+        private long TargetAddress;
         private byte[] buffer = new byte[8];
+        private byte[] buffN = null;
+        private long length = 0;
+        private bool firstread = true;
         private List<NoexsDumpIndex> indices;
-        private List<NoexsMemoryInfo> infos;
+        //private List<NoexsMemoryInfo> infos;
         private Dictionary<long, long> readData;    //key:address,value:data
         public NoexsDumpDataReader(String path, long mainStart, long mainEnd, long heapStart, long heapEnd)
         {
@@ -71,7 +76,7 @@ namespace PointerSearcher
             heapEndAddress = heapEnd;
             buffer = new byte[8];
             indices = null;
-            infos = new List<NoexsMemoryInfo>();
+            //infos = new List<NoexsMemoryInfo>();
             readData = new Dictionary<long, long>();
         }
         ~NoexsDumpDataReader()
@@ -108,12 +113,42 @@ namespace PointerSearcher
         }
         private Int64 ReadLittleEndianInt64(long address)
         {
-            foreach (NoexsDumpIndex x in indices)
+            if (firstread)
             {
-                if ((x.address <= address) && (address + 7 <= x.address + x.size))
+                long start = 134 + 8 * 5; // Edizon start of data dump
+                length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
+                fileStream.BaseStream.Seek(start, SeekOrigin.Begin);
+                int readSize = (int)(fileStream.BaseStream.Length - start);
+                buffN = fileStream.ReadBytes(readSize);
+                firstread = false;
+            }
+            int Start = 0;
+            int end = (int)length - 1;
+            while ((end - Start) > 5)      // check whether optimal
+            {
+                int index = Start + (end - Start) / 2;
+                long source = BitConverter.ToInt64(buffN, (index * 2) << 3);
+                if (source == address)
                 {
-                    fileStream.BaseStream.Seek(x.pos + address - x.address, SeekOrigin.Begin);
-                    return fileStream.ReadInt64();
+                    long target = BitConverter.ToInt64(buffN, (index * 2 + 1) << 3);
+                    return target;
+                }
+                else if (source > address)
+                {
+                    end = (index - 1);
+                }
+                else
+                {
+                    Start = (index + 1);
+                }
+            }
+            for (int index = Start; index <= end; index++)
+            {
+                long source = BitConverter.ToInt64(buffN, (index * 2) << 3);
+                if (source == address)
+                {
+                    long target = BitConverter.ToInt64(buffN, (index * 2 + 1) << 3);
+                    return target;
                 }
             }
             return 0;
@@ -129,90 +164,77 @@ namespace PointerSearcher
             indices = new List<NoexsDumpIndex>();
             fileStream.BaseStream.Seek(0, SeekOrigin.Begin);
 
-            if (ReadBigEndianInt32() != 0x4E444D50)
+            if (fileStream.ReadInt32() != 0x4E5A4445) //edizon's version
             {
                 fileStream.Close();
                 throw new Exception("illegal file format");
             }
+            fileStream.BaseStream.Seek(134, SeekOrigin.Begin); // Edizon header size = 134
+            mainStartAddress = fileStream.ReadInt64();
+            mainEndAddress = fileStream.ReadInt64();
+            heapStartAddress = fileStream.ReadInt64();
+            heapEndAddress = fileStream.ReadInt64();
+            TargetAddress = fileStream.ReadInt64();
+            return;
 
-            long tid = ReadBigEndianInt64(); // TID
-
-            int infoCount = ReadBigEndianInt32();
-            long infoPtr = ReadBigEndianInt64();
-
-            int idxCount = ReadBigEndianInt32();
-            long idxPtr = ReadBigEndianInt64();
-            long dataPtr = fileStream.BaseStream.Position;
-            fileStream.BaseStream.Seek(idxPtr, SeekOrigin.Begin);
-            for (int i = 0; i < idxCount; i++)
-            {
-                long addr = ReadBigEndianInt64();
-                long pos = ReadBigEndianInt64();
-                long size = ReadBigEndianInt64();
-                indices.Add(new NoexsDumpIndex(addr, pos, size));
-            }
         }
         PointerInfo IDumpDataReader.Read(CancellationToken token, IProgress<int> prog)
         {
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
             PointerInfo pointerInfo = new PointerInfo();
-            const int readMaxSize = 4096;
 
             ReadIndicate();
-
-            //foreach (NoexsDumpIndex x in indices)
-            for (int index = 0; index < indices.Count; index++)
+            long start = 134 + 8 * 5; // Edizon start of data dump
+            long length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
+            fileStream.BaseStream.Seek(start, SeekOrigin.Begin);
+            int readSize = (int)(fileStream.BaseStream.Length - start);
+            byte[] buff = fileStream.ReadBytes(readSize);
+            for (int index = 0; index < length; index++)
             {
-                NoexsDumpIndex x = indices[index];
                 if (token.IsCancellationRequested)
                 {
                     token.ThrowIfCancellationRequested();
                 }
-                if (!IsMainHeapAddress(x.address))
-                {
-                    continue;
-                }
-                fileStream.BaseStream.Seek(x.pos, SeekOrigin.Begin);
-                MemoryType type = GetMemoryType(x.address);
-                long startAddress = GetStartAddress(type);
-                long address = x.address - startAddress;
-                long rem = x.size;
-
-                while (rem > 0)
-                {
-                    if (token.IsCancellationRequested)
-                    {
-                        token.ThrowIfCancellationRequested();
-                    }
-                    int readSize = readMaxSize;
-                    if (rem < readSize)
-                    {
-                        readSize = (int)rem;
-                    }
-                    rem -= readSize;
-                    byte[] buff = fileStream.ReadBytes(readSize);
-                    //pickup pointer from heap
-                    int loopcnt = readSize / 8;
-                    for (int i = 0; i < loopcnt; i++)
-                    {
-                        long tmp_data = BitConverter.ToInt64(buff, i << 3);
-                        if (IsHeapAddress(tmp_data))
-                        {
-                            Address from = new Address(type, address);
-                            Address to = new Address(MemoryType.HEAP, tmp_data - heapStartAddress);
-                            pointerInfo.AddPointer(from, to);
-                        }
-                        address += 8;
-                    }
-                }
-                prog.Report((int)(100 * (index + 1) / indices.Count));
+                long source = BitConverter.ToInt64(buff, (index * 2) << 3); //fileStream.ReadInt64();
+                long target = BitConverter.ToInt64(buff, (index * 2 + 1) << 3); //fileStream.ReadInt64();
+                MemoryType sourcetype = GetMemoryType(source);
+                long startAddress = GetStartAddress(sourcetype);
+                Address from = new Address(sourcetype, source - startAddress);
+                Address to = new Address(MemoryType.HEAP, target - heapStartAddress);
+                pointerInfo.AddPointer(from, to);
+                if (index % 10000 == 1)
+                    prog.Report((int)(100 * (index + 1) / length));
             }
             pointerInfo.MakeList();
             sw.Stop();
             TimeSpan ts = sw.Elapsed;
             //3.28.24
             return pointerInfo;
+        }
+        void IDumpDataReader.readsetup()
+        {
+            ReadIndicate();
+        }
+        long IDumpDataReader.mainStartAddress()
+        {
+            return mainStartAddress;
+        }
+        long IDumpDataReader.mainEndAddress()
+        {
+            return mainEndAddress;
+        }
+        long IDumpDataReader.heapStartAddress()
+        {
+            return heapStartAddress;
+        }
+        long IDumpDataReader.heapEndAddress()
+        {
+            return heapEndAddress;
+        }
+        long IDumpDataReader.TargetAddress()
+        {
+            return TargetAddress;
         }
         long IDumpDataReader.TryToParseAbs(List<IReverseOrderPath> path)
         {
