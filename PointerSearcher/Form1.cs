@@ -98,7 +98,7 @@ namespace PointerSearcher
             textBox1.Text = "";
             buttonRead.Enabled = false;
             buttonSearch.Enabled = false;
-            buttonNarrowDown.Enabled = false;
+            buttonNarrowDown.Enabled = true;
             textBox2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             SetProgressBar(0);
             try
@@ -441,6 +441,11 @@ namespace PointerSearcher
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PrintPath();
         }
     }
 }
