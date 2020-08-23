@@ -280,7 +280,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonRead);
             this.Name = "Form1";
-            this.Text = "EdiZon SE PointerSearcher 0.3b";
+            this.Text = "EdiZon SE PointerSearcher 0.3c";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

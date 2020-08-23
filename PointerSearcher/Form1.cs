@@ -384,7 +384,7 @@ namespace PointerSearcher
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
-            dataGridView1.BeginEdit(true);
+          //  dataGridView1.BeginEdit(true);
         }
         private void SetProgressBar(int percent)
         {
@@ -421,7 +421,10 @@ namespace PointerSearcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows.Add();
         }
 
         private void Export_to_SE_Click(object sender, EventArgs e)
