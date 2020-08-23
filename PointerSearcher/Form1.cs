@@ -100,6 +100,7 @@ namespace PointerSearcher
             buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = true;
             textBox2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
+            textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 4,4 )+"bmk";
             SetProgressBar(0);
             try
             {
@@ -161,7 +162,7 @@ namespace PointerSearcher
         private void PrintPath()
         {
             textBox1.Text = "";
-            if (result.Count > 100)
+            if (result.Count > 1000)
             {
                 string str;
                 str = result.Count.ToString();
