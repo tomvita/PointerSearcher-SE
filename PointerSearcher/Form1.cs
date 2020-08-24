@@ -56,7 +56,7 @@ namespace PointerSearcher
                 dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
                 dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
                 dataGridView1.Rows[0].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
-                dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
+//              dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
                 buttonSearch.Enabled = false;
                 buttonNarrowDown.Enabled = false;
                 buttonCancel.Enabled = true;
@@ -258,6 +258,18 @@ namespace PointerSearcher
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = ofd.FileName;
                 }
+                IDumpDataReader reader = CreateDumpDataReader(dataGridView1.Rows[e.RowIndex], true);
+                if (reader != null)
+                {
+                    reader.readsetup();
+                    dataGridView1.Rows[e.RowIndex].Cells[1].Value = "0x" + Convert.ToString(reader.mainStartAddress(), 16);
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
+                    dataGridView1.Rows[e.RowIndex].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
+                    dataGridView1.Rows[e.RowIndex].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
+                    dataGridView1.Rows[e.RowIndex].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
+                    // BM1
+
+                }
             }
         }
 
@@ -282,10 +294,9 @@ namespace PointerSearcher
                         reader.readsetup();
                         dataGridView1.Rows[i].Cells[1].Value = "0x" + Convert.ToString(reader.mainStartAddress(), 16);
                         dataGridView1.Rows[i].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
-                        dataGridView1.Rows[i].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
                         dataGridView1.Rows[i].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
                         dataGridView1.Rows[i].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
-                        dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
+ //                     dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
                         long target = Convert.ToInt64(row.Cells[5].Value.ToString(), 16);
 
                         dumps.Add(reader, target);

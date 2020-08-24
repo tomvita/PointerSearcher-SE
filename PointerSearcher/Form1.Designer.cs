@@ -91,7 +91,7 @@
             dataGridViewCellStyle1.NullValue = null;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(646, 163);
+            this.dataGridView1.Size = new System.Drawing.Size(897, 163);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -102,6 +102,7 @@
             this.ColumnPath.HeaderText = "Path";
             this.ColumnPath.Name = "ColumnPath";
             this.ColumnPath.ToolTipText = "Path of Noexs dump data";
+            this.ColumnPath.Width = 350;
             // 
             // ColumnMainStart
             // 
@@ -261,7 +262,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 452);
+            this.ClientSize = new System.Drawing.Size(918, 452);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
@@ -280,7 +281,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonRead);
             this.Name = "Form1";
-            this.Text = "EdiZon SE PointerSearcher 0.3c";
+            this.Text = "EdiZon SE PointerSearcher 0.3d";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -303,16 +304,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button Export_button;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMainStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMainEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHeapStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHeapEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress;
-        private System.Windows.Forms.Button Export_button;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
     }
 }
 
