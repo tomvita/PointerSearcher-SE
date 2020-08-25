@@ -37,7 +37,9 @@
             this.ColumnMainEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnHeapStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnHeapEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTargetAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTargetAddress1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTargetAddress2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTargetAddress3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxDepth = new System.Windows.Forms.TextBox();
             this.textBoxOffsetNum = new System.Windows.Forms.TextBox();
@@ -52,6 +54,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,13 +90,15 @@
             this.ColumnMainEnd,
             this.ColumnHeapStart,
             this.ColumnHeapEnd,
-            this.ColumnTargetAddress});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 13);
+            this.ColumnTargetAddress1,
+            this.ColumnTargetAddress2,
+            this.ColumnTargetAddress3});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle1.NullValue = null;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
-            this.dataGridView1.Size = new System.Drawing.Size(897, 163);
+            this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -128,11 +135,21 @@
             this.ColumnHeapEnd.Name = "ColumnHeapEnd";
             this.ColumnHeapEnd.ToolTipText = "heap end address";
             // 
-            // ColumnTargetAddress
+            // ColumnTargetAddress1
             // 
-            this.ColumnTargetAddress.HeaderText = "TargetAddress";
-            this.ColumnTargetAddress.Name = "ColumnTargetAddress";
-            this.ColumnTargetAddress.ToolTipText = "address you want to find a pointer of this dump data";
+            this.ColumnTargetAddress1.HeaderText = "TargetAddress1";
+            this.ColumnTargetAddress1.Name = "ColumnTargetAddress1";
+            this.ColumnTargetAddress1.ToolTipText = "address you want to find a pointer of this dump data";
+            // 
+            // ColumnTargetAddress2
+            // 
+            this.ColumnTargetAddress2.HeaderText = "TargetAddress2";
+            this.ColumnTargetAddress2.Name = "ColumnTargetAddress2";
+            // 
+            // ColumnTargetAddress3
+            // 
+            this.ColumnTargetAddress3.HeaderText = "TargetAddress3";
+            this.ColumnTargetAddress3.Name = "ColumnTargetAddress3";
             // 
             // buttonSearch
             // 
@@ -258,11 +275,51 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(711, 200);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(62, 17);
+            this.radioButton1.TabIndex = 17;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Target 1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(711, 232);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(62, 17);
+            this.radioButton2.TabIndex = 18;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Target 2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(711, 263);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(62, 17);
+            this.radioButton3.TabIndex = 19;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Target 3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 452);
+            this.ClientSize = new System.Drawing.Size(1116, 452);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
@@ -281,7 +338,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonRead);
             this.Name = "Form1";
-            this.Text = "EdiZon SE PointerSearcher 0.3d";
+            this.Text = "EdiZon SE PointerSearcher 0.3e";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -313,7 +370,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMainEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHeapStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHeapEnd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress3;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }
 

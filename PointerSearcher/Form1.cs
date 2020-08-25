@@ -13,7 +13,7 @@ namespace PointerSearcher
         public Form1()
         {
             InitializeComponent();
-
+            int targetselect = 0;
             int maxDepth = 4;
             int maxOffsetNum = 1;
             long maxOffsetAddress = 0x800;
@@ -29,6 +29,7 @@ namespace PointerSearcher
         }
         private PointerInfo info;
         private int maxDepth;
+        private int targetselect = 0;
         private int maxOffsetNum;
         private long maxOffsetAddress;
         private List<List<IReverseOrderPath>> result;
@@ -108,7 +109,7 @@ namespace PointerSearcher
                 maxOffsetNum = Convert.ToInt32(textBoxOffsetNum.Text);
                 maxOffsetAddress = Convert.ToInt32(textBoxOffsetAddress.Text, 16);
                 long heapStart = Convert.ToInt64(dataGridView1.Rows[0].Cells[3].Value.ToString(), 16);
-                long targetAddress = Convert.ToInt64(dataGridView1.Rows[0].Cells[5].Value.ToString(), 16);
+                long targetAddress = Convert.ToInt64(dataGridView1.Rows[0].Cells[5+targetselect].Value.ToString(), 16);
                 Address address = new Address(MemoryType.HEAP, targetAddress - heapStart);
 
                 if (maxOffsetNum <= 0)
@@ -297,7 +298,7 @@ namespace PointerSearcher
                         dataGridView1.Rows[i].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
                         dataGridView1.Rows[i].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
  //                     dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
-                        long target = Convert.ToInt64(row.Cells[5].Value.ToString(), 16);
+                        long target = Convert.ToInt64(row.Cells[5+targetselect].Value.ToString(), 16);
 
                         dumps.Add(reader, target);
                     }
@@ -461,6 +462,21 @@ namespace PointerSearcher
         private void button1_Click(object sender, EventArgs e)
         {
             PrintPath();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            targetselect = 0;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            targetselect = 1;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            targetselect = 2;
         }
     }
 }
