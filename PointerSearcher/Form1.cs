@@ -5,6 +5,10 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
+using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace PointerSearcher
 {
@@ -13,7 +17,6 @@ namespace PointerSearcher
         public Form1()
         {
             InitializeComponent();
-            int targetselect = 0;
             int maxDepth = 4;
             int maxOffsetNum = 1;
             long maxOffsetAddress = 0x800;
@@ -27,6 +30,7 @@ namespace PointerSearcher
 
             result = new List<List<IReverseOrderPath>>();
         }
+        Socket s;
         private PointerInfo info;
         private int maxDepth;
         private int targetselect = 0;
@@ -57,7 +61,7 @@ namespace PointerSearcher
                 dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
                 dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
                 dataGridView1.Rows[0].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
-//              dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
+                //              dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
                 buttonSearch.Enabled = false;
                 buttonNarrowDown.Enabled = false;
                 buttonCancel.Enabled = true;
@@ -101,7 +105,7 @@ namespace PointerSearcher
             buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = true;
             textBox2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
-            textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 4,4 )+"bmk";
+            textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 4, 4) + "bmk";
             SetProgressBar(0);
             try
             {
@@ -109,7 +113,7 @@ namespace PointerSearcher
                 maxOffsetNum = Convert.ToInt32(textBoxOffsetNum.Text);
                 maxOffsetAddress = Convert.ToInt32(textBoxOffsetAddress.Text, 16);
                 long heapStart = Convert.ToInt64(dataGridView1.Rows[0].Cells[3].Value.ToString(), 16);
-                long targetAddress = Convert.ToInt64(dataGridView1.Rows[0].Cells[5+targetselect].Value.ToString(), 16);
+                long targetAddress = Convert.ToInt64(dataGridView1.Rows[0].Cells[5 + targetselect].Value.ToString(), 16);
                 Address address = new Address(MemoryType.HEAP, targetAddress - heapStart);
 
                 if (maxOffsetNum <= 0)
@@ -297,8 +301,8 @@ namespace PointerSearcher
                         dataGridView1.Rows[i].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
                         dataGridView1.Rows[i].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
                         dataGridView1.Rows[i].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
- //                     dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
-                        long target = Convert.ToInt64(row.Cells[5+targetselect].Value.ToString(), 16);
+                        //                     dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
+                        long target = Convert.ToInt64(row.Cells[5 + targetselect].Value.ToString(), 16);
 
                         dumps.Add(reader, target);
                     }
@@ -396,7 +400,7 @@ namespace PointerSearcher
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.White;
-          //  dataGridView1.BeginEdit(true);
+            //  dataGridView1.BeginEdit(true);
         }
         private void SetProgressBar(int percent)
         {
@@ -437,6 +441,7 @@ namespace PointerSearcher
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
+            ipBox.Text = ConfigurationManager.AppSettings["ipAddress"];
         }
 
         private void Export_to_SE_Click(object sender, EventArgs e)
@@ -478,5 +483,131 @@ namespace PointerSearcher
         {
             targetselect = 2;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string ipPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
+            if (!Regex.IsMatch(ipBox.Text, ipPattern))
+            {
+                ipBox.BackColor = System.Drawing.Color.Red;
+                return;
+            }
+            s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipBox.Text), 7331);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            if (config.AppSettings.Settings["ipAddress"] == null) config.AppSettings.Settings.Add("ipAddress", ipBox.Text);
+            else
+                config.AppSettings.Settings["ipAddress"].Value = ipBox.Text;
+            config.Save(ConfigurationSaveMode.Minimal);
+            if (s.Connected == false)
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    IAsyncResult result = s.BeginConnect(ep, null, null);
+                    bool conSuceded = result.AsyncWaitHandle.WaitOne(3000, true);
+                    if (conSuceded == true)
+                    {
+                        try
+                        {
+                            s.EndConnect(result);
+                        }
+                        catch
+                        {
+                            this.ipBox.Invoke((MethodInvoker)delegate
+                            {
+                                ipBox.BackColor = System.Drawing.Color.Red;
+                                ipBox.ReadOnly = false;
+                            });
+                            return;
+                        }
+
+                        this.connectBtn.Invoke((MethodInvoker)delegate
+                        {
+                            this.connectBtn.Enabled = false;
+                        });
+                        this.ipBox.Invoke((MethodInvoker)delegate
+                        {
+                            ipBox.BackColor = System.Drawing.Color.Green;
+                            ipBox.ReadOnly = true;
+                            //this.refreshBtn.Visible = true;
+                            //this.Player1Btn.Visible = true;
+                            //this.Player2Btn.Visible = true;
+                        });
+
+                    }
+                    else
+                    {
+                        s.Close();
+                        this.ipBox.Invoke((MethodInvoker)delegate
+                        {
+                            ipBox.BackColor = System.Drawing.Color.Red;
+                        });
+                        MessageBox.Show("Could not connect to the SE tools server, Go to https://github.com/ for help.");
+                    }
+                }).Start();
+            }
+        }
+
+        private void getstatus_Click(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x10 };
+            int a = s.Send(msg);
+            byte[] k = new byte[4];
+            int c = s.Receive(k);
+            int count = BitConverter.ToInt32(k, 0);
+            byte[] b = new byte[count * 8];
+            int d = s.Receive(b);
+            long pid = BitConverter.ToInt64(b, (count-2) *8);
+            pidBox.Text = "0x" + Convert.ToString(pid);
+            int f = s.Available;
+            c = s.Receive(k);
+
+            msg[0] = 0x01;
+            a = s.Send(msg);
+            k = new byte[4];
+            while (s.Available < 4) ;
+            c = s.Receive(k);
+            count = BitConverter.ToInt32(k, 0);
+            statusBox.Text = "0x" + Convert.ToString(count,16);
+            f = s.Available;
+            b = new byte[f];
+            s.Receive(b);
+
+            msg[0] = 0x0E; //_current_pid
+            a = s.Send(msg);
+            k = new byte[8];
+            while (s.Available < 8) ;
+            c = s.Receive(k);
+            long curpid = BitConverter.ToInt64(k, 0);
+            curpidBox.Text = "0x" + Convert.ToString(curpid, 16);
+            while (s.Available < 4) ;
+            b = new byte[s.Available];
+            s.Receive(b);
+
+            msg[0] = 0x0A; //_attach
+            a = s.Send(msg);
+            k = BitConverter.GetBytes(curpid);
+            a = s.Send(k);
+            while (s.Available < 4) ;
+            b = new byte[s.Available];
+            s.Receive(b);
+
+            msg[0] = 0x1A; //_dump_ptr
+            a = s.Send(msg);
+            k = new byte[8 * 4];
+            while (s.Available < 8 * 4) ;
+            c = s.Receive(k);
+            long address1 = BitConverter.ToInt64(k, 0);
+            long address2 = BitConverter.ToInt64(k, 8);
+            long address3 = BitConverter.ToInt64(k, 16);
+            long address4 = BitConverter.ToInt64(k, 24);
+            //curpidBox.Text = "0x" + Convert.ToString(count, 16);
+            while (s.Available < 4) ;
+            b = new byte[s.Available];
+            s.Receive(b);
+        }
+
+
     }
 }

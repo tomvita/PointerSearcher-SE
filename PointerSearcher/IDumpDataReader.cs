@@ -16,5 +16,7 @@ namespace PointerSearcher
         long heapEndAddress();
         long TargetAddress();
         void readsetup();
+        uint LZ_Compress(byte[] inbuf, byte[] outbuf, int insize);
+        uint LZ_Uncompress(byte[] inbuf, byte[] outbuf, int insize);
     }
 }

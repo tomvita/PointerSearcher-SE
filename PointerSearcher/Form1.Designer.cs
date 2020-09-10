@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -57,6 +57,13 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.ipBox = new System.Windows.Forms.TextBox();
+            this.connectBtn = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.statusBox = new System.Windows.Forms.TextBox();
+            this.getstatus = new System.Windows.Forms.Button();
+            this.pidBox = new System.Windows.Forms.TextBox();
+            this.curpidBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,8 +102,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -312,11 +319,68 @@
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
+            // ipBox
+            // 
+            this.ipBox.Location = new System.Drawing.Point(1223, 349);
+            this.ipBox.Name = "ipBox";
+            this.ipBox.Size = new System.Drawing.Size(100, 21);
+            this.ipBox.TabIndex = 20;
+            // 
+            // connectBtn
+            // 
+            this.connectBtn.Location = new System.Drawing.Point(1346, 349);
+            this.connectBtn.Name = "connectBtn";
+            this.connectBtn.Size = new System.Drawing.Size(75, 23);
+            this.connectBtn.TabIndex = 21;
+            this.connectBtn.Text = "Connect";
+            this.connectBtn.UseVisualStyleBackColor = true;
+            this.connectBtn.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1220, 333);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "IP address";
+            // 
+            // statusBox
+            // 
+            this.statusBox.Location = new System.Drawing.Point(1223, 272);
+            this.statusBox.Name = "statusBox";
+            this.statusBox.Size = new System.Drawing.Size(100, 21);
+            this.statusBox.TabIndex = 23;
+            // 
+            // getstatus
+            // 
+            this.getstatus.Location = new System.Drawing.Point(1346, 269);
+            this.getstatus.Name = "getstatus";
+            this.getstatus.Size = new System.Drawing.Size(75, 23);
+            this.getstatus.TabIndex = 24;
+            this.getstatus.Text = "get status";
+            this.getstatus.UseVisualStyleBackColor = true;
+            this.getstatus.Click += new System.EventHandler(this.getstatus_Click);
+            // 
+            // pidBox
+            // 
+            this.pidBox.Location = new System.Drawing.Point(1223, 299);
+            this.pidBox.Name = "pidBox";
+            this.pidBox.Size = new System.Drawing.Size(100, 21);
+            this.pidBox.TabIndex = 25;
+            // 
+            // curpidBox
+            // 
+            this.curpidBox.Location = new System.Drawing.Point(1223, 245);
+            this.curpidBox.Name = "curpidBox";
+            this.curpidBox.Size = new System.Drawing.Size(100, 21);
+            this.curpidBox.TabIndex = 26;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 452);
+            this.ClientSize = new System.Drawing.Size(1126, 452);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -337,8 +401,15 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonRead);
+            this.Controls.Add(this.curpidBox);
+            this.Controls.Add(this.pidBox);
+            this.Controls.Add(this.getstatus);
+            this.Controls.Add(this.statusBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.connectBtn);
+            this.Controls.Add(this.ipBox);
             this.Name = "Form1";
-            this.Text = "EdiZon SE PointerSearcher 0.3e";
+            this.Text = "EdiZon SE PointerSearcher 0.4";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -376,6 +447,13 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.TextBox ipBox;
+        private System.Windows.Forms.Button connectBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox statusBox;
+        private System.Windows.Forms.Button getstatus;
+        private System.Windows.Forms.TextBox pidBox;
+        private System.Windows.Forms.TextBox curpidBox;
     }
 }
 

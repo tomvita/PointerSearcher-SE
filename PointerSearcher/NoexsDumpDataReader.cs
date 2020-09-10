@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
+using System.Windows.Forms;
 using System.Xml.Schema;
 
 namespace PointerSearcher
@@ -67,6 +70,7 @@ namespace PointerSearcher
         private List<NoexsDumpIndex> indices;
         //private List<NoexsMemoryInfo> infos;
         private Dictionary<long, long> readData;    //key:address,value:data
+        private bool m_compress = false;
         public NoexsDumpDataReader(String path, long mainStart, long mainEnd, long heapStart, long heapEnd)
         {
             fileStream = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read));//System.Security.AccessControl.FileSystemRights.Read, FileShare.Read, 1024, FileOptions.SequentialScan));
@@ -79,6 +83,7 @@ namespace PointerSearcher
             //infos = new List<NoexsMemoryInfo>();
             readData = new Dictionary<long, long>();
         }
+
         ~NoexsDumpDataReader()
         {
             if (fileStream != null)
@@ -119,7 +124,14 @@ namespace PointerSearcher
                 length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
                 fileStream.BaseStream.Seek(start, SeekOrigin.Begin);
                 int readSize = (int)(fileStream.BaseStream.Length - start);
-                buffN = fileStream.ReadBytes(readSize);
+                if (m_compress)
+                {
+                    byte[] cbuff = fileStream.ReadBytes(readSize);
+                    buffN = new byte[readSize * 4];
+                    length = LZ_Uncompress(cbuff, buffN, readSize) / 16;
+                }
+                else
+                    buffN = fileStream.ReadBytes(readSize);
                 firstread = false;
             }
             int Start = 0;
@@ -163,12 +175,16 @@ namespace PointerSearcher
             }
             indices = new List<NoexsDumpIndex>();
             fileStream.BaseStream.Seek(0, SeekOrigin.Begin);
-
-            if (fileStream.ReadInt32() != 0x4E5A4445) //edizon's version
+            int magic = fileStream.ReadInt32();
+            if (magic == 0x4E5A4665)
+            {
+                m_compress = true;
+            }
+            else if (magic != 0x4E5A4445) //edizon's version
             {
                 fileStream.Close();
                 throw new Exception("illegal file format");
-            }
+            } 
             fileStream.BaseStream.Seek(134, SeekOrigin.Begin); // Edizon header size = 134
             mainStartAddress = fileStream.ReadInt64();
             mainEndAddress = fileStream.ReadInt64();
@@ -177,6 +193,140 @@ namespace PointerSearcher
             TargetAddress = fileStream.ReadInt64();
             return;
 
+        }
+        //void IDumpDataReader.lzcompress()
+        //{
+
+        //}
+        uint IDumpDataReader.LZ_Compress(byte[] inbuf, byte[] outbuf, int insize)
+        {
+            return LZ_Compress(inbuf, outbuf, insize);
+        }
+        private uint LZ_Compress(byte[] inbuf, byte[] outbuf, int insize)
+        {
+            uint inpos, outpos;
+            uint front, back = 0;
+            uint MAXRANGE = 16;
+            bool match;
+            if (insize < 1)
+            {
+                return 0;
+            }
+            inpos = 0;
+            outpos = 0;
+            do
+            {
+                front = 8;
+                for (uint frnt = 0; frnt <= 8; frnt++)
+                {
+                    for (uint bak = 1; bak <= MAXRANGE; bak++)
+                    {
+                        if (inpos < bak * 8)
+                        {
+                            break;
+                        }
+                        match = true;
+                        //uint inposbak = inpos - bak * 8;
+                        for (uint i = frnt; i < 8; i++)
+                            if (inbuf[inpos - bak * 8 + i] != inbuf[inpos + i]) { match = false; break; };
+                        //if ((*(ulong*)(&in[inpos -back * 8]) &(0xFFFFFFFFFFFFFFFF << 8 * frnt)) == (*(ulong*)(&in[inpos]) &(0xFFFFFFFFFFFFFFFF << 8 * frnt)))
+                        if (match)
+                        {
+                            front = frnt;
+                            back = bak - 1;
+                            frnt = 8;
+                            break;
+                        }
+                    }
+                }
+                outbuf[outpos] = (byte)(front * 16 + back);
+                outpos += 1;
+                for (uint i = 0; i < front; i++)
+                    outbuf[outpos + i] = inbuf[inpos + i];
+                //*(unsigned long long*)(&outbuf[outpos]) = *(unsigned long long*)(&inbuf[inpos]);
+                outpos += front;
+                inpos += 8;
+            } while (inpos < MAXRANGE * 8);
+            do
+            {
+                front = 8;
+                for (uint frnt = 0; frnt <= 8; frnt++)
+                {
+                    for (uint bak = 1; bak <= MAXRANGE; bak++)
+                    {
+                        match = true;
+                        for (uint i = frnt; i < 8; i++)
+                            if (inbuf[inpos - bak * 8 + i] != inbuf[inpos + i]) { match = false; break; };
+                        if (match)
+                        {
+                            front = frnt;
+                            back = bak - 1;
+                            frnt = 8;
+                            break;
+                        }
+                    }
+                }
+                outbuf[outpos] = (byte)(front * 16 + back);
+                outpos += 1;
+                for (uint i = 0; i < front; i++)
+                    outbuf[outpos + i] = inbuf[inpos + i];
+                outpos += front;
+                inpos += 8;
+            } while (inpos < insize);
+            return outpos;
+        }
+        uint IDumpDataReader.LZ_Uncompress(byte[] inbuf, byte[] outbuf, int insize)
+        {
+            return LZ_Uncompress(inbuf, outbuf, insize);
+        }
+        private uint LZ_Uncompress(byte[] inbuf, byte[] outbuf, int insize)
+        {
+            uint inpos, outpos, i;
+            uint front,back;
+            if (insize < 1)
+            {
+                return 0;
+            }
+            inpos = 0;
+            outpos = 0;
+            do
+            {
+                front = (uint)(inbuf[inpos] / 16);
+                back = (uint)(inbuf[inpos] & 0xF) * 8 + 8;
+                inpos++;
+                for (i = 0; i < front; i++)
+                    outbuf[outpos + i] = inbuf[inpos + i];
+                for (i = front; i < 8; i++)
+                    outbuf[outpos + i] = outbuf[outpos - back + i];
+                inpos += front;
+                outpos += 8;
+            } while (inpos < insize);
+            return outpos;
+        }
+        private uint LZ_Uncompress2(byte[] inbuf, ulong[] outbuf, int insize)
+        {
+            ulong[] mask = { 0xFFFFFFFFFFFFFFFF, 0xFFFFFFFFFFFFFF00, 0xFFFFFFFFFFFF0000, 0xFFFFFFFFFF000000, 0xFFFFFFFF00000000, 0xFFFFFF0000000000, 0xFFFF000000000000, 0xFF00000000000000, 0x0000000000000000 };
+            uint inpos, outpos;
+            uint front, back;
+            if (insize < 1)
+            {
+                return 0;
+            }
+            inpos = 0;
+            outpos = 0;
+            do
+            {
+                front = (uint)(inbuf[inpos] / 16);
+                back = (uint)(inbuf[inpos] & 0xF) + 1;
+                inpos++;
+                if (front == 8)
+                    outbuf[outpos] =  BitConverter.ToUInt64(inbuf, (int)inpos);
+                else
+                    outbuf[outpos] =  BitConverter.ToUInt64(inbuf, (int)inpos) & ~mask[front] | outbuf[outpos - back] & mask[front];
+                inpos += front;
+                outpos += 1;
+            } while (inpos < insize);
+            return outpos;
         }
         PointerInfo IDumpDataReader.Read(CancellationToken token, IProgress<int> prog)
         {
@@ -189,7 +339,34 @@ namespace PointerSearcher
             long length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
             fileStream.BaseStream.Seek(start, SeekOrigin.Begin);
             int readSize = (int)(fileStream.BaseStream.Length - start);
-            byte[] buff = fileStream.ReadBytes(readSize);
+            byte[] buff;
+            if (m_compress)
+            {
+                byte[] cbuff = fileStream.ReadBytes(readSize);
+                buff = new byte[readSize * 4];
+                length = LZ_Uncompress(cbuff, buff, readSize) / 16;
+            }
+            else
+                buff = fileStream.ReadBytes(readSize);
+            // WIP
+            //byte[] outbuff = new byte[readSize * 9 / 8];
+            //byte[] outbuff2 = new byte[readSize];
+            //ulong[] outbuff3 = new ulong[readSize / 8];
+            //bool error = false;
+            //int csize = (int)LZ_Compress(buff, outbuff, readSize);
+            //int osize = (int)LZ_Uncompress(outbuff, outbuff2, csize);
+            //int osize2 = (int)LZ_Uncompress2(outbuff,outbuff3, csize);
+            //for (int i = 0; i < readSize; i++)
+            //{
+            //    if (buff[i] != outbuff2[i]) 
+            //        error = true;
+            //}
+            //for (int i = 0; i < readSize/8; i++)
+            //{
+            //    if (outbuff3[i] !=(ulong) BitConverter.ToInt64(buff, i*8))
+            //        error = true;
+            //}
+            // end test
             for (int index = 0; index < length; index++)
             {
                 if (token.IsCancellationRequested)
