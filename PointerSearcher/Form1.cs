@@ -548,10 +548,14 @@ namespace PointerSearcher
                 }).Start();
             }
         }
+        private void showerror(byte [] b)
+        {
+            errorBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
+        }
 
         private void getstatus_Click(object sender, EventArgs e)
         {
-            byte[] msg = { 0x10 };
+            byte[] msg = { 0x10 }; // _list_pids
             int a = s.Send(msg);
             byte[] k = new byte[4];
             int c = s.Receive(k);
@@ -559,17 +563,20 @@ namespace PointerSearcher
             byte[] b = new byte[count * 8];
             int d = s.Receive(b);
             long pid = BitConverter.ToInt64(b, (count-2) *8);
-            pidBox.Text = "0x" + Convert.ToString(pid);
+            long pid0 = BitConverter.ToInt64(b, (count - 1) * 8);
             int f = s.Available;
             c = s.Receive(k);
 
-            msg[0] = 0x01;
+            pidBox.Text = Convert.ToString(pid);
+            pid0Box.Text = Convert.ToString(pid0);
+
+            msg[0] = 0x01; // _status
             a = s.Send(msg);
-            k = new byte[4];
+            b = new byte[4];
             while (s.Available < 4) ;
-            c = s.Receive(k);
+            c = s.Receive(b);
             count = BitConverter.ToInt32(k, 0);
-            statusBox.Text = "0x" + Convert.ToString(count,16);
+            statusBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
             f = s.Available;
             b = new byte[f];
             s.Receive(b);
@@ -580,10 +587,39 @@ namespace PointerSearcher
             while (s.Available < 8) ;
             c = s.Receive(k);
             long curpid = BitConverter.ToInt64(k, 0);
-            curpidBox.Text = "0x" + Convert.ToString(curpid, 16);
+            curpidBox.Text = Convert.ToString(curpid);
             while (s.Available < 4) ;
             b = new byte[s.Available];
             s.Receive(b);
+            showerror(b);
+            return;
+
+            msg[0] = 0x11; //_get_titleid
+            a = s.Send(msg);
+            k = new byte[8];
+            k = BitConverter.GetBytes(pid);
+            a = s.Send(k);
+            while (s.Available < 8) ;
+            c = s.Receive(k);
+            long TID = BitConverter.ToInt64(k, 0);
+            TIDBox.Text = "0x" + Convert.ToString(TID,16);
+            while (s.Available < 4) ;
+            b = new byte[s.Available];
+            s.Receive(b);
+
+            msg[0] = 0x11; //_get_titleid
+            a = s.Send(msg);
+            k = new byte[8];
+            k = BitConverter.GetBytes(pid0);
+            a = s.Send(k);
+            while (s.Available < 8) ;
+            c = s.Receive(k);
+            long TID0 = BitConverter.ToInt64(k, 0);
+            TID0Box.Text = "0x" + Convert.ToString(TID0, 16);
+            while (s.Available < 4) ;
+            b = new byte[s.Available];
+            s.Receive(b);
+
 
             msg[0] = 0x0A; //_attach
             a = s.Send(msg);
@@ -593,11 +629,34 @@ namespace PointerSearcher
             b = new byte[s.Available];
             s.Receive(b);
 
-            msg[0] = 0x1A; //_dump_ptr
-            a = s.Send(msg);
-            k = new byte[8 * 4];
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x0B }; //_detatch
+            int a = s.Send(msg);
+            //k = BitConverter.GetBytes(curpid);
+            //a = s.Send(k);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x19 }; //_dump_ptr
+            int a = s.Send(msg);
+            byte[] b;
+
+            //while (s.Available < 4) ;
+            //b = new byte[s.Available];
+            //s.Receive(b);
+
+            byte[] k = new byte[8 * 4];
             while (s.Available < 8 * 4) ;
-            c = s.Receive(k);
+            int c = s.Receive(k);
             long address1 = BitConverter.ToInt64(k, 0);
             long address2 = BitConverter.ToInt64(k, 8);
             long address3 = BitConverter.ToInt64(k, 16);
@@ -606,8 +665,100 @@ namespace PointerSearcher
             while (s.Available < 4) ;
             b = new byte[s.Available];
             s.Receive(b);
+            showerror(b);
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x1A }; //_attach_dmnt
+            int a = s.Send(msg);
+            //k = BitConverter.GetBytes(curpid);
+            //a = s.Send(k);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x18 }; //_detach_dmnt
+            int a = s.Send(msg);
+            //k = BitConverter.GetBytes(curpid);
+            //a = s.Send(k);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
+
+        private void curpidBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x0A }; //_attach
+            int a = s.Send(msg);
+            byte[] k = new byte[8];
+            long k1 = Convert.ToInt64(pidBox.Text);
+            k = BitConverter.GetBytes(k1);
+            a = s.Send(k);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x0A }; //_attach
+            int a = s.Send(msg);
+            byte[] k = new byte[8];
+            long k1 = Convert.ToInt64(pid0Box.Text);
+            k = BitConverter.GetBytes(k1);
+            a = s.Send(k);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
+
+        private void pidBox_TextChanged(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x11 }; //_get_titleid
+            int a = s.Send(msg);
+            byte[] k = new byte[8];
+            long pid = Convert.ToInt64(pidBox.Text);
+            k = BitConverter.GetBytes(pid);
+            a = s.Send(k);
+            while (s.Available < 8) ;
+            int c = s.Receive(k);
+            long TID = BitConverter.ToInt64(k, 0);
+            TIDBox.Text = "0x" + Convert.ToString(TID, 16);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
+
+        private void pid0Box_TextChanged(object sender, EventArgs e)
+        {
+            byte[] msg = { 0x11 }; //_get_titleid
+            int a = s.Send(msg);
+            byte[] k = new byte[8];
+            long pid = Convert.ToInt64(pid0Box.Text);
+            k = BitConverter.GetBytes(pid);
+            a = s.Send(k);
+            while (s.Available < 8) ;
+            int c = s.Receive(k);
+            long TID = BitConverter.ToInt64(k, 0);
+            TID0Box.Text = "0x" + Convert.ToString(TID, 16);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            showerror(b);
+        }
     }
 }

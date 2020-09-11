@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -64,6 +64,19 @@
             this.getstatus = new System.Windows.Forms.Button();
             this.pidBox = new System.Windows.Forms.TextBox();
             this.curpidBox = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.pid0Box = new System.Windows.Forms.TextBox();
+            this.TIDBox = new System.Windows.Forms.TextBox();
+            this.TID0Box = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.errorBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,8 +115,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -286,7 +299,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(711, 200);
+            this.radioButton1.Location = new System.Drawing.Point(675, 200);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(62, 17);
             this.radioButton1.TabIndex = 17;
@@ -298,7 +311,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(711, 232);
+            this.radioButton2.Location = new System.Drawing.Point(675, 232);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(62, 17);
             this.radioButton2.TabIndex = 18;
@@ -310,7 +323,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(711, 263);
+            this.radioButton3.Location = new System.Drawing.Point(675, 263);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(62, 17);
             this.radioButton3.TabIndex = 19;
@@ -321,16 +334,16 @@
             // 
             // ipBox
             // 
-            this.ipBox.Location = new System.Drawing.Point(1223, 349);
+            this.ipBox.Location = new System.Drawing.Point(897, 407);
             this.ipBox.Name = "ipBox";
             this.ipBox.Size = new System.Drawing.Size(100, 21);
             this.ipBox.TabIndex = 20;
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(1346, 349);
+            this.connectBtn.Location = new System.Drawing.Point(1021, 405);
             this.connectBtn.Name = "connectBtn";
-            this.connectBtn.Size = new System.Drawing.Size(75, 23);
+            this.connectBtn.Size = new System.Drawing.Size(85, 23);
             this.connectBtn.TabIndex = 21;
             this.connectBtn.Text = "Connect";
             this.connectBtn.UseVisualStyleBackColor = true;
@@ -339,7 +352,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1220, 333);
+            this.label5.Location = new System.Drawing.Point(894, 391);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 22;
@@ -347,16 +360,16 @@
             // 
             // statusBox
             // 
-            this.statusBox.Location = new System.Drawing.Point(1223, 272);
+            this.statusBox.Location = new System.Drawing.Point(897, 307);
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(100, 21);
             this.statusBox.TabIndex = 23;
             // 
             // getstatus
             // 
-            this.getstatus.Location = new System.Drawing.Point(1346, 269);
+            this.getstatus.Location = new System.Drawing.Point(1021, 377);
             this.getstatus.Name = "getstatus";
-            this.getstatus.Size = new System.Drawing.Size(75, 23);
+            this.getstatus.Size = new System.Drawing.Size(85, 23);
             this.getstatus.TabIndex = 24;
             this.getstatus.Text = "get status";
             this.getstatus.UseVisualStyleBackColor = true;
@@ -364,23 +377,154 @@
             // 
             // pidBox
             // 
-            this.pidBox.Location = new System.Drawing.Point(1223, 299);
+            this.pidBox.Location = new System.Drawing.Point(897, 334);
             this.pidBox.Name = "pidBox";
             this.pidBox.Size = new System.Drawing.Size(100, 21);
             this.pidBox.TabIndex = 25;
+            this.pidBox.TextChanged += new System.EventHandler(this.pidBox_TextChanged);
             // 
             // curpidBox
             // 
-            this.curpidBox.Location = new System.Drawing.Point(1223, 245);
+            this.curpidBox.Location = new System.Drawing.Point(897, 280);
             this.curpidBox.Name = "curpidBox";
             this.curpidBox.Size = new System.Drawing.Size(100, 21);
             this.curpidBox.TabIndex = 26;
+            this.curpidBox.TextChanged += new System.EventHandler(this.curpidBox_TextChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1021, 350);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 23);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "Detach";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1021, 321);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(85, 23);
+            this.button3.TabIndex = 28;
+            this.button3.Text = "Dump ptr";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1021, 293);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 23);
+            this.button4.TabIndex = 29;
+            this.button4.Text = "Attach dmnt";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(1021, 264);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(85, 23);
+            this.button5.TabIndex = 30;
+            this.button5.Text = "Detach dmnt";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(688, 334);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(59, 23);
+            this.button6.TabIndex = 31;
+            this.button6.Text = "Attach";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // pid0Box
+            // 
+            this.pid0Box.Location = new System.Drawing.Point(897, 361);
+            this.pid0Box.Name = "pid0Box";
+            this.pid0Box.Size = new System.Drawing.Size(100, 21);
+            this.pid0Box.TabIndex = 33;
+            this.pid0Box.TextChanged += new System.EventHandler(this.pid0Box_TextChanged);
+            // 
+            // TIDBox
+            // 
+            this.TIDBox.Location = new System.Drawing.Point(753, 334);
+            this.TIDBox.Name = "TIDBox";
+            this.TIDBox.Size = new System.Drawing.Size(138, 21);
+            this.TIDBox.TabIndex = 34;
+            // 
+            // TID0Box
+            // 
+            this.TID0Box.Location = new System.Drawing.Point(753, 361);
+            this.TID0Box.Name = "TID0Box";
+            this.TID0Box.Size = new System.Drawing.Size(138, 21);
+            this.TID0Box.TabIndex = 35;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(688, 361);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(59, 23);
+            this.button8.TabIndex = 36;
+            this.button8.Text = "Attach";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(794, 312);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(97, 13);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Sys Module Version";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(794, 286);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 13);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "pminfo Program Id";
+            // 
+            // errorBox
+            // 
+            this.errorBox.Location = new System.Drawing.Point(753, 407);
+            this.errorBox.Name = "errorBox";
+            this.errorBox.Size = new System.Drawing.Size(134, 21);
+            this.errorBox.TabIndex = 39;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(750, 391);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Error Code";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1126, 452);
+            this.ClientSize = new System.Drawing.Size(1117, 452);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.errorBox);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.TID0Box);
+            this.Controls.Add(this.TIDBox);
+            this.Controls.Add(this.pid0Box);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -454,6 +598,19 @@
         private System.Windows.Forms.Button getstatus;
         private System.Windows.Forms.TextBox pidBox;
         private System.Windows.Forms.TextBox curpidBox;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox pid0Box;
+        private System.Windows.Forms.TextBox TIDBox;
+        private System.Windows.Forms.TextBox TID0Box;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox errorBox;
+        private System.Windows.Forms.Label label8;
     }
 }
 
