@@ -198,11 +198,11 @@ namespace PointerSearcher
             {
                 textBox1.Text = "Exporting result to file ... " + result.Count.ToString();
                 String filepath = textBox2.Text;
-                if ((filepath == "") || System.IO.File.Exists(filepath))
-                {
-                    textBox1.Text = "Book Mark File exist";
-                    return;
-                }
+                //if ((filepath == "") || System.IO.File.Exists(filepath))
+                //{
+                //    textBox1.Text = "Book Mark File exist";
+                //    return;
+                //}
                 BinaryWriter BM;
                 try
                 {
@@ -661,6 +661,10 @@ namespace PointerSearcher
             long address2 = BitConverter.ToInt64(k, 8);
             long address3 = BitConverter.ToInt64(k, 16);
             long address4 = BitConverter.ToInt64(k, 24);
+            MainStartBox.Text = "0x" + Convert.ToString(address1, 16);
+            MainEndBox.Text = "0x" + Convert.ToString(address2, 16);
+            HeapStartBox.Text = "0x" + Convert.ToString(address3, 16);
+            HeapEndBox.Text = "0x" + Convert.ToString(address4, 16);
             //curpidBox.Text = "0x" + Convert.ToString(count, 16);
             while (s.Available < 4) ;
             b = new byte[s.Available];

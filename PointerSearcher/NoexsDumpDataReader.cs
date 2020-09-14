@@ -381,7 +381,7 @@ namespace PointerSearcher
                 Address to = new Address(MemoryType.HEAP, target - heapStartAddress);
                 pointerInfo.AddPointer(from, to);
                 if (index % 10000 == 1)
-                    prog.Report((int)(100 * (index + 1) / length));
+                    prog.Report((int)((long)100 * (index + 1) / length));
             }
             pointerInfo.MakeList();
             sw.Stop();
