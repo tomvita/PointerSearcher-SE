@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -124,12 +125,25 @@
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.radioButton12 = new System.Windows.Forms.RadioButton();
+            this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRead
@@ -167,8 +181,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -351,7 +365,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(669, 194);
+            this.radioButton1.Location = new System.Drawing.Point(7, 18);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(62, 17);
             this.radioButton1.TabIndex = 17;
@@ -363,7 +377,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(669, 226);
+            this.radioButton2.Location = new System.Drawing.Point(7, 50);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(62, 17);
             this.radioButton2.TabIndex = 18;
@@ -375,7 +389,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(669, 257);
+            this.radioButton3.Location = new System.Drawing.Point(7, 81);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(62, 17);
             this.radioButton3.TabIndex = 19;
@@ -386,14 +400,15 @@
             // 
             // ipBox
             // 
-            this.ipBox.Location = new System.Drawing.Point(886, 250);
+            this.ipBox.Location = new System.Drawing.Point(899, 597);
             this.ipBox.Name = "ipBox";
             this.ipBox.Size = new System.Drawing.Size(100, 21);
             this.ipBox.TabIndex = 20;
+            this.ipBox.TextChanged += new System.EventHandler(this.ipBox_TextChanged);
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(1010, 248);
+            this.connectBtn.Location = new System.Drawing.Point(1023, 595);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(85, 23);
             this.connectBtn.TabIndex = 21;
@@ -404,7 +419,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(883, 234);
+            this.label5.Location = new System.Drawing.Point(896, 581);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 22;
@@ -412,14 +427,14 @@
             // 
             // statusBox
             // 
-            this.statusBox.Location = new System.Drawing.Point(886, 150);
+            this.statusBox.Location = new System.Drawing.Point(213, 551);
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(100, 21);
             this.statusBox.TabIndex = 23;
             // 
             // getstatus
             // 
-            this.getstatus.Location = new System.Drawing.Point(1010, 220);
+            this.getstatus.Location = new System.Drawing.Point(1023, 567);
             this.getstatus.Name = "getstatus";
             this.getstatus.Size = new System.Drawing.Size(85, 23);
             this.getstatus.TabIndex = 24;
@@ -429,7 +444,7 @@
             // 
             // pidBox
             // 
-            this.pidBox.Location = new System.Drawing.Point(886, 177);
+            this.pidBox.Location = new System.Drawing.Point(899, 524);
             this.pidBox.Name = "pidBox";
             this.pidBox.Size = new System.Drawing.Size(100, 21);
             this.pidBox.TabIndex = 25;
@@ -437,7 +452,7 @@
             // 
             // curpidBox
             // 
-            this.curpidBox.Location = new System.Drawing.Point(886, 123);
+            this.curpidBox.Location = new System.Drawing.Point(213, 524);
             this.curpidBox.Name = "curpidBox";
             this.curpidBox.Size = new System.Drawing.Size(100, 21);
             this.curpidBox.TabIndex = 26;
@@ -445,7 +460,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1010, 193);
+            this.button2.Location = new System.Drawing.Point(1023, 540);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 23);
             this.button2.TabIndex = 27;
@@ -455,7 +470,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1010, 164);
+            this.button3.Location = new System.Drawing.Point(1023, 511);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(85, 23);
             this.button3.TabIndex = 28;
@@ -465,7 +480,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1010, 136);
+            this.button4.Location = new System.Drawing.Point(10, 553);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(85, 23);
             this.button4.TabIndex = 29;
@@ -475,7 +490,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(1010, 107);
+            this.button5.Location = new System.Drawing.Point(10, 524);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(85, 23);
             this.button5.TabIndex = 30;
@@ -485,7 +500,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(677, 177);
+            this.button6.Location = new System.Drawing.Point(690, 524);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(59, 23);
             this.button6.TabIndex = 31;
@@ -495,7 +510,7 @@
             // 
             // pid0Box
             // 
-            this.pid0Box.Location = new System.Drawing.Point(886, 204);
+            this.pid0Box.Location = new System.Drawing.Point(899, 551);
             this.pid0Box.Name = "pid0Box";
             this.pid0Box.Size = new System.Drawing.Size(100, 21);
             this.pid0Box.TabIndex = 33;
@@ -503,21 +518,21 @@
             // 
             // TIDBox
             // 
-            this.TIDBox.Location = new System.Drawing.Point(742, 177);
+            this.TIDBox.Location = new System.Drawing.Point(755, 524);
             this.TIDBox.Name = "TIDBox";
             this.TIDBox.Size = new System.Drawing.Size(138, 21);
             this.TIDBox.TabIndex = 34;
             // 
             // TID0Box
             // 
-            this.TID0Box.Location = new System.Drawing.Point(742, 204);
+            this.TID0Box.Location = new System.Drawing.Point(755, 551);
             this.TID0Box.Name = "TID0Box";
             this.TID0Box.Size = new System.Drawing.Size(138, 21);
             this.TID0Box.TabIndex = 35;
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(677, 204);
+            this.button8.Location = new System.Drawing.Point(690, 551);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(59, 23);
             this.button8.TabIndex = 36;
@@ -528,7 +543,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(783, 155);
+            this.label6.Location = new System.Drawing.Point(110, 556);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 37;
@@ -537,7 +552,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(783, 129);
+            this.label7.Location = new System.Drawing.Point(110, 530);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 38;
@@ -545,7 +560,7 @@
             // 
             // errorBox
             // 
-            this.errorBox.Location = new System.Drawing.Point(742, 250);
+            this.errorBox.Location = new System.Drawing.Point(755, 597);
             this.errorBox.Name = "errorBox";
             this.errorBox.Size = new System.Drawing.Size(134, 21);
             this.errorBox.TabIndex = 39;
@@ -553,7 +568,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(739, 234);
+            this.label8.Location = new System.Drawing.Point(752, 581);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 40;
@@ -561,33 +576,20 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1112, 469);
+            this.tabControl1.Size = new System.Drawing.Size(1108, 480);
             this.tabControl1.TabIndex = 41;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label25);
-            this.tabPage2.Controls.Add(this.timeusedBox);
-            this.tabPage2.Controls.Add(this.progressBar2);
-            this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.RecSizeBox);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.dataGridView3);
             this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Controls.Add(this.label20);
-            this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.MainEndBox);
-            this.tabPage2.Controls.Add(this.MainStartBox);
-            this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.HeapEndBox);
-            this.tabPage2.Controls.Add(this.HeapStartBox);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.comboBox4);
             this.tabPage2.Controls.Add(this.label16);
@@ -610,30 +612,10 @@
             this.tabPage2.Controls.Add(this.radioButton6);
             this.tabPage2.Controls.Add(this.radioButton5);
             this.tabPage2.Controls.Add(this.radioButton4);
-            this.tabPage2.Controls.Add(this.pidBox);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.ipBox);
-            this.tabPage2.Controls.Add(this.errorBox);
-            this.tabPage2.Controls.Add(this.connectBtn);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.statusBox);
-            this.tabPage2.Controls.Add(this.button8);
-            this.tabPage2.Controls.Add(this.getstatus);
-            this.tabPage2.Controls.Add(this.TID0Box);
-            this.tabPage2.Controls.Add(this.curpidBox);
-            this.tabPage2.Controls.Add(this.TIDBox);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.pid0Box);
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Controls.Add(this.button6);
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1104, 443);
+            this.tabPage2.Size = new System.Drawing.Size(1104, 451);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Memory Search";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -641,7 +623,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(644, 69);
+            this.label25.Location = new System.Drawing.Point(347, 553);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(82, 13);
             this.label25.TabIndex = 82;
@@ -649,14 +631,14 @@
             // 
             // timeusedBox
             // 
-            this.timeusedBox.Location = new System.Drawing.Point(647, 85);
+            this.timeusedBox.Location = new System.Drawing.Point(350, 569);
             this.timeusedBox.Name = "timeusedBox";
             this.timeusedBox.Size = new System.Drawing.Size(89, 21);
             this.timeusedBox.TabIndex = 81;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(647, 119);
+            this.progressBar2.Location = new System.Drawing.Point(350, 603);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(89, 11);
             this.progressBar2.TabIndex = 80;
@@ -664,7 +646,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(644, 24);
+            this.label24.Location = new System.Drawing.Point(347, 508);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(70, 13);
             this.label24.TabIndex = 79;
@@ -673,7 +655,7 @@
             // 
             // RecSizeBox
             // 
-            this.RecSizeBox.Location = new System.Drawing.Point(647, 40);
+            this.RecSizeBox.Location = new System.Drawing.Point(350, 524);
             this.RecSizeBox.Name = "RecSizeBox";
             this.RecSizeBox.Size = new System.Drawing.Size(89, 21);
             this.RecSizeBox.TabIndex = 78;
@@ -731,6 +713,7 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.From,
             this.To});
+            this.dataGridView2.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.addressBindingSource, "offset", true));
             this.dataGridView2.Location = new System.Drawing.Point(0, 22);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
@@ -751,7 +734,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(783, 22);
+            this.label20.Location = new System.Drawing.Point(472, 519);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 13);
             this.label20.TabIndex = 73;
@@ -760,7 +743,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(783, 48);
+            this.label21.Location = new System.Drawing.Point(472, 545);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(50, 13);
             this.label21.TabIndex = 72;
@@ -768,14 +751,14 @@
             // 
             // MainEndBox
             // 
-            this.MainEndBox.Location = new System.Drawing.Point(886, 43);
+            this.MainEndBox.Location = new System.Drawing.Point(575, 540);
             this.MainEndBox.Name = "MainEndBox";
             this.MainEndBox.Size = new System.Drawing.Size(100, 21);
             this.MainEndBox.TabIndex = 70;
             // 
             // MainStartBox
             // 
-            this.MainStartBox.Location = new System.Drawing.Point(886, 16);
+            this.MainStartBox.Location = new System.Drawing.Point(575, 513);
             this.MainStartBox.Name = "MainStartBox";
             this.MainStartBox.Size = new System.Drawing.Size(100, 21);
             this.MainStartBox.TabIndex = 71;
@@ -783,7 +766,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(783, 76);
+            this.label18.Location = new System.Drawing.Point(472, 573);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(57, 13);
             this.label18.TabIndex = 69;
@@ -792,7 +775,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(783, 102);
+            this.label19.Location = new System.Drawing.Point(472, 599);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(51, 13);
             this.label19.TabIndex = 68;
@@ -800,14 +783,14 @@
             // 
             // HeapEndBox
             // 
-            this.HeapEndBox.Location = new System.Drawing.Point(886, 97);
+            this.HeapEndBox.Location = new System.Drawing.Point(575, 594);
             this.HeapEndBox.Name = "HeapEndBox";
             this.HeapEndBox.Size = new System.Drawing.Size(100, 21);
             this.HeapEndBox.TabIndex = 66;
             // 
             // HeapStartBox
             // 
-            this.HeapStartBox.Location = new System.Drawing.Point(886, 70);
+            this.HeapStartBox.Location = new System.Drawing.Point(575, 567);
             this.HeapStartBox.Name = "HeapStartBox";
             this.HeapStartBox.Size = new System.Drawing.Size(100, 21);
             this.HeapStartBox.TabIndex = 67;
@@ -1004,7 +987,6 @@
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(87, 17);
             this.radioButton7.TabIndex = 44;
-            this.radioButton7.TabStop = true;
             this.radioButton7.Text = "radioButton7";
             this.radioButton7.UseVisualStyleBackColor = true;
             // 
@@ -1015,7 +997,6 @@
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(87, 17);
             this.radioButton6.TabIndex = 43;
-            this.radioButton6.TabStop = true;
             this.radioButton6.Text = "radioButton6";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
@@ -1026,13 +1007,13 @@
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(87, 17);
             this.radioButton5.TabIndex = 42;
-            this.radioButton5.TabStop = true;
             this.radioButton5.Text = "radioButton5";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
+            this.radioButton4.Checked = true;
             this.radioButton4.Location = new System.Drawing.Point(11, 307);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(65, 17);
@@ -1043,12 +1024,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.radioButton3);
             this.tabPage1.Controls.Add(this.buttonRead);
-            this.tabPage1.Controls.Add(this.radioButton2);
             this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.radioButton1);
             this.tabPage1.Controls.Add(this.buttonSearch);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.textBoxDepth);
@@ -1066,17 +1046,161 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1104, 443);
+            this.tabPage1.Size = new System.Drawing.Size(1100, 454);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Pointer Search";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(662, 173);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(78, 115);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Target";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton11);
+            this.groupBox2.Controls.Add(this.radioButton12);
+            this.groupBox2.Controls.Add(this.radioButton8);
+            this.groupBox2.Controls.Add(this.radioButton9);
+            this.groupBox2.Controls.Add(this.radioButton10);
+            this.groupBox2.Location = new System.Drawing.Point(662, 294);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(78, 157);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "File";
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(6, 72);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(50, 17);
+            this.radioButton8.TabIndex = 19;
+            this.radioButton8.TabStop = true;
+            this.radioButton8.Text = "File 3";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Location = new System.Drawing.Point(6, 49);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(50, 17);
+            this.radioButton9.TabIndex = 18;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "File 2";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Checked = true;
+            this.radioButton10.Location = new System.Drawing.Point(6, 26);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(50, 17);
+            this.radioButton10.TabIndex = 17;
+            this.radioButton10.TabStop = true;
+            this.radioButton10.Text = "File 1";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            this.radioButton10.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
+            // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Location = new System.Drawing.Point(6, 120);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(50, 17);
+            this.radioButton11.TabIndex = 21;
+            this.radioButton11.TabStop = true;
+            this.radioButton11.Text = "File 5";
+            this.radioButton11.UseVisualStyleBackColor = true;
+            this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged_1);
+            // 
+            // radioButton12
+            // 
+            this.radioButton12.AutoSize = true;
+            this.radioButton12.Location = new System.Drawing.Point(6, 95);
+            this.radioButton12.Name = "radioButton12";
+            this.radioButton12.Size = new System.Drawing.Size(50, 17);
+            this.radioButton12.TabIndex = 20;
+            this.radioButton12.TabStop = true;
+            this.radioButton12.Text = "File 4";
+            this.radioButton12.UseVisualStyleBackColor = true;
+            this.radioButton12.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged_1);
+            // 
+            // addressBindingSource
+            // 
+            this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(896, 508);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(23, 13);
+            this.label26.TabIndex = 83;
+            this.label26.Text = "PID";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(752, 508);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(22, 13);
+            this.label27.TabIndex = 84;
+            this.label27.Text = "TID";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 467);
+            this.ClientSize = new System.Drawing.Size(1124, 634);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.timeusedBox);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.RecSizeBox);
+            this.Controls.Add(this.pid0Box);
+            this.Controls.Add(this.TIDBox);
+            this.Controls.Add(this.TID0Box);
+            this.Controls.Add(this.getstatus);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.connectBtn);
+            this.Controls.Add(this.MainEndBox);
+            this.Controls.Add(this.errorBox);
+            this.Controls.Add(this.MainStartBox);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.ipBox);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.HeapEndBox);
+            this.Controls.Add(this.pidBox);
+            this.Controls.Add(this.HeapStartBox);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.curpidBox);
+            this.Controls.Add(this.statusBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Name = "Form1";
             this.Text = "EdiZon SE PointerSearcher 0.5 beta 1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -1088,7 +1212,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1189,6 +1319,16 @@
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.TextBox timeusedBox;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.BindingSource addressBindingSource;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton radioButton9;
+        private System.Windows.Forms.RadioButton radioButton10;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton11;
+        private System.Windows.Forms.RadioButton radioButton12;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
     }
 }
 

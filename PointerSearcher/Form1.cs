@@ -37,6 +37,7 @@ namespace PointerSearcher
         private PointerInfo info;
         private int maxDepth;
         private int targetselect = 0;
+        private int fileselect = 0;
         private int maxOffsetNum;
         private long maxOffsetAddress;
         private List<List<IReverseOrderPath>> result;
@@ -104,7 +105,7 @@ namespace PointerSearcher
             result.Clear();
             textBox1.Text = "";
             buttonRead.Enabled = false;
-            buttonSearch.Enabled = false;
+            //buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = true;
             textBox2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 4, 4) + "bmk";
@@ -579,6 +580,7 @@ namespace PointerSearcher
             c = s.Receive(b);
             count = BitConverter.ToInt32(k, 0);
             statusBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
+            if (b[3] > 137) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
             f = s.Available;
             b = new byte[f];
             s.Receive(b);
@@ -709,11 +711,30 @@ namespace PointerSearcher
             MainEndBox.Text = "0x" + Convert.ToString(address2, 16);
             HeapStartBox.Text = "0x" + Convert.ToString(address3, 16);
             HeapEndBox.Text = "0x" + Convert.ToString(address4, 16);
-            dataGridView1.Rows[0].Cells[0].Value = "DirectTransfer.dmp1";
-            dataGridView1.Rows[0].Cells[1].Value = "0x" + Convert.ToString(address1, 16);
-            dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(address2, 16);
-            dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(address3, 16);
-            dataGridView1.Rows[0].Cells[4].Value = "0x" + Convert.ToString(address4, 16);
+            dataGridView1.Rows[fileselect].Cells[0].Value = "DirectTransfer.dmp" + Convert.ToString(fileselect);
+            dataGridView1.Rows[fileselect].Cells[1].Value = "0x" + Convert.ToString(address1, 16);
+            dataGridView1.Rows[fileselect].Cells[2].Value = "0x" + Convert.ToString(address2, 16);
+            dataGridView1.Rows[fileselect].Cells[3].Value = "0x" + Convert.ToString(address3, 16);
+            dataGridView1.Rows[fileselect].Cells[4].Value = "0x" + Convert.ToString(address4, 16);
+
+            // create dump file
+            BinaryWriter fileStream = new BinaryWriter(new FileStream("DirectTransfer.dmp" + Convert.ToString(fileselect), FileMode.Create, FileAccess.Write));
+            fileStream.BaseStream.Seek(0, SeekOrigin.Begin);
+            int magic = 0x4E5A4445;
+            byte[] buffer = BitConverter.GetBytes(magic); 
+            fileStream.BaseStream.Write(buffer, 0, 4);
+            fileStream.BaseStream.Seek(134, SeekOrigin.Begin);
+            buffer = BitConverter.GetBytes(address1);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes(address2);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes(address3);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes(address4);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes((dataGridView1.Rows[fileselect].Cells[5].Value != null)? Convert.ToInt64(dataGridView1.Rows[fileselect].Cells[5].Value.ToString(), 16):0);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+
 
             //pointer_candidate = new long[30000000, 2];
             info = new PointerInfo();
@@ -726,6 +747,7 @@ namespace PointerSearcher
                 do
                 {
                     c1 = receivedata(ref dataset);
+                    fileStream.BaseStream.Write(dataset, 0, c1);
                     this.RecSizeBox.Invoke((MethodInvoker)delegate
                     {
                         for (int i = 0; i < c1; i +=16)
@@ -746,6 +768,7 @@ namespace PointerSearcher
                 do
                 {
                     c1 = receivedata(ref dataset);
+                    fileStream.BaseStream.Write(dataset, 0, c1);
                     this.RecSizeBox.Invoke((MethodInvoker)delegate
                     {
                         for (int i = 0; i < c1 ; i+=16)
@@ -764,6 +787,7 @@ namespace PointerSearcher
                     totaldata += c1;
                 } while (c1 > 0);
                 info.MakeList();
+                fileStream.BaseStream.Close();
                 this.RecSizeBox.Invoke((MethodInvoker)delegate
                 {
                     buttonSearch.Enabled = true;
@@ -897,6 +921,46 @@ namespace PointerSearcher
         private void addressBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ipBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton10_CheckedChanged(object sender, EventArgs e)
+        {
+            fileselect = 0;
+        }
+
+        private void radioButton9_CheckedChanged(object sender, EventArgs e)
+        {
+            fileselect = 1;
+        }
+
+        private void radioButton8_CheckedChanged(object sender, EventArgs e)
+        {
+            fileselect = 2;
+        }
+
+        private void radioButton12_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void radioButton11_CheckedChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void radioButton12_CheckedChanged_1(object sender, EventArgs e)
+        {
+            fileselect = 3;
+        }
+
+        private void radioButton11_CheckedChanged_1(object sender, EventArgs e)
+        {
+            fileselect = 4;
         }
     }
 }
