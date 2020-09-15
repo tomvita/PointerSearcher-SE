@@ -79,12 +79,15 @@
             this.errorBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.radioButton12 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label25 = new System.Windows.Forms.Label();
-            this.timeusedBox = new System.Windows.Forms.TextBox();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.label24 = new System.Windows.Forms.Label();
-            this.RecSizeBox = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -94,14 +97,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.MainEndBox = new System.Windows.Forms.TextBox();
-            this.MainStartBox = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.HeapEndBox = new System.Windows.Forms.TextBox();
-            this.HeapStartBox = new System.Windows.Forms.TextBox();
+            this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label17 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -124,25 +120,29 @@
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label25 = new System.Windows.Forms.Label();
+            this.timeusedBox = new System.Windows.Forms.TextBox();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.label24 = new System.Windows.Forms.Label();
+            this.RecSizeBox = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.MainEndBox = new System.Windows.Forms.TextBox();
+            this.MainStartBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.HeapEndBox = new System.Windows.Forms.TextBox();
+            this.HeapStartBox = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -584,6 +584,122 @@
             this.tabControl1.Size = new System.Drawing.Size(1108, 480);
             this.tabControl1.TabIndex = 41;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.buttonRead);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.buttonSearch);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.textBoxDepth);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.textBoxOffsetNum);
+            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.textBoxOffsetAddress);
+            this.tabPage1.Controls.Add(this.Export_button);
+            this.tabPage1.Controls.Add(this.buttonNarrowDown);
+            this.tabPage1.Controls.Add(this.buttonCancel);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.progressBar1);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1100, 454);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Pointer Search";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton11);
+            this.groupBox2.Controls.Add(this.radioButton12);
+            this.groupBox2.Controls.Add(this.radioButton8);
+            this.groupBox2.Controls.Add(this.radioButton9);
+            this.groupBox2.Controls.Add(this.radioButton10);
+            this.groupBox2.Location = new System.Drawing.Point(662, 294);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(78, 157);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "File";
+            // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Location = new System.Drawing.Point(6, 120);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(50, 17);
+            this.radioButton11.TabIndex = 21;
+            this.radioButton11.TabStop = true;
+            this.radioButton11.Text = "File 5";
+            this.radioButton11.UseVisualStyleBackColor = true;
+            this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged_1);
+            // 
+            // radioButton12
+            // 
+            this.radioButton12.AutoSize = true;
+            this.radioButton12.Location = new System.Drawing.Point(6, 95);
+            this.radioButton12.Name = "radioButton12";
+            this.radioButton12.Size = new System.Drawing.Size(50, 17);
+            this.radioButton12.TabIndex = 20;
+            this.radioButton12.TabStop = true;
+            this.radioButton12.Text = "File 4";
+            this.radioButton12.UseVisualStyleBackColor = true;
+            this.radioButton12.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged_1);
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(6, 72);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(50, 17);
+            this.radioButton8.TabIndex = 19;
+            this.radioButton8.TabStop = true;
+            this.radioButton8.Text = "File 3";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Location = new System.Drawing.Point(6, 49);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(50, 17);
+            this.radioButton9.TabIndex = 18;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "File 2";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Checked = true;
+            this.radioButton10.Location = new System.Drawing.Point(6, 26);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(50, 17);
+            this.radioButton10.TabIndex = 17;
+            this.radioButton10.TabStop = true;
+            this.radioButton10.Text = "File 1";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            this.radioButton10.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(662, 173);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(78, 115);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Target";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label23);
@@ -615,51 +731,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1104, 451);
+            this.tabPage2.Size = new System.Drawing.Size(1100, 454);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Memory Search";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(347, 553);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(82, 13);
-            this.label25.TabIndex = 82;
-            this.label25.Text = "Time used in ms";
-            // 
-            // timeusedBox
-            // 
-            this.timeusedBox.Location = new System.Drawing.Point(350, 569);
-            this.timeusedBox.Name = "timeusedBox";
-            this.timeusedBox.Size = new System.Drawing.Size(89, 21);
-            this.timeusedBox.TabIndex = 81;
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.Location = new System.Drawing.Point(350, 603);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(89, 11);
-            this.progressBar2.TabIndex = 80;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(347, 508);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(70, 13);
-            this.label24.TabIndex = 79;
-            this.label24.Text = "Received Size";
-            this.label24.Click += new System.EventHandler(this.label24_Click);
-            // 
-            // RecSizeBox
-            // 
-            this.RecSizeBox.Location = new System.Drawing.Point(350, 524);
-            this.RecSizeBox.Name = "RecSizeBox";
-            this.RecSizeBox.Size = new System.Drawing.Size(89, 21);
-            this.RecSizeBox.TabIndex = 78;
-            this.RecSizeBox.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label23
             // 
@@ -731,69 +806,9 @@
             this.To.HeaderText = "To";
             this.To.Name = "To";
             // 
-            // label20
+            // addressBindingSource
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(472, 519);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(56, 13);
-            this.label20.TabIndex = 73;
-            this.label20.Text = "Main Start";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(472, 545);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(50, 13);
-            this.label21.TabIndex = 72;
-            this.label21.Text = "Main End";
-            // 
-            // MainEndBox
-            // 
-            this.MainEndBox.Location = new System.Drawing.Point(575, 540);
-            this.MainEndBox.Name = "MainEndBox";
-            this.MainEndBox.Size = new System.Drawing.Size(100, 21);
-            this.MainEndBox.TabIndex = 70;
-            // 
-            // MainStartBox
-            // 
-            this.MainStartBox.Location = new System.Drawing.Point(575, 513);
-            this.MainStartBox.Name = "MainStartBox";
-            this.MainStartBox.Size = new System.Drawing.Size(100, 21);
-            this.MainStartBox.TabIndex = 71;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(472, 573);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 13);
-            this.label18.TabIndex = 69;
-            this.label18.Text = "Heap Start";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(472, 599);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(51, 13);
-            this.label19.TabIndex = 68;
-            this.label19.Text = "Heap End";
-            // 
-            // HeapEndBox
-            // 
-            this.HeapEndBox.Location = new System.Drawing.Point(575, 594);
-            this.HeapEndBox.Name = "HeapEndBox";
-            this.HeapEndBox.Size = new System.Drawing.Size(100, 21);
-            this.HeapEndBox.TabIndex = 66;
-            // 
-            // HeapStartBox
-            // 
-            this.HeapStartBox.Location = new System.Drawing.Point(575, 567);
-            this.HeapStartBox.Name = "HeapStartBox";
-            this.HeapStartBox.Size = new System.Drawing.Size(100, 21);
-            this.HeapStartBox.TabIndex = 67;
+            this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
             // 
             // label17
             // 
@@ -1022,125 +1037,110 @@
             this.radioButton4.Text = "Search 1";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // label25
             // 
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.buttonRead);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.buttonSearch);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.textBoxDepth);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.textBoxOffsetNum);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.textBoxOffsetAddress);
-            this.tabPage1.Controls.Add(this.Export_button);
-            this.tabPage1.Controls.Add(this.buttonNarrowDown);
-            this.tabPage1.Controls.Add(this.buttonCancel);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.progressBar1);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1100, 454);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Pointer Search";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(347, 553);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(82, 13);
+            this.label25.TabIndex = 82;
+            this.label25.Text = "Time used in ms";
             // 
-            // groupBox1
+            // timeusedBox
             // 
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(662, 173);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(78, 115);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Target";
+            this.timeusedBox.Location = new System.Drawing.Point(350, 569);
+            this.timeusedBox.Name = "timeusedBox";
+            this.timeusedBox.Size = new System.Drawing.Size(89, 21);
+            this.timeusedBox.TabIndex = 81;
             // 
-            // groupBox2
+            // progressBar2
             // 
-            this.groupBox2.Controls.Add(this.radioButton11);
-            this.groupBox2.Controls.Add(this.radioButton12);
-            this.groupBox2.Controls.Add(this.radioButton8);
-            this.groupBox2.Controls.Add(this.radioButton9);
-            this.groupBox2.Controls.Add(this.radioButton10);
-            this.groupBox2.Location = new System.Drawing.Point(662, 294);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(78, 157);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "File";
+            this.progressBar2.Location = new System.Drawing.Point(350, 603);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(89, 11);
+            this.progressBar2.TabIndex = 80;
             // 
-            // radioButton8
+            // label24
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(6, 72);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(50, 17);
-            this.radioButton8.TabIndex = 19;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "File 3";
-            this.radioButton8.UseVisualStyleBackColor = true;
-            this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(347, 508);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(70, 13);
+            this.label24.TabIndex = 79;
+            this.label24.Text = "Received Size";
+            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
-            // radioButton9
+            // RecSizeBox
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(6, 49);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(50, 17);
-            this.radioButton9.TabIndex = 18;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "File 2";
-            this.radioButton9.UseVisualStyleBackColor = true;
-            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
+            this.RecSizeBox.Location = new System.Drawing.Point(350, 524);
+            this.RecSizeBox.Name = "RecSizeBox";
+            this.RecSizeBox.Size = new System.Drawing.Size(89, 21);
+            this.RecSizeBox.TabIndex = 78;
+            this.RecSizeBox.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
-            // radioButton10
+            // label20
             // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
-            this.radioButton10.Location = new System.Drawing.Point(6, 26);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(50, 17);
-            this.radioButton10.TabIndex = 17;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "File 1";
-            this.radioButton10.UseVisualStyleBackColor = true;
-            this.radioButton10.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(472, 519);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(56, 13);
+            this.label20.TabIndex = 73;
+            this.label20.Text = "Main Start";
             // 
-            // radioButton11
+            // label21
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(6, 120);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(50, 17);
-            this.radioButton11.TabIndex = 21;
-            this.radioButton11.TabStop = true;
-            this.radioButton11.Text = "File 5";
-            this.radioButton11.UseVisualStyleBackColor = true;
-            this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged_1);
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(472, 545);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(50, 13);
+            this.label21.TabIndex = 72;
+            this.label21.Text = "Main End";
             // 
-            // radioButton12
+            // MainEndBox
             // 
-            this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(6, 95);
-            this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(50, 17);
-            this.radioButton12.TabIndex = 20;
-            this.radioButton12.TabStop = true;
-            this.radioButton12.Text = "File 4";
-            this.radioButton12.UseVisualStyleBackColor = true;
-            this.radioButton12.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged_1);
+            this.MainEndBox.Location = new System.Drawing.Point(575, 540);
+            this.MainEndBox.Name = "MainEndBox";
+            this.MainEndBox.Size = new System.Drawing.Size(100, 21);
+            this.MainEndBox.TabIndex = 70;
             // 
-            // addressBindingSource
+            // MainStartBox
             // 
-            this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
+            this.MainStartBox.Location = new System.Drawing.Point(575, 513);
+            this.MainStartBox.Name = "MainStartBox";
+            this.MainStartBox.Size = new System.Drawing.Size(100, 21);
+            this.MainStartBox.TabIndex = 71;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(472, 573);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(57, 13);
+            this.label18.TabIndex = 69;
+            this.label18.Text = "Heap Start";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(472, 599);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(51, 13);
+            this.label19.TabIndex = 68;
+            this.label19.Text = "Heap End";
+            // 
+            // HeapEndBox
+            // 
+            this.HeapEndBox.Location = new System.Drawing.Point(575, 594);
+            this.HeapEndBox.Name = "HeapEndBox";
+            this.HeapEndBox.Size = new System.Drawing.Size(100, 21);
+            this.HeapEndBox.TabIndex = 66;
+            // 
+            // HeapStartBox
+            // 
+            this.HeapStartBox.Location = new System.Drawing.Point(575, 567);
+            this.HeapStartBox.Name = "HeapStartBox";
+            this.HeapStartBox.Size = new System.Drawing.Size(100, 21);
+            this.HeapStartBox.TabIndex = 67;
             // 
             // label26
             // 
@@ -1202,20 +1202,20 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Name = "Form1";
-            this.Text = "EdiZon SE PointerSearcher 0.5 beta 1";
+            this.Text = "PointerSearcher SE 0.5 beta 1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
