@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -79,6 +79,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.timeusedBox = new System.Windows.Forms.TextBox();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label24 = new System.Windows.Forms.Label();
             this.RecSizeBox = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -121,9 +124,6 @@
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.timeusedBox = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -167,8 +167,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -638,6 +638,29 @@
             this.tabPage2.Text = "Memory Search";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(644, 69);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(82, 13);
+            this.label25.TabIndex = 82;
+            this.label25.Text = "Time used in ms";
+            // 
+            // timeusedBox
+            // 
+            this.timeusedBox.Location = new System.Drawing.Point(647, 85);
+            this.timeusedBox.Name = "timeusedBox";
+            this.timeusedBox.Size = new System.Drawing.Size(89, 21);
+            this.timeusedBox.TabIndex = 81;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(647, 119);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(89, 11);
+            this.progressBar2.TabIndex = 80;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -1048,37 +1071,14 @@
             this.tabPage1.Text = "Pointer Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // progressBar2
-            // 
-            this.progressBar2.Location = new System.Drawing.Point(647, 119);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(89, 11);
-            this.progressBar2.TabIndex = 80;
-            // 
-            // timeusedBox
-            // 
-            this.timeusedBox.Location = new System.Drawing.Point(647, 85);
-            this.timeusedBox.Name = "timeusedBox";
-            this.timeusedBox.Size = new System.Drawing.Size(89, 21);
-            this.timeusedBox.TabIndex = 81;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(644, 69);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(82, 13);
-            this.label25.TabIndex = 82;
-            this.label25.Text = "Time used in ms";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 472);
+            this.ClientSize = new System.Drawing.Size(1111, 467);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "EdiZon SE PointerSearcher 0.4a";
+            this.Text = "EdiZon SE PointerSearcher 0.5 beta 1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);

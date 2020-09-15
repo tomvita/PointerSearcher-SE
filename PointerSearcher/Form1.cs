@@ -61,7 +61,6 @@ namespace PointerSearcher
                 reader.readsetup();
                 dataGridView1.Rows[0].Cells[1].Value = "0x" + Convert.ToString(reader.mainStartAddress(), 16);
                 dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
-                dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
                 dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
                 dataGridView1.Rows[0].Cells[4].Value = "0x" + Convert.ToString(reader.heapEndAddress(), 16);
                 //              dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
@@ -682,12 +681,12 @@ namespace PointerSearcher
                 dataset = new byte[2048*32];
                 while (s.Available < size) ;
                 int dc = s.Receive(datasetc);
-                size = LZ_Uncompress(datasetc,ref dataset, size);
+                size = LZ_Uncompress(datasetc, ref dataset, size);
             }
             //else dataset = null;
             return size;
         }
-        private long[][] pointer_candidate;
+        private long[,] pointer_candidate;
         private void button3_Click(object sender, EventArgs e)
         {
             RecSizeBox.BackColor = System.Drawing.Color.White;
@@ -710,8 +709,14 @@ namespace PointerSearcher
             MainEndBox.Text = "0x" + Convert.ToString(address2, 16);
             HeapStartBox.Text = "0x" + Convert.ToString(address3, 16);
             HeapEndBox.Text = "0x" + Convert.ToString(address4, 16);
+            dataGridView1.Rows[0].Cells[0].Value = "DirectTransfer.dmp1";
+            dataGridView1.Rows[0].Cells[1].Value = "0x" + Convert.ToString(address1, 16);
+            dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(address2, 16);
+            dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(address3, 16);
+            dataGridView1.Rows[0].Cells[4].Value = "0x" + Convert.ToString(address4, 16);
 
-
+            //pointer_candidate = new long[30000000, 2];
+            info = new PointerInfo();
             new Thread(() =>
             {
                 Stopwatch sw = Stopwatch.StartNew();
@@ -721,25 +726,48 @@ namespace PointerSearcher
                 do
                 {
                     c1 = receivedata(ref dataset);
-                    totaldata += c1;
                     this.RecSizeBox.Invoke((MethodInvoker)delegate
                     {
-                        RecSizeBox.Text = Convert.ToString(totaldata);
-                        progressBar2.Value =(int)(100*(BitConverter.ToInt64(dataset,0)- address1) /(address2-address1));
+                        for (int i = 0; i < c1; i +=16)
+                        {
+                            //pointer_candidate[(totaldata+i)/16, 0] = BitConverter.ToInt64(dataset, i);
+                            //pointer_candidate[(totaldata+i)/16, 1] = BitConverter.ToInt64(dataset, i + 8);
+                            Address from = new Address(MemoryType.MAIN, BitConverter.ToInt64(dataset, i ) - address1);
+                            Address to = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i + 8) - address3);
+                            info.AddPointer(from, to);
+                        }
+                        RecSizeBox.Text = Convert.ToString(totaldata+c1);
+                        progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (address2 - address1));
+                        progressBar1.Value = progressBar2.Value;
                         timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
                     });
+                    totaldata += c1;
                 } while (c1 > 0);
                 do
                 {
                     c1 = receivedata(ref dataset);
-                    totaldata += c1;
                     this.RecSizeBox.Invoke((MethodInvoker)delegate
                     {
-                        RecSizeBox.Text = Convert.ToString(totaldata);
-                        progressBar2.Value = (int)(100*(BitConverter.ToInt64(dataset, 0)- address3) / (address4-address3));
+                        for (int i = 0; i < c1 ; i+=16)
+                        {
+                            //pointer_candidate[(totaldata+i)/16, 0] = BitConverter.ToInt64(dataset, i);
+                            //pointer_candidate[(totaldata+i)/16, 1] = BitConverter.ToInt64(dataset, i + 8);
+                            Address from = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i ) - address3);
+                            Address to = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i + 8) - address3);
+                            info.AddPointer(from, to);
+                        }
+                        RecSizeBox.Text = Convert.ToString(totaldata+c1);
+                        progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address3) / (address4 - address3));
+                        progressBar1.Value = progressBar2.Value;
                         timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
                     });
+                    totaldata += c1;
                 } while (c1 > 0);
+                info.MakeList();
+                this.RecSizeBox.Invoke((MethodInvoker)delegate
+                {
+                    buttonSearch.Enabled = true;
+                });
                 while (s.Available < 4) ;
                 b = new byte[s.Available];
                 s.Receive(b);
@@ -747,6 +775,7 @@ namespace PointerSearcher
                 {
                     showerror(b);
                     progressBar2.Value = 100;
+                    progressBar1.Value = progressBar2.Value;
                     RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
                     timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
                 });
