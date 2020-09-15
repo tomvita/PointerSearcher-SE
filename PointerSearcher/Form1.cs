@@ -9,6 +9,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Linq;
+using System.Diagnostics;
+using System.Diagnostics.PerformanceData;
 
 namespace PointerSearcher
 {
@@ -528,7 +531,7 @@ namespace PointerSearcher
                         });
                         this.ipBox.Invoke((MethodInvoker)delegate
                         {
-                            ipBox.BackColor = System.Drawing.Color.Green;
+                            ipBox.BackColor = System.Drawing.Color.LightGreen;
                             ipBox.ReadOnly = true;
                             //this.refreshBtn.Visible = true;
                             //this.Player1Btn.Visible = true;
@@ -643,9 +646,51 @@ namespace PointerSearcher
             s.Receive(b);
             showerror(b);
         }
-
+        private int LZ_Uncompress(byte[] inbuf,ref byte[] outbuf, int insize)
+        {
+            uint inpos, outpos, i;
+            uint front, back;
+            if (insize < 1)
+            {
+                return 0;
+            }
+            inpos = 0;
+            outpos = 0;
+            do
+            {
+                front = (uint)(inbuf[inpos] / 16);
+                back = (uint)(inbuf[inpos] & 0xF) * 8 + 8;
+                inpos++;
+                for (i = 0; i < front; i++)
+                    outbuf[outpos + i] = inbuf[inpos + i];
+                for (i = front; i < 8; i++)
+                    outbuf[outpos + i] = outbuf[outpos - back + i];
+                inpos += front;
+                outpos += 8;
+            } while (inpos < insize);
+            return (int) outpos;
+        }
+        private int receivedata(ref byte[] dataset)
+        {
+            byte[] k = new byte[4];
+            while (s.Available < 4) ;
+            int c = s.Receive(k);
+            int size = BitConverter.ToInt32(k, 0);
+            if (size > 0)
+            {
+                byte[] datasetc = new byte[size];
+                dataset = new byte[2048*32];
+                while (s.Available < size) ;
+                int dc = s.Receive(datasetc);
+                size = LZ_Uncompress(datasetc,ref dataset, size);
+            }
+            //else dataset = null;
+            return size;
+        }
+        private long[][] pointer_candidate;
         private void button3_Click(object sender, EventArgs e)
         {
+            RecSizeBox.BackColor = System.Drawing.Color.White;
             byte[] msg = { 0x19 }; //_dump_ptr
             int a = s.Send(msg);
             byte[] b;
@@ -665,11 +710,51 @@ namespace PointerSearcher
             MainEndBox.Text = "0x" + Convert.ToString(address2, 16);
             HeapStartBox.Text = "0x" + Convert.ToString(address3, 16);
             HeapEndBox.Text = "0x" + Convert.ToString(address4, 16);
-            //curpidBox.Text = "0x" + Convert.ToString(count, 16);
-            while (s.Available < 4) ;
-            b = new byte[s.Available];
-            s.Receive(b);
-            showerror(b);
+
+
+            new Thread(() =>
+            {
+                Stopwatch sw = Stopwatch.StartNew();
+                byte[] dataset = null;
+                int c1 = 0;
+                int totaldata = 0;
+                do
+                {
+                    c1 = receivedata(ref dataset);
+                    totaldata += c1;
+                    this.RecSizeBox.Invoke((MethodInvoker)delegate
+                    {
+                        RecSizeBox.Text = Convert.ToString(totaldata);
+                        progressBar2.Value =(int)(100*(BitConverter.ToInt64(dataset,0)- address1) /(address2-address1));
+                        timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    });
+                } while (c1 > 0);
+                do
+                {
+                    c1 = receivedata(ref dataset);
+                    totaldata += c1;
+                    this.RecSizeBox.Invoke((MethodInvoker)delegate
+                    {
+                        RecSizeBox.Text = Convert.ToString(totaldata);
+                        progressBar2.Value = (int)(100*(BitConverter.ToInt64(dataset, 0)- address3) / (address4-address3));
+                        timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    });
+                } while (c1 > 0);
+                while (s.Available < 4) ;
+                b = new byte[s.Available];
+                s.Receive(b);
+                this.RecSizeBox.Invoke((MethodInvoker)delegate
+                {
+                    showerror(b);
+                    progressBar2.Value = 100;
+                    RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
+                    timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                });
+            }).Start();
+
+
+            //dataGridView2.DataSource= (from arr in pointer_candidate select new { Col1 = arr[0], Col2 = arr[1] });
+            //Form1.DataBind();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -763,6 +848,26 @@ namespace PointerSearcher
             byte[] b = new byte[s.Available];
             s.Receive(b);
             showerror(b);
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addressBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
