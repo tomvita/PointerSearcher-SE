@@ -107,7 +107,7 @@ namespace PointerSearcher
             buttonRead.Enabled = false;
             //buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = true;
-            textBox2.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
+            textBox2.Text = dataGridView1.Rows[fileselect].Cells[0].Value.ToString();
             textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 4, 4) + "bmk";
             SetProgressBar(0);
             try
@@ -115,8 +115,8 @@ namespace PointerSearcher
                 maxDepth = Convert.ToInt32(textBoxDepth.Text);
                 maxOffsetNum = Convert.ToInt32(textBoxOffsetNum.Text);
                 maxOffsetAddress = Convert.ToInt32(textBoxOffsetAddress.Text, 16);
-                long heapStart = Convert.ToInt64(dataGridView1.Rows[0].Cells[3].Value.ToString(), 16);
-                long targetAddress = Convert.ToInt64(dataGridView1.Rows[0].Cells[5 + targetselect].Value.ToString(), 16);
+                long heapStart = Convert.ToInt64(dataGridView1.Rows[fileselect].Cells[3].Value.ToString(), 16);
+                long targetAddress = Convert.ToInt64(dataGridView1.Rows[fileselect].Cells[5 + targetselect].Value.ToString(), 16);
                 Address address = new Address(MemoryType.HEAP, targetAddress - heapStart);
 
                 if (maxOffsetNum <= 0)
