@@ -40,6 +40,8 @@ namespace PointerSearcher
         private int fileselect = 0;
         private bool user_abort = false;
         private bool user_abort2 = false;
+        private bool attached = false;
+        private bool command_inprogress = false;
         private int maxOffsetNum;
         private long maxOffsetAddress;
         private List<List<IReverseOrderPath>> result;
@@ -448,6 +450,8 @@ namespace PointerSearcher
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
+            s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            s.Close();
             ipBox.Text = ConfigurationManager.AppSettings["ipAddress"];
         }
 
@@ -499,6 +503,10 @@ namespace PointerSearcher
                 connectBtn.Text = "Connect";
                 ipBox.BackColor = System.Drawing.Color.White;
                 ipBox.ReadOnly = false;
+                attached = false;
+                attachbutton1.BackColor = System.Drawing.Color.White;
+                attachbutton2.BackColor = System.Drawing.Color.White;
+                command_inprogress = false;
                 return;
             }
             string ipPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
@@ -558,22 +566,64 @@ namespace PointerSearcher
                         {
                             ipBox.BackColor = System.Drawing.Color.Red;
                         });
-                        MessageBox.Show("Could not connect to the SE tools server, Go to https://github.com/ for help.");
+                        MessageBox.Show("Could not connect to the SE tools server"); //, Go to https://github.com/ for help."
                     }
                 }).Start();
             }
         }
+        private bool command_available()
+        {
+            if (!s.Connected)
+            {
+                MessageBox.Show("Not connected");
+                return false;
+            }
+            if (command_inprogress)
+            {
+                MessageBox.Show("command_inprogress");
+                return false;
+            }
+            command_inprogress = true;
+            return true;
+        }
+        private bool is_attached()
+        {
+            if (!attached)
+            {
+                MessageBox.Show("not attached");
+                return false;
+            }
+            return true;
+        }
         private bool showerror(byte [] b)
         {
             errorBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
+            if (b[0]==15 && b[1] == 8)
+            {
+                errorBox.Text = errorBox.Text + "  pminfo not valid";
+            }
+            if (b[0] == 93 && b[1] == 21)
+            {
+                errorBox.Text = errorBox.Text + "  already attached";
+            }
+            if (b[0] == 93 && b[1] == 19)
+            {
+                errorBox.Text = errorBox.Text + "  invalid cmd";
+            }
+            if (b[0] == 93 && b[1] == 33)
+            {
+                errorBox.Text = errorBox.Text + "  user abort";
+            }
             user_abort = false;
             user_abort2 = false;
+            command_inprogress = false;
             int e = BitConverter.ToInt32(b,0);
-            return e == 0;
+            return e != 0;
         }
 
         private void getstatus_Click(object sender, EventArgs e)
         {
+            if (!command_available()) return;
             byte[] msg = { 0x10 }; // _list_pids
             int a = s.Send(msg);
             byte[] k = new byte[4];
@@ -654,6 +704,7 @@ namespace PointerSearcher
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            if (!command_available()) return;
             byte[] msg = { 0x0B }; //_detatch
             int a = s.Send(msg);
             //k = BitConverter.GetBytes(curpid);
@@ -661,7 +712,12 @@ namespace PointerSearcher
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
-            showerror(b);
+            if (!showerror(b))
+            {
+                attachbutton1.BackColor = System.Drawing.Color.White;
+                attachbutton2.BackColor = System.Drawing.Color.White;
+                attached = false;
+            }
         }
         private int LZ_Uncompress(byte[] inbuf,ref byte[] outbuf, int insize)
         {
@@ -718,6 +774,8 @@ namespace PointerSearcher
         private long[,] pointer_candidate;
         private void button3_Click(object sender, EventArgs e)
         {
+            if (!is_attached()) return;
+            if (!command_available()) return;
             stopbutton.Enabled = true;
             RecSizeBox.BackColor = System.Drawing.Color.White;
             byte[] msg = { 0x19 }; //_dump_ptr
@@ -841,8 +899,16 @@ namespace PointerSearcher
             //Form1.DataBind();
         }
 
+
         private void button4_Click(object sender, EventArgs e)
         {
+            if (attached) return;
+            if (!s.Connected)
+            {
+                button2_Click(sender, e);
+                System.Threading.Thread.Sleep(100);
+            }
+            if (!command_available()) return;
             byte[] msg = { 0x1A }; //_attach_dmnt
             int a = s.Send(msg);
             //k = BitConverter.GetBytes(curpid);
@@ -850,11 +916,20 @@ namespace PointerSearcher
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
-            showerror(b);
+            if (!showerror(b))
+            {
+                attachdmntbutton.BackColor = System.Drawing.Color.LightGreen;
+                getstatus_Click(sender, e);
+                button2_Click_1(sender, e);
+                pid0Box.Text = curpidBox.Text;
+                button8_Click(sender, e);
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            button2_Click_1(sender, e);
+            if (!command_available()) return;
             byte[] msg = { 0x18 }; //_detach_dmnt
             int a = s.Send(msg);
             //k = BitConverter.GetBytes(curpid);
@@ -862,7 +937,11 @@ namespace PointerSearcher
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
-            showerror(b);
+            if (!showerror(b))
+            {
+                attachdmntbutton.BackColor = System.Drawing.Color.White;
+                //attached = true;
+            }
         }
 
         private void curpidBox_TextChanged(object sender, EventArgs e)
@@ -872,6 +951,7 @@ namespace PointerSearcher
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (!command_available()) return;
             byte[] msg = { 0x0A }; //_attach
             int a = s.Send(msg);
             byte[] k = new byte[8];
@@ -881,11 +961,17 @@ namespace PointerSearcher
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
-            showerror(b);
+            if (!showerror(b))
+            {
+                attachbutton1.BackColor = System.Drawing.Color.LightGreen; 
+                attachbutton2.BackColor = System.Drawing.Color.White;
+                attached = true;
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
+            if (!command_available()) return;
             byte[] msg = { 0x0A }; //_attach
             int a = s.Send(msg);
             byte[] k = new byte[8];
@@ -895,7 +981,12 @@ namespace PointerSearcher
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
-            showerror(b);
+            if (!showerror(b))
+            {
+                attachbutton1.BackColor = System.Drawing.Color.White;
+                attachbutton2.BackColor = System.Drawing.Color.LightGreen;
+                attached = true;
+            }
         }
 
         private void pidBox_TextChanged(object sender, EventArgs e)
@@ -998,6 +1089,16 @@ namespace PointerSearcher
         {
             user_abort = true;
             stopbutton.Enabled = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (s.Connected == false) 
+            {
+                connectBtn.Text = "Connect";
+                ipBox.BackColor = System.Drawing.Color.White;
+                ipBox.ReadOnly = false;
+            }
         }
     }
 }

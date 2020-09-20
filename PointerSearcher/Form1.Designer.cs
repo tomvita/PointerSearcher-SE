@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -67,13 +67,13 @@
             this.curpidBox = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.attachdmntbutton = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.attachbutton1 = new System.Windows.Forms.Button();
             this.pid0Box = new System.Windows.Forms.TextBox();
             this.TIDBox = new System.Windows.Forms.TextBox();
             this.TID0Box = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.attachbutton2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.errorBox = new System.Windows.Forms.TextBox();
@@ -135,6 +135,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.stopbutton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -182,8 +183,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -479,15 +480,15 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // attachdmntbutton
             // 
-            this.button4.Location = new System.Drawing.Point(10, 553);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(85, 23);
-            this.button4.TabIndex = 29;
-            this.button4.Text = "Attach dmnt";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.attachdmntbutton.Location = new System.Drawing.Point(10, 553);
+            this.attachdmntbutton.Name = "attachdmntbutton";
+            this.attachdmntbutton.Size = new System.Drawing.Size(85, 23);
+            this.attachdmntbutton.TabIndex = 29;
+            this.attachdmntbutton.Text = "Attach dmnt";
+            this.attachdmntbutton.UseVisualStyleBackColor = true;
+            this.attachdmntbutton.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -499,15 +500,15 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // attachbutton1
             // 
-            this.button6.Location = new System.Drawing.Point(690, 524);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(59, 23);
-            this.button6.TabIndex = 31;
-            this.button6.Text = "Attach";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.attachbutton1.Location = new System.Drawing.Point(690, 524);
+            this.attachbutton1.Name = "attachbutton1";
+            this.attachbutton1.Size = new System.Drawing.Size(59, 23);
+            this.attachbutton1.TabIndex = 31;
+            this.attachbutton1.Text = "Attach";
+            this.attachbutton1.UseVisualStyleBackColor = true;
+            this.attachbutton1.Click += new System.EventHandler(this.button6_Click);
             // 
             // pid0Box
             // 
@@ -531,15 +532,15 @@
             this.TID0Box.Size = new System.Drawing.Size(138, 21);
             this.TID0Box.TabIndex = 35;
             // 
-            // button8
+            // attachbutton2
             // 
-            this.button8.Location = new System.Drawing.Point(690, 551);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(59, 23);
-            this.button8.TabIndex = 36;
-            this.button8.Text = "Attach";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.attachbutton2.Location = new System.Drawing.Point(690, 551);
+            this.attachbutton2.Name = "attachbutton2";
+            this.attachbutton2.Size = new System.Drawing.Size(59, 23);
+            this.attachbutton2.TabIndex = 36;
+            this.attachbutton2.Text = "Attach";
+            this.attachbutton2.UseVisualStyleBackColor = true;
+            this.attachbutton2.Click += new System.EventHandler(this.button8_Click);
             // 
             // label6
             // 
@@ -561,15 +562,15 @@
             // 
             // errorBox
             // 
-            this.errorBox.Location = new System.Drawing.Point(755, 597);
+            this.errorBox.Location = new System.Drawing.Point(690, 597);
             this.errorBox.Name = "errorBox";
-            this.errorBox.Size = new System.Drawing.Size(134, 21);
+            this.errorBox.Size = new System.Drawing.Size(199, 21);
             this.errorBox.TabIndex = 39;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(752, 581);
+            this.label8.Location = new System.Drawing.Point(693, 581);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 40;
@@ -1168,6 +1169,10 @@
             this.stopbutton.UseVisualStyleBackColor = true;
             this.stopbutton.Click += new System.EventHandler(this.button7_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // addressBindingSource
             // 
             this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
@@ -1187,13 +1192,13 @@
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.attachbutton1);
             this.Controls.Add(this.RecSizeBox);
             this.Controls.Add(this.pid0Box);
             this.Controls.Add(this.TIDBox);
             this.Controls.Add(this.TID0Box);
             this.Controls.Add(this.getstatus);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.attachbutton2);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label21);
@@ -1209,13 +1214,13 @@
             this.Controls.Add(this.pidBox);
             this.Controls.Add(this.HeapStartBox);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.attachdmntbutton);
             this.Controls.Add(this.curpidBox);
             this.Controls.Add(this.statusBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5 beta 1";
+            this.Text = "PointerSearcher SE 0.5 beta 2";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1274,13 +1279,13 @@
         private System.Windows.Forms.TextBox curpidBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button attachdmntbutton;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button attachbutton1;
         private System.Windows.Forms.TextBox pid0Box;
         private System.Windows.Forms.TextBox TIDBox;
         private System.Windows.Forms.TextBox TID0Box;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button attachbutton2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox errorBox;
@@ -1343,6 +1348,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button stopbutton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
