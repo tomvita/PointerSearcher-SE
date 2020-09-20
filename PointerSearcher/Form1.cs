@@ -38,6 +38,8 @@ namespace PointerSearcher
         private int maxDepth;
         private int targetselect = 0;
         private int fileselect = 0;
+        private bool user_abort = false;
+        private bool user_abort2 = false;
         private int maxOffsetNum;
         private long maxOffsetAddress;
         private List<List<IReverseOrderPath>> result;
@@ -110,6 +112,8 @@ namespace PointerSearcher
             textBox2.Text = dataGridView1.Rows[fileselect].Cells[0].Value.ToString();
             textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 4, 4) + "bmk";
             SetProgressBar(0);
+            if (dataGridView1.Rows[fileselect].Cells[5 + targetselect].Value == null)
+            { MessageBox.Show("Target not available", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             try
             {
                 maxDepth = Convert.ToInt32(textBoxDepth.Text);
@@ -489,6 +493,14 @@ namespace PointerSearcher
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (connectBtn.Text == "Disconnect")
+            {
+                s.Close();
+                connectBtn.Text = "Connect";
+                ipBox.BackColor = System.Drawing.Color.White;
+                ipBox.ReadOnly = false;
+                return;
+            }
             string ipPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
             if (!Regex.IsMatch(ipBox.Text, ipPattern))
             {
@@ -527,7 +539,7 @@ namespace PointerSearcher
 
                         this.connectBtn.Invoke((MethodInvoker)delegate
                         {
-                            this.connectBtn.Enabled = false;
+                            this.connectBtn.Text = "Disconnect";
                         });
                         this.ipBox.Invoke((MethodInvoker)delegate
                         {
@@ -551,9 +563,13 @@ namespace PointerSearcher
                 }).Start();
             }
         }
-        private void showerror(byte [] b)
+        private bool showerror(byte [] b)
         {
             errorBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
+            user_abort = false;
+            user_abort2 = false;
+            int e = BitConverter.ToInt32(b,0);
+            return e == 0;
         }
 
         private void getstatus_Click(object sender, EventArgs e)
@@ -673,6 +689,17 @@ namespace PointerSearcher
         }
         private int receivedata(ref byte[] dataset)
         {
+            if (!user_abort)
+            {
+                byte[] msg = { 0x1 }; // _status; anything other than 0 
+                int a = s.Send(msg);
+            }
+            else
+            {
+                byte[] msg = { 0x0 }; // 0 to abort
+                int a = s.Send(msg);
+                user_abort2 = true;
+            }
             byte[] k = new byte[4];
             while (s.Available < 4) ;
             int c = s.Receive(k);
@@ -680,7 +707,7 @@ namespace PointerSearcher
             if (size > 0)
             {
                 byte[] datasetc = new byte[size];
-                dataset = new byte[2048*32];
+                dataset = new byte[2048 * 32];
                 while (s.Available < size) ;
                 int dc = s.Receive(datasetc);
                 size = LZ_Uncompress(datasetc, ref dataset, size);
@@ -691,6 +718,7 @@ namespace PointerSearcher
         private long[,] pointer_candidate;
         private void button3_Click(object sender, EventArgs e)
         {
+            stopbutton.Enabled = true;
             RecSizeBox.BackColor = System.Drawing.Color.White;
             byte[] msg = { 0x19 }; //_dump_ptr
             int a = s.Send(msg);
@@ -765,27 +793,30 @@ namespace PointerSearcher
                     });
                     totaldata += c1;
                 } while (c1 > 0);
-                do
+                if (!user_abort2)
                 {
-                    c1 = receivedata(ref dataset);
-                    fileStream.BaseStream.Write(dataset, 0, c1);
-                    this.RecSizeBox.Invoke((MethodInvoker)delegate
+                    do
                     {
-                        for (int i = 0; i < c1 ; i+=16)
+                        c1 = receivedata(ref dataset);
+                        fileStream.BaseStream.Write(dataset, 0, c1);
+                        this.RecSizeBox.Invoke((MethodInvoker)delegate
                         {
+                            for (int i = 0; i < c1; i += 16)
+                            {
                             //pointer_candidate[(totaldata+i)/16, 0] = BitConverter.ToInt64(dataset, i);
                             //pointer_candidate[(totaldata+i)/16, 1] = BitConverter.ToInt64(dataset, i + 8);
-                            Address from = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i ) - address3);
-                            Address to = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i + 8) - address3);
-                            info.AddPointer(from, to);
-                        }
-                        RecSizeBox.Text = Convert.ToString(totaldata+c1);
-                        progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address3) / (address4 - address3));
-                        progressBar1.Value = progressBar2.Value;
-                        timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
-                    });
-                    totaldata += c1;
-                } while (c1 > 0);
+                            Address from = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i) - address3);
+                                Address to = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i + 8) - address3);
+                                info.AddPointer(from, to);
+                            }
+                            RecSizeBox.Text = Convert.ToString(totaldata + c1);
+                            progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address3) / (address4 - address3));
+                            progressBar1.Value = progressBar2.Value;
+                            timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                        });
+                        totaldata += c1;
+                    } while (c1 > 0);
+                }
                 info.MakeList();
                 fileStream.BaseStream.Close();
                 this.RecSizeBox.Invoke((MethodInvoker)delegate
@@ -802,9 +833,9 @@ namespace PointerSearcher
                     progressBar1.Value = progressBar2.Value;
                     RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
                     timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    stopbutton.Enabled = false;
                 });
             }).Start();
-
 
             //dataGridView2.DataSource= (from arr in pointer_candidate select new { Col1 = arr[0], Col2 = arr[1] });
             //Form1.DataBind();
@@ -961,6 +992,12 @@ namespace PointerSearcher
         private void radioButton11_CheckedChanged_1(object sender, EventArgs e)
         {
             fileselect = 4;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            user_abort = true;
+            stopbutton.Enabled = false;
         }
     }
 }

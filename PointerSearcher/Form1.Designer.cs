@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -97,7 +97,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.From = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.To = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label17 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -135,6 +134,8 @@
             this.HeapStartBox = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.stopbutton = new System.Windows.Forms.Button();
+            this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -181,8 +182,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -806,10 +807,6 @@
             this.To.HeaderText = "To";
             this.To.Name = "To";
             // 
-            // addressBindingSource
-            // 
-            this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -1160,11 +1157,27 @@
             this.label27.TabIndex = 84;
             this.label27.Text = "TID";
             // 
+            // stopbutton
+            // 
+            this.stopbutton.Enabled = false;
+            this.stopbutton.Location = new System.Drawing.Point(1023, 480);
+            this.stopbutton.Name = "stopbutton";
+            this.stopbutton.Size = new System.Drawing.Size(85, 25);
+            this.stopbutton.TabIndex = 22;
+            this.stopbutton.Text = "Stop";
+            this.stopbutton.UseVisualStyleBackColor = true;
+            this.stopbutton.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // addressBindingSource
+            // 
+            this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1124, 634);
+            this.Controls.Add(this.stopbutton);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label25);
@@ -1329,6 +1342,7 @@
         private System.Windows.Forms.RadioButton radioButton12;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button stopbutton;
     }
 }
 
