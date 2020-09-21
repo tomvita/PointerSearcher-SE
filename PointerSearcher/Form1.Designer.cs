@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -135,8 +134,17 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.stopbutton = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.addressBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.getbookmarkbutton = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.BookmarkAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.disconnectbutton = new System.Windows.Forms.Button();
+            this.dmntpausebutton = new System.Windows.Forms.Button();
+            this.dmntresumebutton = new System.Windows.Forms.Button();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -145,7 +153,9 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRead
@@ -183,8 +193,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -402,7 +412,7 @@
             // 
             // ipBox
             // 
-            this.ipBox.Location = new System.Drawing.Point(899, 597);
+            this.ipBox.Location = new System.Drawing.Point(13, 503);
             this.ipBox.Name = "ipBox";
             this.ipBox.Size = new System.Drawing.Size(100, 21);
             this.ipBox.TabIndex = 20;
@@ -410,7 +420,7 @@
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(1023, 595);
+            this.connectBtn.Location = new System.Drawing.Point(1023, 662);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(85, 23);
             this.connectBtn.TabIndex = 21;
@@ -421,7 +431,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(896, 581);
+            this.label5.Location = new System.Drawing.Point(10, 487);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 22;
@@ -429,14 +439,14 @@
             // 
             // statusBox
             // 
-            this.statusBox.Location = new System.Drawing.Point(213, 551);
+            this.statusBox.Location = new System.Drawing.Point(13, 543);
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(100, 21);
             this.statusBox.TabIndex = 23;
             // 
             // getstatus
             // 
-            this.getstatus.Location = new System.Drawing.Point(1023, 567);
+            this.getstatus.Location = new System.Drawing.Point(1023, 635);
             this.getstatus.Name = "getstatus";
             this.getstatus.Size = new System.Drawing.Size(85, 23);
             this.getstatus.TabIndex = 24;
@@ -446,7 +456,7 @@
             // 
             // pidBox
             // 
-            this.pidBox.Location = new System.Drawing.Point(899, 524);
+            this.pidBox.Location = new System.Drawing.Point(899, 592);
             this.pidBox.Name = "pidBox";
             this.pidBox.Size = new System.Drawing.Size(100, 21);
             this.pidBox.TabIndex = 25;
@@ -454,7 +464,7 @@
             // 
             // curpidBox
             // 
-            this.curpidBox.Location = new System.Drawing.Point(213, 524);
+            this.curpidBox.Location = new System.Drawing.Point(213, 592);
             this.curpidBox.Name = "curpidBox";
             this.curpidBox.Size = new System.Drawing.Size(100, 21);
             this.curpidBox.TabIndex = 26;
@@ -462,7 +472,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1023, 540);
+            this.button2.Location = new System.Drawing.Point(1023, 608);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 23);
             this.button2.TabIndex = 27;
@@ -472,7 +482,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1023, 511);
+            this.button3.Location = new System.Drawing.Point(237, 503);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(85, 23);
             this.button3.TabIndex = 28;
@@ -482,7 +492,7 @@
             // 
             // attachdmntbutton
             // 
-            this.attachdmntbutton.Location = new System.Drawing.Point(10, 553);
+            this.attachdmntbutton.Location = new System.Drawing.Point(139, 503);
             this.attachdmntbutton.Name = "attachdmntbutton";
             this.attachdmntbutton.Size = new System.Drawing.Size(85, 23);
             this.attachdmntbutton.TabIndex = 29;
@@ -492,7 +502,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(10, 524);
+            this.button5.Location = new System.Drawing.Point(10, 592);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(85, 23);
             this.button5.TabIndex = 30;
@@ -502,7 +512,7 @@
             // 
             // attachbutton1
             // 
-            this.attachbutton1.Location = new System.Drawing.Point(690, 524);
+            this.attachbutton1.Location = new System.Drawing.Point(690, 592);
             this.attachbutton1.Name = "attachbutton1";
             this.attachbutton1.Size = new System.Drawing.Size(59, 23);
             this.attachbutton1.TabIndex = 31;
@@ -512,7 +522,7 @@
             // 
             // pid0Box
             // 
-            this.pid0Box.Location = new System.Drawing.Point(899, 551);
+            this.pid0Box.Location = new System.Drawing.Point(899, 619);
             this.pid0Box.Name = "pid0Box";
             this.pid0Box.Size = new System.Drawing.Size(100, 21);
             this.pid0Box.TabIndex = 33;
@@ -520,21 +530,21 @@
             // 
             // TIDBox
             // 
-            this.TIDBox.Location = new System.Drawing.Point(755, 524);
+            this.TIDBox.Location = new System.Drawing.Point(755, 592);
             this.TIDBox.Name = "TIDBox";
             this.TIDBox.Size = new System.Drawing.Size(138, 21);
             this.TIDBox.TabIndex = 34;
             // 
             // TID0Box
             // 
-            this.TID0Box.Location = new System.Drawing.Point(755, 551);
+            this.TID0Box.Location = new System.Drawing.Point(755, 619);
             this.TID0Box.Name = "TID0Box";
             this.TID0Box.Size = new System.Drawing.Size(138, 21);
             this.TID0Box.TabIndex = 35;
             // 
             // attachbutton2
             // 
-            this.attachbutton2.Location = new System.Drawing.Point(690, 551);
+            this.attachbutton2.Location = new System.Drawing.Point(690, 619);
             this.attachbutton2.Name = "attachbutton2";
             this.attachbutton2.Size = new System.Drawing.Size(59, 23);
             this.attachbutton2.TabIndex = 36;
@@ -545,7 +555,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(110, 556);
+            this.label6.Location = new System.Drawing.Point(12, 527);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 37;
@@ -554,7 +564,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(110, 530);
+            this.label7.Location = new System.Drawing.Point(110, 598);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 38;
@@ -562,7 +572,7 @@
             // 
             // errorBox
             // 
-            this.errorBox.Location = new System.Drawing.Point(690, 597);
+            this.errorBox.Location = new System.Drawing.Point(690, 665);
             this.errorBox.Name = "errorBox";
             this.errorBox.Size = new System.Drawing.Size(199, 21);
             this.errorBox.TabIndex = 39;
@@ -570,7 +580,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(693, 581);
+            this.label8.Location = new System.Drawing.Point(693, 649);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 40;
@@ -588,6 +598,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataGridView4);
+            this.tabPage1.Controls.Add(this.getbookmarkbutton);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.dataGridView1);
@@ -704,6 +716,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.pictureBox1);
+            this.tabPage2.Controls.Add(this.textBox8);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.dataGridView3);
@@ -790,7 +804,6 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.From,
             this.To});
-            this.dataGridView2.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.addressBindingSource, "offset", true));
             this.dataGridView2.Location = new System.Drawing.Point(0, 22);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
@@ -1038,7 +1051,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(347, 553);
+            this.label25.Location = new System.Drawing.Point(347, 621);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(82, 13);
             this.label25.TabIndex = 82;
@@ -1046,14 +1059,14 @@
             // 
             // timeusedBox
             // 
-            this.timeusedBox.Location = new System.Drawing.Point(350, 569);
+            this.timeusedBox.Location = new System.Drawing.Point(350, 637);
             this.timeusedBox.Name = "timeusedBox";
             this.timeusedBox.Size = new System.Drawing.Size(89, 21);
             this.timeusedBox.TabIndex = 81;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(350, 603);
+            this.progressBar2.Location = new System.Drawing.Point(350, 671);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(89, 11);
             this.progressBar2.TabIndex = 80;
@@ -1061,7 +1074,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(347, 508);
+            this.label24.Location = new System.Drawing.Point(347, 576);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(70, 13);
             this.label24.TabIndex = 79;
@@ -1070,7 +1083,7 @@
             // 
             // RecSizeBox
             // 
-            this.RecSizeBox.Location = new System.Drawing.Point(350, 524);
+            this.RecSizeBox.Location = new System.Drawing.Point(350, 592);
             this.RecSizeBox.Name = "RecSizeBox";
             this.RecSizeBox.Size = new System.Drawing.Size(89, 21);
             this.RecSizeBox.TabIndex = 78;
@@ -1079,7 +1092,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(472, 519);
+            this.label20.Location = new System.Drawing.Point(472, 587);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 13);
             this.label20.TabIndex = 73;
@@ -1088,7 +1101,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(472, 545);
+            this.label21.Location = new System.Drawing.Point(472, 613);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(50, 13);
             this.label21.TabIndex = 72;
@@ -1096,14 +1109,14 @@
             // 
             // MainEndBox
             // 
-            this.MainEndBox.Location = new System.Drawing.Point(575, 540);
+            this.MainEndBox.Location = new System.Drawing.Point(575, 608);
             this.MainEndBox.Name = "MainEndBox";
             this.MainEndBox.Size = new System.Drawing.Size(100, 21);
             this.MainEndBox.TabIndex = 70;
             // 
             // MainStartBox
             // 
-            this.MainStartBox.Location = new System.Drawing.Point(575, 513);
+            this.MainStartBox.Location = new System.Drawing.Point(575, 581);
             this.MainStartBox.Name = "MainStartBox";
             this.MainStartBox.Size = new System.Drawing.Size(100, 21);
             this.MainStartBox.TabIndex = 71;
@@ -1111,7 +1124,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(472, 573);
+            this.label18.Location = new System.Drawing.Point(472, 641);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(57, 13);
             this.label18.TabIndex = 69;
@@ -1120,7 +1133,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(472, 599);
+            this.label19.Location = new System.Drawing.Point(472, 667);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(51, 13);
             this.label19.TabIndex = 68;
@@ -1128,14 +1141,14 @@
             // 
             // HeapEndBox
             // 
-            this.HeapEndBox.Location = new System.Drawing.Point(575, 594);
+            this.HeapEndBox.Location = new System.Drawing.Point(575, 662);
             this.HeapEndBox.Name = "HeapEndBox";
             this.HeapEndBox.Size = new System.Drawing.Size(100, 21);
             this.HeapEndBox.TabIndex = 66;
             // 
             // HeapStartBox
             // 
-            this.HeapStartBox.Location = new System.Drawing.Point(575, 567);
+            this.HeapStartBox.Location = new System.Drawing.Point(575, 635);
             this.HeapStartBox.Name = "HeapStartBox";
             this.HeapStartBox.Size = new System.Drawing.Size(100, 21);
             this.HeapStartBox.TabIndex = 67;
@@ -1143,7 +1156,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(896, 508);
+            this.label26.Location = new System.Drawing.Point(896, 576);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(23, 13);
             this.label26.TabIndex = 83;
@@ -1152,7 +1165,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(752, 508);
+            this.label27.Location = new System.Drawing.Point(752, 576);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(22, 13);
             this.label27.TabIndex = 84;
@@ -1161,27 +1174,129 @@
             // stopbutton
             // 
             this.stopbutton.Enabled = false;
-            this.stopbutton.Location = new System.Drawing.Point(1023, 480);
+            this.stopbutton.Location = new System.Drawing.Point(332, 503);
             this.stopbutton.Name = "stopbutton";
-            this.stopbutton.Size = new System.Drawing.Size(85, 25);
+            this.stopbutton.Size = new System.Drawing.Size(85, 23);
             this.stopbutton.TabIndex = 22;
             this.stopbutton.Text = "Stop";
             this.stopbutton.UseVisualStyleBackColor = true;
             this.stopbutton.Click += new System.EventHandler(this.button7_Click);
             // 
-            // timer1
+            // getbookmarkbutton
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.getbookmarkbutton.Location = new System.Drawing.Point(769, 383);
+            this.getbookmarkbutton.Name = "getbookmarkbutton";
+            this.getbookmarkbutton.Size = new System.Drawing.Size(157, 23);
+            this.getbookmarkbutton.TabIndex = 85;
+            this.getbookmarkbutton.Text = "Get Bookmark from SE";
+            this.getbookmarkbutton.UseVisualStyleBackColor = true;
+            this.getbookmarkbutton.Click += new System.EventHandler(this.getbookmarkbutton_Click);
             // 
-            // addressBindingSource
+            // button4
             // 
-            this.addressBindingSource.DataSource = typeof(PointerSearcher.Address);
+            this.button4.Location = new System.Drawing.Point(34, 662);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(190, 23);
+            this.button4.TabIndex = 86;
+            this.button4.Text = "Reconnect if switch gone to sleep";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BookmarkAddress});
+            this.dataGridView4.Location = new System.Drawing.Point(769, 184);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowTemplate.Height = 23;
+            this.dataGridView4.Size = new System.Drawing.Size(226, 176);
+            this.dataGridView4.TabIndex = 22;
+            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
+            // 
+            // BookmarkAddress
+            // 
+            this.BookmarkAddress.HeaderText = "Address";
+            this.BookmarkAddress.Name = "BookmarkAddress";
+            this.BookmarkAddress.Width = 200;
+            // 
+            // disconnectbutton
+            // 
+            this.disconnectbutton.Enabled = false;
+            this.disconnectbutton.Location = new System.Drawing.Point(1016, 503);
+            this.disconnectbutton.Name = "disconnectbutton";
+            this.disconnectbutton.Size = new System.Drawing.Size(85, 23);
+            this.disconnectbutton.TabIndex = 87;
+            this.disconnectbutton.Text = "Disconnect";
+            this.disconnectbutton.UseVisualStyleBackColor = true;
+            this.disconnectbutton.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // dmntpausebutton
+            // 
+            this.dmntpausebutton.Enabled = false;
+            this.dmntpausebutton.Location = new System.Drawing.Point(459, 503);
+            this.dmntpausebutton.Name = "dmntpausebutton";
+            this.dmntpausebutton.Size = new System.Drawing.Size(85, 23);
+            this.dmntpausebutton.TabIndex = 88;
+            this.dmntpausebutton.Text = "Pause";
+            this.dmntpausebutton.UseVisualStyleBackColor = true;
+            this.dmntpausebutton.Click += new System.EventHandler(this.button7_Click_1);
+            // 
+            // dmntresumebutton
+            // 
+            this.dmntresumebutton.Enabled = false;
+            this.dmntresumebutton.Location = new System.Drawing.Point(571, 503);
+            this.dmntresumebutton.Name = "dmntresumebutton";
+            this.dmntresumebutton.Size = new System.Drawing.Size(85, 23);
+            this.dmntresumebutton.TabIndex = 89;
+            this.dmntresumebutton.Text = "Resume";
+            this.dmntresumebutton.UseVisualStyleBackColor = true;
+            this.dmntresumebutton.Click += new System.EventHandler(this.button8_Click_1);
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(3, 22);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(1075, 21);
+            this.textBox8.TabIndex = 78;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1095, 445);
+            this.pictureBox1.TabIndex = 79;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(4, 576);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1104, 121);
+            this.pictureBox2.TabIndex = 90;
+            this.pictureBox2.TabStop = false;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1016, 543);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(85, 27);
+            this.button6.TabIndex = 91;
+            this.button6.Text = "Debug extras";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_2);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1124, 634);
+            this.ClientSize = new System.Drawing.Size(1109, 698);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.dmntresumebutton);
+            this.Controls.Add(this.dmntpausebutton);
+            this.Controls.Add(this.disconnectbutton);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.stopbutton);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.label27);
@@ -1206,21 +1321,21 @@
             this.Controls.Add(this.MainEndBox);
             this.Controls.Add(this.errorBox);
             this.Controls.Add(this.MainStartBox);
+            this.Controls.Add(this.attachdmntbutton);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.ipBox);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.ipBox);
             this.Controls.Add(this.HeapEndBox);
             this.Controls.Add(this.pidBox);
             this.Controls.Add(this.HeapStartBox);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.attachdmntbutton);
             this.Controls.Add(this.curpidBox);
             this.Controls.Add(this.statusBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5 beta 2";
+            this.Text = "PointerSearcher SE 0.5";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1234,7 +1349,9 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1292,7 +1409,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton6;
@@ -1337,7 +1453,6 @@
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.TextBox timeusedBox;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.BindingSource addressBindingSource;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioButton8;
         private System.Windows.Forms.RadioButton radioButton9;
@@ -1348,7 +1463,18 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button stopbutton;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button getbookmarkbutton;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BookmarkAddress;
+        private System.Windows.Forms.Button disconnectbutton;
+        private System.Windows.Forms.Button dmntpausebutton;
+        private System.Windows.Forms.Button dmntresumebutton;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button6;
     }
 }
 

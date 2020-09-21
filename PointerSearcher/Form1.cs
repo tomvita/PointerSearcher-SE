@@ -455,6 +455,13 @@ namespace PointerSearcher
             ipBox.Text = ConfigurationManager.AppSettings["ipAddress"];
         }
 
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            //byte[] msg = { 0x1D }; //_dmnt_resume
+            //int a = s.Send(msg);
+        }
+
+
         private void Export_to_SE_Click(object sender, EventArgs e)
         {
             ExportPath();
@@ -499,6 +506,7 @@ namespace PointerSearcher
         {
             if (connectBtn.Text == "Disconnect")
             {
+                button2_Click_1(sender, e);
                 s.Close();
                 connectBtn.Text = "Connect";
                 ipBox.BackColor = System.Drawing.Color.White;
@@ -584,6 +592,7 @@ namespace PointerSearcher
                 return false;
             }
             command_inprogress = true;
+            errorBox.Text = "";
             return true;
         }
         private bool is_attached()
@@ -613,6 +622,10 @@ namespace PointerSearcher
             if (b[0] == 93 && b[1] == 33)
             {
                 errorBox.Text = errorBox.Text + "  user abort";
+            }
+            if (b[0] == 93 && b[1] == 35)
+            {
+                errorBox.Text = errorBox.Text + "  file not accessible";
             }
             user_abort = false;
             user_abort2 = false;
@@ -646,7 +659,7 @@ namespace PointerSearcher
             c = s.Receive(b);
             count = BitConverter.ToInt32(k, 0);
             statusBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
-            if (b[3] >= 139) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
+            if (b[3] >= 141) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
             f = s.Available;
             b = new byte[f];
             s.Receive(b);
@@ -768,7 +781,7 @@ namespace PointerSearcher
                 int dc = s.Receive(datasetc);
                 size = LZ_Uncompress(datasetc, ref dataset, size);
             }
-            //else dataset = null;
+            else dataset = new byte[8];
             return size;
         }
         private long[,] pointer_candidate;
@@ -833,6 +846,7 @@ namespace PointerSearcher
                 do
                 {
                     c1 = receivedata(ref dataset);
+                    if (c1 == 0) break;
                     fileStream.BaseStream.Write(dataset, 0, c1);
                     this.RecSizeBox.Invoke((MethodInvoker)delegate
                     {
@@ -845,7 +859,7 @@ namespace PointerSearcher
                             info.AddPointer(from, to);
                         }
                         RecSizeBox.Text = Convert.ToString(totaldata+c1);
-                        progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (address2 - address1));
+                        progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (((address2 - address1)==0)? 1: (address2 - address1)));
                         progressBar1.Value = progressBar2.Value;
                         timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
                     });
@@ -856,6 +870,7 @@ namespace PointerSearcher
                     do
                     {
                         c1 = receivedata(ref dataset);
+                        if (c1 == 0) break;
                         fileStream.BaseStream.Write(dataset, 0, c1);
                         this.RecSizeBox.Invoke((MethodInvoker)delegate
                         {
@@ -906,7 +921,7 @@ namespace PointerSearcher
             if (!s.Connected)
             {
                 button2_Click(sender, e);
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(500);
             }
             if (!command_available()) return;
             byte[] msg = { 0x1A }; //_attach_dmnt
@@ -923,6 +938,8 @@ namespace PointerSearcher
                 button2_Click_1(sender, e);
                 pid0Box.Text = curpidBox.Text;
                 button8_Click(sender, e);
+                disconnectbutton.Enabled = true;
+                dmntresumebutton.Enabled = true;
             }
         }
 
@@ -1091,13 +1108,225 @@ namespace PointerSearcher
             stopbutton.Enabled = false;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    if (s.Connected == false) 
+        //    {
+        //        connectBtn.Text = "Connect";
+        //        ipBox.BackColor = System.Drawing.Color.White;
+        //        ipBox.ReadOnly = false;
+        //    }
+        //}
+
+        private void getbookmarkbutton_Click(object sender, EventArgs e)
         {
-            if (s.Connected == false) 
+            if (!is_attached()) return;
+            if (!command_available()) return;
+            stopbutton.Enabled = true;
+            progressBar1.Value = 0;
+            progressBar2.Value = 0;
+            RecSizeBox.Text = "";
+            getbookmarkbutton.Enabled = false;
+            RecSizeBox.BackColor = System.Drawing.Color.White;
+            byte[] msg = { 0x1B }; //_getbookmark
+            int a = s.Send(msg);
+
+            //byte[] k = new byte[8];
+            //long k1 = Convert.ToInt64(pid0Box.Text);
+            //k = BitConverter.GetBytes(k1);
+            //a = s.Send(k);
+            int index = 0;
+            new Thread(() =>
             {
-                connectBtn.Text = "Connect";
-                ipBox.BackColor = System.Drawing.Color.White;
-                ipBox.ReadOnly = false;
+                Stopwatch sw = Stopwatch.StartNew();
+                byte[] dataset = null;
+                int c1 = 0;
+                int totaldata = 0;
+                do
+                {
+                    c1 = receivedata(ref dataset);
+                    if (c1 == 0) break;
+                    this.RecSizeBox.Invoke((MethodInvoker)delegate
+                    {
+                        for (int i = 0; i < c1; i += 8)
+                        {
+                            if (index+2 > dataGridView4.RowCount)
+                            {
+                                dataGridView4.Rows.Add();
+                            };
+                            dataGridView4.Rows[index++].Cells[0].Value = "0x" + Convert.ToString(BitConverter.ToInt64(dataset, i), 16);
+                            RecSizeBox.Text = Convert.ToString(index);
+                        }
+                        //progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (((address2 - address1) == 0) ? 1 : (address2 - address1)));
+                        //progressBar1.Value = progressBar2.Value;
+                        timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    });
+                    totaldata += c1;
+                } while (c1 > 0);
+                while (s.Available < 4) ;
+                System.Threading.Thread.Sleep(50);
+                byte[] b = new byte[s.Available];
+                s.Receive(b);
+                this.RecSizeBox.Invoke((MethodInvoker)delegate
+                {
+                    showerror(b);
+                    progressBar2.Value = 100;
+                    progressBar1.Value = progressBar2.Value;
+                    RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
+                    timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    stopbutton.Enabled = false;
+                    getbookmarkbutton.Enabled = true;
+                });
+            }).Start();
+
+            //while (s.Available < 4) ;
+            //byte[] b = new byte[s.Available];
+            //s.Receive(b);
+            //if (!showerror(b))
+            //{
+            //    getbookmarkbutton.BackColor = System.Drawing.Color.LightGreen;
+            //}
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+                //button2_Click_1(sender, e);
+                //s.Close();
+                //connectBtn.Text = "Connect";
+                //ipBox.BackColor = System.Drawing.Color.White;
+                //ipBox.ReadOnly = false;
+                //attached = false;
+                //attachbutton1.BackColor = System.Drawing.Color.White;
+                //attachbutton2.BackColor = System.Drawing.Color.White;
+                //command_inprogress = false;
+
+
+            string ipPattern = @"\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b";
+            if (!Regex.IsMatch(ipBox.Text, ipPattern))
+            {
+                ipBox.BackColor = System.Drawing.Color.Red;
+                return;
+            }
+            s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipBox.Text), 7331);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
+            if (config.AppSettings.Settings["ipAddress"] == null) config.AppSettings.Settings.Add("ipAddress", ipBox.Text);
+            else
+                config.AppSettings.Settings["ipAddress"].Value = ipBox.Text;
+            config.Save(ConfigurationSaveMode.Minimal);
+            if (s.Connected == false)
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    IAsyncResult result = s.BeginConnect(ep, null, null);
+                    bool conSuceded = result.AsyncWaitHandle.WaitOne(3000, true);
+                    if (conSuceded == true)
+                    {
+                        try
+                        {
+                            s.EndConnect(result);
+                        }
+                        catch
+                        {
+                            this.ipBox.Invoke((MethodInvoker)delegate
+                            {
+                                ipBox.BackColor = System.Drawing.Color.Red;
+                                ipBox.ReadOnly = false;
+                            });
+                            return;
+                        }
+
+                        this.connectBtn.Invoke((MethodInvoker)delegate
+                        {
+                            this.connectBtn.Text = "Disconnect";
+                        });
+                        this.ipBox.Invoke((MethodInvoker)delegate
+                        {
+                            ipBox.BackColor = System.Drawing.Color.LightGreen;
+                            ipBox.ReadOnly = true;
+                            //this.refreshBtn.Visible = true;
+                            //this.Player1Btn.Visible = true;
+                            //this.Player2Btn.Visible = true;
+                        });
+
+                    }
+                    else
+                    {
+                        s.Close();
+                        this.ipBox.Invoke((MethodInvoker)delegate
+                        {
+                            ipBox.BackColor = System.Drawing.Color.Red;
+                        });
+                        MessageBox.Show("Could not connect to the SE tools server"); //, Go to https://github.com/ for help."
+                    }
+                }).Start();
+            }
+        }
+
+        private void dataGridView4_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            button2_Click_1(sender, e);
+            s.Close();
+            connectBtn.Text = "Connect";
+            ipBox.BackColor = System.Drawing.Color.White;
+            ipBox.ReadOnly = false;
+            attached = false;
+            attachbutton1.BackColor = System.Drawing.Color.White;
+            attachbutton2.BackColor = System.Drawing.Color.White;
+            command_inprogress = false;
+            attachdmntbutton.BackColor = System.Drawing.Color.White;
+            dmntpausebutton.Enabled = false;
+            dmntresumebutton.Enabled = false;
+            return;
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            if (!command_available()) return;
+            byte[] msg = { 0x1C }; //_dmnt_pause
+            int a = s.Send(msg);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            if (!showerror(b))
+            {
+                dmntpausebutton.Enabled = false;
+                dmntresumebutton.Enabled = true;
+            }
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            if (!command_available()) return;
+            byte[] msg = { 0x1D }; //_dmnt_resume
+            int a = s.Send(msg);
+            while (s.Available < 4) ;
+            byte[] b = new byte[s.Available];
+            s.Receive(b);
+            if (!showerror(b))
+            {
+                dmntpausebutton.Enabled = true;
+                dmntresumebutton.Enabled = false;
+            }
+        }
+        private bool showdebug = false;
+        private void button6_Click_2(object sender, EventArgs e)
+        {
+            if (showdebug)
+            {
+                pictureBox2.BringToFront();
+                showdebug = false;
+            } else
+            {
+                pictureBox2.SendToBack();
+                showdebug = true;
             }
         }
     }
