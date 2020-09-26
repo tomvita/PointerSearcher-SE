@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.Diagnostics;
 using System.Diagnostics.PerformanceData;
+using System.Data;
 
 namespace PointerSearcher
 {
@@ -446,6 +447,7 @@ namespace PointerSearcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //pictureBox1.BringToFront();
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
@@ -453,6 +455,8 @@ namespace PointerSearcher
             s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             s.Close();
             ipBox.Text = ConfigurationManager.AppSettings["ipAddress"];
+            pictureBox2.BringToFront();
+            this.tabControl1.SelectedIndex = 1;
         }
 
         private void OnApplicationExit(object sender, EventArgs e)
@@ -787,14 +791,19 @@ namespace PointerSearcher
         private long[,] pointer_candidate;
         private void button3_Click(object sender, EventArgs e)
         {
+            pausebutton_Click(sender, e);
             if (!is_attached()) return;
             if (!command_available()) return;
             stopbutton.Enabled = true;
             RecSizeBox.BackColor = System.Drawing.Color.White;
+            RecSizeBox.Text = "0";
             byte[] msg = { 0x19 }; //_dump_ptr
             int a = s.Send(msg);
             byte[] b;
-
+            a = s.Send(msg);
+            a = s.Send(msg);
+            a = s.Send(msg);
+            a = s.Send(msg);
             //while (s.Available < 4) ;
             //b = new byte[s.Available];
             //s.Receive(b);
@@ -836,6 +845,7 @@ namespace PointerSearcher
 
 
             //pointer_candidate = new long[30000000, 2];
+
             info = new PointerInfo();
             new Thread(() =>
             {
@@ -915,7 +925,7 @@ namespace PointerSearcher
         }
 
 
-        private void button4_Click(object sender, EventArgs e)
+        private void attachdmntbutton_Click(object sender, EventArgs e)
         {
             if (attached) return;
             if (!s.Connected)
@@ -939,7 +949,7 @@ namespace PointerSearcher
                 pid0Box.Text = curpidBox.Text;
                 button8_Click(sender, e);
                 disconnectbutton.Enabled = true;
-                dmntresumebutton.Enabled = true;
+                resumebutton.Enabled = true;
             }
         }
 
@@ -1102,7 +1112,7 @@ namespace PointerSearcher
             fileselect = 4;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void stopbutton_Click(object sender, EventArgs e)
         {
             user_abort = true;
             stopbutton.Enabled = false;
@@ -1123,11 +1133,12 @@ namespace PointerSearcher
             if (!is_attached()) return;
             if (!command_available()) return;
             stopbutton.Enabled = true;
-            progressBar1.Value = 0;
+            //progressBar1.Value = 0;
             progressBar2.Value = 0;
             RecSizeBox.Text = "";
             getbookmarkbutton.Enabled = false;
             RecSizeBox.BackColor = System.Drawing.Color.White;
+            RecSizeBox.Text = "0";
             byte[] msg = { 0x1B }; //_getbookmark
             int a = s.Send(msg);
 
@@ -1150,10 +1161,13 @@ namespace PointerSearcher
                     {
                         for (int i = 0; i < c1; i += 8)
                         {
-                            if (index+2 > dataGridView4.RowCount)
+                            if (index + 2 > dataGridView4.RowCount)
                             {
                                 dataGridView4.Rows.Add();
                             };
+                            //pointers_candidates.AddNew();
+                            //pointers_candidates.Current["From"] = BitConverter.ToInt64(dataset, i);
+                            //DataRow workRow = workTable.NewRow();
                             dataGridView4.Rows[index++].Cells[0].Value = "0x" + Convert.ToString(BitConverter.ToInt64(dataset, i), 16);
                             RecSizeBox.Text = Convert.ToString(index);
                         }
@@ -1164,14 +1178,14 @@ namespace PointerSearcher
                     totaldata += c1;
                 } while (c1 > 0);
                 while (s.Available < 4) ;
-                System.Threading.Thread.Sleep(50);
+                //System.Threading.Thread.Sleep(50);
                 byte[] b = new byte[s.Available];
                 s.Receive(b);
                 this.RecSizeBox.Invoke((MethodInvoker)delegate
                 {
                     showerror(b);
                     progressBar2.Value = 100;
-                    progressBar1.Value = progressBar2.Value;
+                    //progressBar1.Value = progressBar2.Value;
                     RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
                     timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
                     stopbutton.Enabled = false;
@@ -1282,41 +1296,43 @@ namespace PointerSearcher
             attachbutton2.BackColor = System.Drawing.Color.White;
             command_inprogress = false;
             attachdmntbutton.BackColor = System.Drawing.Color.White;
-            dmntpausebutton.Enabled = false;
-            dmntresumebutton.Enabled = false;
+            pausebutton.Enabled = false;
+            resumebutton.Enabled = false;
             return;
         }
 
-        private void button7_Click_1(object sender, EventArgs e)
+        private void pausebutton_Click(object sender, EventArgs e)
         {
             if (!command_available()) return;
-            byte[] msg = { 0x1C }; //_dmnt_pause
+            byte[] msg = { 0x09 }; //_pause
             int a = s.Send(msg);
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
             if (!showerror(b))
             {
-                dmntpausebutton.Enabled = false;
-                dmntresumebutton.Enabled = true;
+                pausebutton.Enabled = false;
+                resumebutton.Enabled = true;
             }
         }
 
-        private void button8_Click_1(object sender, EventArgs e)
+        private void resumebutton_Click(object sender, EventArgs e)
         {
             if (!command_available()) return;
-            byte[] msg = { 0x1D }; //_dmnt_resume
+            byte[] msg = { 0x08 }; //_resume
             int a = s.Send(msg);
             while (s.Available < 4) ;
             byte[] b = new byte[s.Available];
             s.Receive(b);
             if (!showerror(b))
             {
-                dmntpausebutton.Enabled = true;
-                dmntresumebutton.Enabled = false;
+                pausebutton.Enabled = true;
+                resumebutton.Enabled = false;
             }
         }
         private bool showdebug = false;
+        private object workTable;
+
         private void button6_Click_2(object sender, EventArgs e)
         {
             if (showdebug)
@@ -1328,6 +1344,179 @@ namespace PointerSearcher
                 pictureBox2.SendToBack();
                 showdebug = true;
             }
+        }
+
+        private void testbutton_Click(object sender, EventArgs e)
+        {
+            pausebutton_Click(sender, e);
+            if (!is_attached()) return;
+            if (!command_available()) return;
+            stopbutton.Enabled = true;
+            RecSizeBox.BackColor = System.Drawing.Color.White;
+            byte[] msg = { 0x19 }; //_dump_ptr { 0x16 }; //_search_local
+            int a = s.Send(msg);
+            byte[] b;
+
+            //while (s.Available < 4) ;
+            //b = new byte[s.Available];
+            //s.Receive(b);
+
+            byte[] k = new byte[8 * 4];
+            while (s.Available < 8 * 4) ;
+            int c = s.Receive(k);
+            long address1 = BitConverter.ToInt64(k, 0);
+            long address2 = BitConverter.ToInt64(k, 8);
+            long address3 = BitConverter.ToInt64(k, 16);
+            long address4 = BitConverter.ToInt64(k, 24);
+            MainStartBox.Text = "0x" + Convert.ToString(address1, 16);
+            MainEndBox.Text = "0x" + Convert.ToString(address2, 16);
+            HeapStartBox.Text = "0x" + Convert.ToString(address3, 16);
+            HeapEndBox.Text = "0x" + Convert.ToString(address4, 16);
+            dataGridView1.Rows[fileselect].Cells[0].Value = "DirectTransfer.dmp" + Convert.ToString(fileselect);
+            dataGridView1.Rows[fileselect].Cells[1].Value = "0x" + Convert.ToString(address1, 16);
+            dataGridView1.Rows[fileselect].Cells[2].Value = "0x" + Convert.ToString(address2, 16);
+            dataGridView1.Rows[fileselect].Cells[3].Value = "0x" + Convert.ToString(address3, 16);
+            dataGridView1.Rows[fileselect].Cells[4].Value = "0x" + Convert.ToString(address4, 16);
+
+            // create dump file
+            BinaryWriter fileStream = new BinaryWriter(new FileStream("DirectTransfer.dmp" + Convert.ToString(fileselect), FileMode.Create, FileAccess.Write));
+            fileStream.BaseStream.Seek(0, SeekOrigin.Begin);
+            int magic = 0x4E5A4445;
+            byte[] buffer = BitConverter.GetBytes(magic);
+            fileStream.BaseStream.Write(buffer, 0, 4);
+            fileStream.BaseStream.Seek(134, SeekOrigin.Begin);
+            buffer = BitConverter.GetBytes(address1);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes(address2);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes(address3);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes(address4);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+            buffer = BitConverter.GetBytes((dataGridView1.Rows[fileselect].Cells[5].Value != null) ? Convert.ToInt64(dataGridView1.Rows[fileselect].Cells[5].Value.ToString(), 16) : 0);
+            fileStream.BaseStream.Write(buffer, 0, 8);
+
+
+            //pointer_candidate = new long[30000000, 2];
+            info = new PointerInfo();
+            new Thread(() =>
+            {
+                Stopwatch sw = Stopwatch.StartNew();
+                byte[] dataset = null;
+                int c1 = 0;
+                int totaldata = 0;
+                do
+                {
+                    c1 = receivedata(ref dataset);
+                    if (c1 == 0) break;
+                    fileStream.BaseStream.Write(dataset, 0, c1);
+                    this.RecSizeBox.Invoke((MethodInvoker)delegate
+                    {
+                        for (int i = 0; i < c1; i += 16)
+                        {
+                            //pointer_candidate[(totaldata+i)/16, 0] = BitConverter.ToInt64(dataset, i);
+                            //pointer_candidate[(totaldata+i)/16, 1] = BitConverter.ToInt64(dataset, i + 8);
+                            //pointerdump.Rows.Add(new Object[] { BitConverter.ToInt64(dataset, i), BitConverter.ToInt64(dataset, i + 8) });
+                            Address from = new Address(MemoryType.MAIN, BitConverter.ToInt64(dataset, i) - address1);
+                            Address to = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i + 8) - address3);
+                            info.AddPointer(from, to);
+                        }
+                        RecSizeBox.Text = Convert.ToString(totaldata + c1);
+                        progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (((address2 - address1) == 0) ? 1 : (address2 - address1)));
+                        progressBar1.Value = progressBar2.Value;
+                        timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    });
+                    totaldata += c1;
+                } while (c1 > 0);
+                if (!user_abort2)
+                {
+                    do
+                    {
+                        c1 = receivedata(ref dataset);
+                        if (c1 == 0) break;
+                        fileStream.BaseStream.Write(dataset, 0, c1);
+                        this.RecSizeBox.Invoke((MethodInvoker)delegate
+                        {
+                            for (int i = 0; i < c1; i += 16)
+                            {
+                                //pointer_candidate[(totaldata+i)/16, 0] = BitConverter.ToInt64(dataset, i);
+                                //pointer_candidate[(totaldata+i)/16, 1] = BitConverter.ToInt64(dataset, i + 8);
+                                pointerdump.Rows.Add(new Object[] { BitConverter.ToInt64(dataset, i), BitConverter.ToInt64(dataset, i + 8) });
+                                Address from = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i) - address3);
+                                Address to = new Address(MemoryType.HEAP, BitConverter.ToInt64(dataset, i + 8) - address3);
+                                info.AddPointer(from, to);
+                            }
+                            RecSizeBox.Text = Convert.ToString(totaldata + c1);
+                            progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address3) / (address4 - address3));
+                            progressBar1.Value = progressBar2.Value;
+                            timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                        });
+                        totaldata += c1;
+                    } while (c1 > 0);
+                }
+                info.MakeList();
+                fileStream.BaseStream.Close();
+                this.RecSizeBox.Invoke((MethodInvoker)delegate
+                {
+                    buttonSearch.Enabled = true;
+                });
+                while (s.Available < 4) ;
+                b = new byte[s.Available];
+                s.Receive(b);
+                this.RecSizeBox.Invoke((MethodInvoker)delegate
+                {
+                    showerror(b);
+                    progressBar2.Value = 100;
+                    progressBar1.Value = progressBar2.Value;
+                    RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
+                    timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
+                    stopbutton.Enabled = false;
+                });
+            }).Start();
+
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bindingNavigator1_RefreshItems_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView6_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pointers_candidates_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DataRow workRow = pointerdump.NewRow();
+            workRow["From"] = 123;
+            workRow["To"] = 456;
+            pointerdump.Rows.Add(workRow); //pointerdump.Rows.Add(new Object[] {1, "Smith"});  
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

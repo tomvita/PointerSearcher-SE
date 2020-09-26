@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -79,6 +82,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.getbookmarkbutton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -118,6 +123,7 @@
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label25 = new System.Windows.Forms.Label();
             this.timeusedBox = new System.Windows.Forms.TextBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
@@ -134,28 +140,80 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.stopbutton = new System.Windows.Forms.Button();
-            this.getbookmarkbutton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.BookmarkAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.disconnectbutton = new System.Windows.Forms.Button();
-            this.dmntpausebutton = new System.Windows.Forms.Button();
-            this.dmntresumebutton = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pausebutton = new System.Windows.Forms.Button();
+            this.resumebutton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.testbutton = new System.Windows.Forms.Button();
+            this.dataSet1 = new System.Data.DataSet();
+            this.SearchSettings = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
+            this.dataColumn5 = new System.Data.DataColumn();
+            this.dataColumn6 = new System.Data.DataColumn();
+            this.dataColumn7 = new System.Data.DataColumn();
+            this.dataColumn8 = new System.Data.DataColumn();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.datatypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchRegionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datatypeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchRegionDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchTypeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pointerdump = new System.Data.DataTable();
+            this.dataColumn10 = new System.Data.DataColumn();
+            this.dataColumn11 = new System.Data.DataColumn();
+            this.Search = new System.Windows.Forms.BindingSource(this.components);
+            this.datatypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchRegionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pointers_candidates = new System.Windows.Forms.BindingSource(this.components);
+            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button7 = new System.Windows.Forms.Button();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.fromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchSettings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointerdump)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Search)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointers_candidates)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRead
@@ -193,8 +251,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -498,7 +556,7 @@
             this.attachdmntbutton.TabIndex = 29;
             this.attachdmntbutton.Text = "Attach dmnt";
             this.attachdmntbutton.UseVisualStyleBackColor = true;
-            this.attachdmntbutton.Click += new System.EventHandler(this.button4_Click);
+            this.attachdmntbutton.Click += new System.EventHandler(this.attachdmntbutton_Click);
             // 
             // button5
             // 
@@ -627,6 +685,28 @@
             this.tabPage1.Text = "Pointer Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Address1});
+            this.dataGridView4.Location = new System.Drawing.Point(769, 184);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowTemplate.Height = 23;
+            this.dataGridView4.Size = new System.Drawing.Size(247, 176);
+            this.dataGridView4.TabIndex = 22;
+            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
+            // 
+            // getbookmarkbutton
+            // 
+            this.getbookmarkbutton.Location = new System.Drawing.Point(769, 383);
+            this.getbookmarkbutton.Name = "getbookmarkbutton";
+            this.getbookmarkbutton.Size = new System.Drawing.Size(169, 23);
+            this.getbookmarkbutton.TabIndex = 85;
+            this.getbookmarkbutton.Text = "Get Bookmark from EdiZon SE";
+            this.getbookmarkbutton.UseVisualStyleBackColor = true;
+            this.getbookmarkbutton.Click += new System.EventHandler(this.getbookmarkbutton_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radioButton11);
@@ -716,8 +796,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.pictureBox1);
-            this.tabPage2.Controls.Add(this.textBox8);
+            this.tabPage2.Controls.Add(this.dataGridView5);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.dataGridView3);
@@ -744,6 +823,7 @@
             this.tabPage2.Controls.Add(this.radioButton6);
             this.tabPage2.Controls.Add(this.radioButton5);
             this.tabPage2.Controls.Add(this.radioButton4);
+            this.tabPage2.Controls.Add(this.pictureBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -845,6 +925,7 @@
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(97, 21);
             this.comboBox4.TabIndex = 64;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // label16
             // 
@@ -1048,6 +1129,14 @@
             this.radioButton4.Text = "Search 1";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1095, 445);
+            this.pictureBox1.TabIndex = 79;
+            this.pictureBox1.TabStop = false;
+            // 
             // label25
             // 
             this.label25.AutoSize = true;
@@ -1180,17 +1269,7 @@
             this.stopbutton.TabIndex = 22;
             this.stopbutton.Text = "Stop";
             this.stopbutton.UseVisualStyleBackColor = true;
-            this.stopbutton.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // getbookmarkbutton
-            // 
-            this.getbookmarkbutton.Location = new System.Drawing.Point(769, 383);
-            this.getbookmarkbutton.Name = "getbookmarkbutton";
-            this.getbookmarkbutton.Size = new System.Drawing.Size(157, 23);
-            this.getbookmarkbutton.TabIndex = 85;
-            this.getbookmarkbutton.Text = "Get Bookmark from SE";
-            this.getbookmarkbutton.UseVisualStyleBackColor = true;
-            this.getbookmarkbutton.Click += new System.EventHandler(this.getbookmarkbutton_Click);
+            this.stopbutton.Click += new System.EventHandler(this.stopbutton_Click);
             // 
             // button4
             // 
@@ -1201,24 +1280,6 @@
             this.button4.Text = "Reconnect if switch gone to sleep";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BookmarkAddress});
-            this.dataGridView4.Location = new System.Drawing.Point(769, 184);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(226, 176);
-            this.dataGridView4.TabIndex = 22;
-            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
-            // 
-            // BookmarkAddress
-            // 
-            this.BookmarkAddress.HeaderText = "Address";
-            this.BookmarkAddress.Name = "BookmarkAddress";
-            this.BookmarkAddress.Width = 200;
             // 
             // disconnectbutton
             // 
@@ -1231,42 +1292,27 @@
             this.disconnectbutton.UseVisualStyleBackColor = true;
             this.disconnectbutton.Click += new System.EventHandler(this.button6_Click_1);
             // 
-            // dmntpausebutton
+            // pausebutton
             // 
-            this.dmntpausebutton.Enabled = false;
-            this.dmntpausebutton.Location = new System.Drawing.Point(459, 503);
-            this.dmntpausebutton.Name = "dmntpausebutton";
-            this.dmntpausebutton.Size = new System.Drawing.Size(85, 23);
-            this.dmntpausebutton.TabIndex = 88;
-            this.dmntpausebutton.Text = "Pause";
-            this.dmntpausebutton.UseVisualStyleBackColor = true;
-            this.dmntpausebutton.Click += new System.EventHandler(this.button7_Click_1);
+            this.pausebutton.Enabled = false;
+            this.pausebutton.Location = new System.Drawing.Point(459, 503);
+            this.pausebutton.Name = "pausebutton";
+            this.pausebutton.Size = new System.Drawing.Size(85, 23);
+            this.pausebutton.TabIndex = 88;
+            this.pausebutton.Text = "Pause";
+            this.pausebutton.UseVisualStyleBackColor = true;
+            this.pausebutton.Click += new System.EventHandler(this.pausebutton_Click);
             // 
-            // dmntresumebutton
+            // resumebutton
             // 
-            this.dmntresumebutton.Enabled = false;
-            this.dmntresumebutton.Location = new System.Drawing.Point(571, 503);
-            this.dmntresumebutton.Name = "dmntresumebutton";
-            this.dmntresumebutton.Size = new System.Drawing.Size(85, 23);
-            this.dmntresumebutton.TabIndex = 89;
-            this.dmntresumebutton.Text = "Resume";
-            this.dmntresumebutton.UseVisualStyleBackColor = true;
-            this.dmntresumebutton.Click += new System.EventHandler(this.button8_Click_1);
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(3, 22);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(1075, 21);
-            this.textBox8.TabIndex = 78;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1095, 445);
-            this.pictureBox1.TabIndex = 79;
-            this.pictureBox1.TabStop = false;
+            this.resumebutton.Enabled = false;
+            this.resumebutton.Location = new System.Drawing.Point(571, 503);
+            this.resumebutton.Name = "resumebutton";
+            this.resumebutton.Size = new System.Drawing.Size(85, 23);
+            this.resumebutton.TabIndex = 89;
+            this.resumebutton.Text = "Resume";
+            this.resumebutton.UseVisualStyleBackColor = true;
+            this.resumebutton.Click += new System.EventHandler(this.resumebutton_Click);
             // 
             // pictureBox2
             // 
@@ -1286,15 +1332,353 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click_2);
             // 
+            // testbutton
+            // 
+            this.testbutton.Location = new System.Drawing.Point(682, 503);
+            this.testbutton.Name = "testbutton";
+            this.testbutton.Size = new System.Drawing.Size(75, 23);
+            this.testbutton.TabIndex = 80;
+            this.testbutton.Text = "test";
+            this.testbutton.UseVisualStyleBackColor = true;
+            this.testbutton.Click += new System.EventHandler(this.testbutton_Click);
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "NewDataSet";
+            this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
+            this.SearchSettings,
+            this.pointerdump});
+            // 
+            // SearchSettings
+            // 
+            this.SearchSettings.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColumn5,
+            this.dataColumn6,
+            this.dataColumn7,
+            this.dataColumn8,
+            this.dataColumn9});
+            this.SearchSettings.TableName = "SearchSettings";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "Datatype";
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.ColumnName = "SearchRegion";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "SearchType";
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Start";
+            // 
+            // dataColumn5
+            // 
+            this.dataColumn5.ColumnName = "End";
+            // 
+            // dataColumn6
+            // 
+            this.dataColumn6.ColumnName = "Min";
+            this.dataColumn6.DataType = typeof(long);
+            // 
+            // dataColumn7
+            // 
+            this.dataColumn7.ColumnName = "Max";
+            // 
+            // dataColumn8
+            // 
+            this.dataColumn8.ColumnName = "Value";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "Label";
+            // 
+            // dataGridView6
+            // 
+            this.dataGridView6.AllowUserToOrderColumns = true;
+            this.dataGridView6.AutoGenerateColumns = false;
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.datatypeDataGridViewTextBoxColumn,
+            this.searchRegionDataGridViewTextBoxColumn,
+            this.searchTypeDataGridViewTextBoxColumn,
+            this.startDataGridViewTextBoxColumn,
+            this.endDataGridViewTextBoxColumn,
+            this.minDataGridViewTextBoxColumn,
+            this.maxDataGridViewTextBoxColumn,
+            this.valueDataGridViewTextBoxColumn,
+            this.labelDataGridViewTextBoxColumn});
+            this.dataGridView6.DataSource = this.Search;
+            this.dataGridView6.Location = new System.Drawing.Point(0, 703);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.RowTemplate.Height = 23;
+            this.dataGridView6.Size = new System.Drawing.Size(1042, 150);
+            this.dataGridView6.TabIndex = 92;
+            this.dataGridView6.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellContentClick);
+            // 
+            // datatypeDataGridViewTextBoxColumn1
+            // 
+            this.datatypeDataGridViewTextBoxColumn1.DataPropertyName = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn1.HeaderText = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn1.Name = "datatypeDataGridViewTextBoxColumn1";
+            // 
+            // searchRegionDataGridViewTextBoxColumn1
+            // 
+            this.searchRegionDataGridViewTextBoxColumn1.DataPropertyName = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn1.HeaderText = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn1.Name = "searchRegionDataGridViewTextBoxColumn1";
+            // 
+            // searchTypeDataGridViewTextBoxColumn1
+            // 
+            this.searchTypeDataGridViewTextBoxColumn1.DataPropertyName = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn1.HeaderText = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn1.Name = "searchTypeDataGridViewTextBoxColumn1";
+            // 
+            // startDataGridViewTextBoxColumn1
+            // 
+            this.startDataGridViewTextBoxColumn1.DataPropertyName = "Start";
+            this.startDataGridViewTextBoxColumn1.HeaderText = "Start";
+            this.startDataGridViewTextBoxColumn1.Name = "startDataGridViewTextBoxColumn1";
+            // 
+            // endDataGridViewTextBoxColumn1
+            // 
+            this.endDataGridViewTextBoxColumn1.DataPropertyName = "End";
+            this.endDataGridViewTextBoxColumn1.HeaderText = "End";
+            this.endDataGridViewTextBoxColumn1.Name = "endDataGridViewTextBoxColumn1";
+            // 
+            // minDataGridViewTextBoxColumn1
+            // 
+            this.minDataGridViewTextBoxColumn1.DataPropertyName = "Min";
+            this.minDataGridViewTextBoxColumn1.HeaderText = "Min";
+            this.minDataGridViewTextBoxColumn1.Name = "minDataGridViewTextBoxColumn1";
+            // 
+            // maxDataGridViewTextBoxColumn1
+            // 
+            this.maxDataGridViewTextBoxColumn1.DataPropertyName = "Max";
+            this.maxDataGridViewTextBoxColumn1.HeaderText = "Max";
+            this.maxDataGridViewTextBoxColumn1.Name = "maxDataGridViewTextBoxColumn1";
+            // 
+            // valueDataGridViewTextBoxColumn1
+            // 
+            this.valueDataGridViewTextBoxColumn1.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn1.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn1.Name = "valueDataGridViewTextBoxColumn1";
+            // 
+            // labelDataGridViewTextBoxColumn1
+            // 
+            this.labelDataGridViewTextBoxColumn1.DataPropertyName = "Label";
+            this.labelDataGridViewTextBoxColumn1.HeaderText = "Label";
+            this.labelDataGridViewTextBoxColumn1.Name = "labelDataGridViewTextBoxColumn1";
+            // 
+            // datatypeDataGridViewTextBoxColumn2
+            // 
+            this.datatypeDataGridViewTextBoxColumn2.DataPropertyName = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn2.HeaderText = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn2.Name = "datatypeDataGridViewTextBoxColumn2";
+            // 
+            // searchRegionDataGridViewTextBoxColumn2
+            // 
+            this.searchRegionDataGridViewTextBoxColumn2.DataPropertyName = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn2.HeaderText = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn2.Name = "searchRegionDataGridViewTextBoxColumn2";
+            // 
+            // searchTypeDataGridViewTextBoxColumn2
+            // 
+            this.searchTypeDataGridViewTextBoxColumn2.DataPropertyName = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn2.HeaderText = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn2.Name = "searchTypeDataGridViewTextBoxColumn2";
+            // 
+            // startDataGridViewTextBoxColumn2
+            // 
+            this.startDataGridViewTextBoxColumn2.DataPropertyName = "Start";
+            this.startDataGridViewTextBoxColumn2.HeaderText = "Start";
+            this.startDataGridViewTextBoxColumn2.Name = "startDataGridViewTextBoxColumn2";
+            // 
+            // endDataGridViewTextBoxColumn2
+            // 
+            this.endDataGridViewTextBoxColumn2.DataPropertyName = "End";
+            this.endDataGridViewTextBoxColumn2.HeaderText = "End";
+            this.endDataGridViewTextBoxColumn2.Name = "endDataGridViewTextBoxColumn2";
+            // 
+            // minDataGridViewTextBoxColumn2
+            // 
+            this.minDataGridViewTextBoxColumn2.DataPropertyName = "Min";
+            this.minDataGridViewTextBoxColumn2.HeaderText = "Min";
+            this.minDataGridViewTextBoxColumn2.Name = "minDataGridViewTextBoxColumn2";
+            // 
+            // maxDataGridViewTextBoxColumn2
+            // 
+            this.maxDataGridViewTextBoxColumn2.DataPropertyName = "Max";
+            this.maxDataGridViewTextBoxColumn2.HeaderText = "Max";
+            this.maxDataGridViewTextBoxColumn2.Name = "maxDataGridViewTextBoxColumn2";
+            // 
+            // valueDataGridViewTextBoxColumn2
+            // 
+            this.valueDataGridViewTextBoxColumn2.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn2.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn2.Name = "valueDataGridViewTextBoxColumn2";
+            // 
+            // labelDataGridViewTextBoxColumn2
+            // 
+            this.labelDataGridViewTextBoxColumn2.DataPropertyName = "Label";
+            this.labelDataGridViewTextBoxColumn2.HeaderText = "Label";
+            this.labelDataGridViewTextBoxColumn2.Name = "labelDataGridViewTextBoxColumn2";
+            // 
+            // pointerdump
+            // 
+            this.pointerdump.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn10,
+            this.dataColumn11});
+            this.pointerdump.Constraints.AddRange(new System.Data.Constraint[] {
+            new System.Data.UniqueConstraint("Constraint1", new string[] {
+                        "From"}, true)});
+            this.pointerdump.PrimaryKey = new System.Data.DataColumn[] {
+        this.dataColumn10};
+            this.pointerdump.TableName = "pointerdump";
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.AllowDBNull = false;
+            this.dataColumn10.ColumnName = "From";
+            this.dataColumn10.DataType = typeof(long);
+            // 
+            // dataColumn11
+            // 
+            this.dataColumn11.AllowDBNull = false;
+            this.dataColumn11.ColumnName = "To";
+            this.dataColumn11.DataType = typeof(long);
+            // 
+            // Search
+            // 
+            this.Search.DataMember = "SearchSettings";
+            this.Search.DataSource = this.dataSet1;
+            // 
+            // datatypeDataGridViewTextBoxColumn
+            // 
+            this.datatypeDataGridViewTextBoxColumn.DataPropertyName = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn.HeaderText = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn.Name = "datatypeDataGridViewTextBoxColumn";
+            // 
+            // searchRegionDataGridViewTextBoxColumn
+            // 
+            this.searchRegionDataGridViewTextBoxColumn.DataPropertyName = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn.HeaderText = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn.Name = "searchRegionDataGridViewTextBoxColumn";
+            // 
+            // searchTypeDataGridViewTextBoxColumn
+            // 
+            this.searchTypeDataGridViewTextBoxColumn.DataPropertyName = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn.HeaderText = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn.Name = "searchTypeDataGridViewTextBoxColumn";
+            // 
+            // startDataGridViewTextBoxColumn
+            // 
+            this.startDataGridViewTextBoxColumn.DataPropertyName = "Start";
+            this.startDataGridViewTextBoxColumn.HeaderText = "Start";
+            this.startDataGridViewTextBoxColumn.Name = "startDataGridViewTextBoxColumn";
+            // 
+            // endDataGridViewTextBoxColumn
+            // 
+            this.endDataGridViewTextBoxColumn.DataPropertyName = "End";
+            this.endDataGridViewTextBoxColumn.HeaderText = "End";
+            this.endDataGridViewTextBoxColumn.Name = "endDataGridViewTextBoxColumn";
+            // 
+            // minDataGridViewTextBoxColumn
+            // 
+            this.minDataGridViewTextBoxColumn.DataPropertyName = "Min";
+            this.minDataGridViewTextBoxColumn.HeaderText = "Min";
+            this.minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
+            // 
+            // maxDataGridViewTextBoxColumn
+            // 
+            this.maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
+            this.maxDataGridViewTextBoxColumn.HeaderText = "Max";
+            this.maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            // 
+            // labelDataGridViewTextBoxColumn
+            // 
+            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
+            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
+            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
+            // 
+            // pointers_candidates
+            // 
+            this.pointers_candidates.DataMember = "pointerdump";
+            this.pointers_candidates.DataSource = this.dataSet1;
+            this.pointers_candidates.CurrentChanged += new System.EventHandler(this.pointers_candidates_CurrentChanged);
+            // 
+            // Address1
+            // 
+            this.Address1.HeaderText = "Address";
+            this.Address1.Name = "Address1";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(803, 502);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 93;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AutoGenerateColumns = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fromDataGridViewTextBoxColumn,
+            this.toDataGridViewTextBoxColumn});
+            this.dataGridView5.DataMember = "pointerdump";
+            this.dataGridView5.DataSource = this.dataSet1;
+            this.dataGridView5.Location = new System.Drawing.Point(634, 22);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.RowTemplate.Height = 23;
+            this.dataGridView5.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView5.TabIndex = 80;
+            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            // 
+            // fromDataGridViewTextBoxColumn
+            // 
+            this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
+            dataGridViewCellStyle2.Format = "X10";
+            dataGridViewCellStyle2.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fromDataGridViewTextBoxColumn.HeaderText = "From";
+            this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
+            // 
+            // toDataGridViewTextBoxColumn
+            // 
+            this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
+            dataGridViewCellStyle3.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.toDataGridViewTextBoxColumn.HeaderText = "To";
+            this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1109, 698);
+            this.ClientSize = new System.Drawing.Size(1109, 899);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.dataGridView6);
+            this.Controls.Add(this.testbutton);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.dmntresumebutton);
-            this.Controls.Add(this.dmntpausebutton);
+            this.Controls.Add(this.resumebutton);
+            this.Controls.Add(this.pausebutton);
             this.Controls.Add(this.disconnectbutton);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.stopbutton);
@@ -1334,6 +1718,7 @@
             this.Controls.Add(this.statusBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.pictureBox2);
             this.Name = "Form1";
             this.Text = "PointerSearcher SE 0.5";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -1341,6 +1726,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1349,9 +1735,15 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointerdump)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Search)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointers_candidates)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1466,15 +1858,63 @@
         private System.Windows.Forms.Button getbookmarkbutton;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BookmarkAddress;
         private System.Windows.Forms.Button disconnectbutton;
-        private System.Windows.Forms.Button dmntpausebutton;
-        private System.Windows.Forms.Button dmntresumebutton;
+        private System.Windows.Forms.Button pausebutton;
+        private System.Windows.Forms.Button resumebutton;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button testbutton;
+        private System.Data.DataSet dataSet1;
+        private System.Data.DataTable SearchSettings;
+        private System.Data.DataColumn dataColumn1;
+        private System.Data.DataColumn dataColumn2;
+        private System.Data.DataColumn dataColumn3;
+        private System.Data.DataColumn dataColumn4;
+        private System.Data.DataColumn dataColumn5;
+        private System.Data.DataColumn dataColumn6;
+        private System.Data.DataColumn dataColumn7;
+        private System.Data.DataColumn dataColumn8;
+        private System.Data.DataColumn dataColumn9;
+        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datatypeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchRegionDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchTypeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn labelDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datatypeDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchRegionDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchTypeDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn labelDataGridViewTextBoxColumn2;
+        private System.Data.DataTable pointerdump;
+        private System.Data.DataColumn dataColumn10;
+        private System.Data.DataColumn dataColumn11;
+        private System.Windows.Forms.BindingSource pointers_candidates;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datatypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchRegionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn labelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource Search;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fromDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn toDataGridViewTextBoxColumn;
     }
 }
 
