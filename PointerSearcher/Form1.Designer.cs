@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -83,6 +83,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.getbookmarkbutton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
@@ -92,6 +93,23 @@
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.fromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSet1 = new System.Data.DataSet();
+            this.SearchSettings = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
+            this.dataColumn5 = new System.Data.DataColumn();
+            this.dataColumn6 = new System.Data.DataColumn();
+            this.dataColumn7 = new System.Data.DataColumn();
+            this.dataColumn8 = new System.Data.DataColumn();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.pointerdump = new System.Data.DataTable();
+            this.dataColumn10 = new System.Data.DataColumn();
+            this.dataColumn11 = new System.Data.DataColumn();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -147,18 +165,17 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.testbutton = new System.Windows.Forms.Button();
-            this.dataSet1 = new System.Data.DataSet();
-            this.SearchSettings = new System.Data.DataTable();
-            this.dataColumn1 = new System.Data.DataColumn();
-            this.dataColumn2 = new System.Data.DataColumn();
-            this.dataColumn3 = new System.Data.DataColumn();
-            this.dataColumn4 = new System.Data.DataColumn();
-            this.dataColumn5 = new System.Data.DataColumn();
-            this.dataColumn6 = new System.Data.DataColumn();
-            this.dataColumn7 = new System.Data.DataColumn();
-            this.dataColumn8 = new System.Data.DataColumn();
-            this.dataColumn9 = new System.Data.DataColumn();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.datatypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchRegionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Search = new System.Windows.Forms.BindingSource(this.components);
             this.datatypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchRegionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -177,25 +194,14 @@
             this.maxDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pointerdump = new System.Data.DataTable();
-            this.dataColumn10 = new System.Data.DataColumn();
-            this.dataColumn11 = new System.Data.DataColumn();
-            this.Search = new System.Windows.Forms.BindingSource(this.components);
-            this.datatypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchRegionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.startDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pointers_candidates = new System.Windows.Forms.BindingSource(this.components);
-            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button7 = new System.Windows.Forms.Button();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.fromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -203,17 +209,17 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchSettings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointerdump)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pointerdump)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pointers_candidates)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonRead
@@ -251,8 +257,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -697,6 +703,11 @@
             this.dataGridView4.TabIndex = 22;
             this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
             // 
+            // Address1
+            // 
+            this.Address1.HeaderText = "Address";
+            this.Address1.Name = "Address1";
+            // 
             // getbookmarkbutton
             // 
             this.getbookmarkbutton.Location = new System.Drawing.Point(769, 383);
@@ -831,6 +842,121 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Memory Search";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AutoGenerateColumns = false;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fromDataGridViewTextBoxColumn,
+            this.toDataGridViewTextBoxColumn});
+            this.dataGridView5.DataMember = "pointerdump";
+            this.dataGridView5.DataSource = this.dataSet1;
+            this.dataGridView5.Location = new System.Drawing.Point(634, 22);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.RowTemplate.Height = 23;
+            this.dataGridView5.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView5.TabIndex = 80;
+            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            // 
+            // fromDataGridViewTextBoxColumn
+            // 
+            this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
+            dataGridViewCellStyle23.Format = "X10";
+            dataGridViewCellStyle23.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
+            this.fromDataGridViewTextBoxColumn.HeaderText = "From";
+            this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
+            // 
+            // toDataGridViewTextBoxColumn
+            // 
+            this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
+            dataGridViewCellStyle24.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
+            this.toDataGridViewTextBoxColumn.HeaderText = "To";
+            this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "NewDataSet";
+            this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
+            this.SearchSettings,
+            this.pointerdump});
+            // 
+            // SearchSettings
+            // 
+            this.SearchSettings.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3,
+            this.dataColumn4,
+            this.dataColumn5,
+            this.dataColumn6,
+            this.dataColumn7,
+            this.dataColumn8,
+            this.dataColumn9});
+            this.SearchSettings.TableName = "SearchSettings";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "Datatype";
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.ColumnName = "SearchRegion";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "SearchType";
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Start";
+            // 
+            // dataColumn5
+            // 
+            this.dataColumn5.ColumnName = "End";
+            // 
+            // dataColumn6
+            // 
+            this.dataColumn6.ColumnName = "Min";
+            this.dataColumn6.DataType = typeof(long);
+            // 
+            // dataColumn7
+            // 
+            this.dataColumn7.ColumnName = "Max";
+            // 
+            // dataColumn8
+            // 
+            this.dataColumn8.ColumnName = "Value";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "Label";
+            // 
+            // pointerdump
+            // 
+            this.pointerdump.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn10,
+            this.dataColumn11});
+            this.pointerdump.Constraints.AddRange(new System.Data.Constraint[] {
+            new System.Data.UniqueConstraint("Constraint1", new string[] {
+                        "From"}, true)});
+            this.pointerdump.PrimaryKey = new System.Data.DataColumn[] {
+        this.dataColumn10};
+            this.pointerdump.TableName = "pointerdump";
+            // 
+            // dataColumn10
+            // 
+            this.dataColumn10.AllowDBNull = false;
+            this.dataColumn10.ColumnName = "From";
+            this.dataColumn10.DataType = typeof(long);
+            // 
+            // dataColumn11
+            // 
+            this.dataColumn11.AllowDBNull = false;
+            this.dataColumn11.ColumnName = "To";
+            this.dataColumn11.DataType = typeof(long);
             // 
             // label23
             // 
@@ -1334,71 +1460,13 @@
             // 
             // testbutton
             // 
-            this.testbutton.Location = new System.Drawing.Point(682, 503);
+            this.testbutton.Location = new System.Drawing.Point(686, 881);
             this.testbutton.Name = "testbutton";
             this.testbutton.Size = new System.Drawing.Size(75, 23);
             this.testbutton.TabIndex = 80;
             this.testbutton.Text = "test";
             this.testbutton.UseVisualStyleBackColor = true;
             this.testbutton.Click += new System.EventHandler(this.testbutton_Click);
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "NewDataSet";
-            this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
-            this.SearchSettings,
-            this.pointerdump});
-            // 
-            // SearchSettings
-            // 
-            this.SearchSettings.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn1,
-            this.dataColumn2,
-            this.dataColumn3,
-            this.dataColumn4,
-            this.dataColumn5,
-            this.dataColumn6,
-            this.dataColumn7,
-            this.dataColumn8,
-            this.dataColumn9});
-            this.SearchSettings.TableName = "SearchSettings";
-            // 
-            // dataColumn1
-            // 
-            this.dataColumn1.ColumnName = "Datatype";
-            // 
-            // dataColumn2
-            // 
-            this.dataColumn2.ColumnName = "SearchRegion";
-            // 
-            // dataColumn3
-            // 
-            this.dataColumn3.ColumnName = "SearchType";
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.ColumnName = "Start";
-            // 
-            // dataColumn5
-            // 
-            this.dataColumn5.ColumnName = "End";
-            // 
-            // dataColumn6
-            // 
-            this.dataColumn6.ColumnName = "Min";
-            this.dataColumn6.DataType = typeof(long);
-            // 
-            // dataColumn7
-            // 
-            this.dataColumn7.ColumnName = "Max";
-            // 
-            // dataColumn8
-            // 
-            this.dataColumn8.ColumnName = "Value";
-            // 
-            // dataColumn9
-            // 
-            this.dataColumn9.ColumnName = "Label";
             // 
             // dataGridView6
             // 
@@ -1416,12 +1484,71 @@
             this.valueDataGridViewTextBoxColumn,
             this.labelDataGridViewTextBoxColumn});
             this.dataGridView6.DataSource = this.Search;
-            this.dataGridView6.Location = new System.Drawing.Point(0, 703);
+            this.dataGridView6.Location = new System.Drawing.Point(34, 724);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.RowTemplate.Height = 23;
             this.dataGridView6.Size = new System.Drawing.Size(1042, 150);
             this.dataGridView6.TabIndex = 92;
             this.dataGridView6.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellContentClick);
+            // 
+            // datatypeDataGridViewTextBoxColumn
+            // 
+            this.datatypeDataGridViewTextBoxColumn.DataPropertyName = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn.HeaderText = "Datatype";
+            this.datatypeDataGridViewTextBoxColumn.Name = "datatypeDataGridViewTextBoxColumn";
+            // 
+            // searchRegionDataGridViewTextBoxColumn
+            // 
+            this.searchRegionDataGridViewTextBoxColumn.DataPropertyName = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn.HeaderText = "SearchRegion";
+            this.searchRegionDataGridViewTextBoxColumn.Name = "searchRegionDataGridViewTextBoxColumn";
+            // 
+            // searchTypeDataGridViewTextBoxColumn
+            // 
+            this.searchTypeDataGridViewTextBoxColumn.DataPropertyName = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn.HeaderText = "SearchType";
+            this.searchTypeDataGridViewTextBoxColumn.Name = "searchTypeDataGridViewTextBoxColumn";
+            // 
+            // startDataGridViewTextBoxColumn
+            // 
+            this.startDataGridViewTextBoxColumn.DataPropertyName = "Start";
+            this.startDataGridViewTextBoxColumn.HeaderText = "Start";
+            this.startDataGridViewTextBoxColumn.Name = "startDataGridViewTextBoxColumn";
+            // 
+            // endDataGridViewTextBoxColumn
+            // 
+            this.endDataGridViewTextBoxColumn.DataPropertyName = "End";
+            this.endDataGridViewTextBoxColumn.HeaderText = "End";
+            this.endDataGridViewTextBoxColumn.Name = "endDataGridViewTextBoxColumn";
+            // 
+            // minDataGridViewTextBoxColumn
+            // 
+            this.minDataGridViewTextBoxColumn.DataPropertyName = "Min";
+            this.minDataGridViewTextBoxColumn.HeaderText = "Min";
+            this.minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
+            // 
+            // maxDataGridViewTextBoxColumn
+            // 
+            this.maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
+            this.maxDataGridViewTextBoxColumn.HeaderText = "Max";
+            this.maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            // 
+            // labelDataGridViewTextBoxColumn
+            // 
+            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
+            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
+            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
+            // 
+            // Search
+            // 
+            this.Search.DataMember = "SearchSettings";
+            this.Search.DataSource = this.dataSet1;
             // 
             // datatypeDataGridViewTextBoxColumn1
             // 
@@ -1531,103 +1658,15 @@
             this.labelDataGridViewTextBoxColumn2.HeaderText = "Label";
             this.labelDataGridViewTextBoxColumn2.Name = "labelDataGridViewTextBoxColumn2";
             // 
-            // pointerdump
-            // 
-            this.pointerdump.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumn10,
-            this.dataColumn11});
-            this.pointerdump.Constraints.AddRange(new System.Data.Constraint[] {
-            new System.Data.UniqueConstraint("Constraint1", new string[] {
-                        "From"}, true)});
-            this.pointerdump.PrimaryKey = new System.Data.DataColumn[] {
-        this.dataColumn10};
-            this.pointerdump.TableName = "pointerdump";
-            // 
-            // dataColumn10
-            // 
-            this.dataColumn10.AllowDBNull = false;
-            this.dataColumn10.ColumnName = "From";
-            this.dataColumn10.DataType = typeof(long);
-            // 
-            // dataColumn11
-            // 
-            this.dataColumn11.AllowDBNull = false;
-            this.dataColumn11.ColumnName = "To";
-            this.dataColumn11.DataType = typeof(long);
-            // 
-            // Search
-            // 
-            this.Search.DataMember = "SearchSettings";
-            this.Search.DataSource = this.dataSet1;
-            // 
-            // datatypeDataGridViewTextBoxColumn
-            // 
-            this.datatypeDataGridViewTextBoxColumn.DataPropertyName = "Datatype";
-            this.datatypeDataGridViewTextBoxColumn.HeaderText = "Datatype";
-            this.datatypeDataGridViewTextBoxColumn.Name = "datatypeDataGridViewTextBoxColumn";
-            // 
-            // searchRegionDataGridViewTextBoxColumn
-            // 
-            this.searchRegionDataGridViewTextBoxColumn.DataPropertyName = "SearchRegion";
-            this.searchRegionDataGridViewTextBoxColumn.HeaderText = "SearchRegion";
-            this.searchRegionDataGridViewTextBoxColumn.Name = "searchRegionDataGridViewTextBoxColumn";
-            // 
-            // searchTypeDataGridViewTextBoxColumn
-            // 
-            this.searchTypeDataGridViewTextBoxColumn.DataPropertyName = "SearchType";
-            this.searchTypeDataGridViewTextBoxColumn.HeaderText = "SearchType";
-            this.searchTypeDataGridViewTextBoxColumn.Name = "searchTypeDataGridViewTextBoxColumn";
-            // 
-            // startDataGridViewTextBoxColumn
-            // 
-            this.startDataGridViewTextBoxColumn.DataPropertyName = "Start";
-            this.startDataGridViewTextBoxColumn.HeaderText = "Start";
-            this.startDataGridViewTextBoxColumn.Name = "startDataGridViewTextBoxColumn";
-            // 
-            // endDataGridViewTextBoxColumn
-            // 
-            this.endDataGridViewTextBoxColumn.DataPropertyName = "End";
-            this.endDataGridViewTextBoxColumn.HeaderText = "End";
-            this.endDataGridViewTextBoxColumn.Name = "endDataGridViewTextBoxColumn";
-            // 
-            // minDataGridViewTextBoxColumn
-            // 
-            this.minDataGridViewTextBoxColumn.DataPropertyName = "Min";
-            this.minDataGridViewTextBoxColumn.HeaderText = "Min";
-            this.minDataGridViewTextBoxColumn.Name = "minDataGridViewTextBoxColumn";
-            // 
-            // maxDataGridViewTextBoxColumn
-            // 
-            this.maxDataGridViewTextBoxColumn.DataPropertyName = "Max";
-            this.maxDataGridViewTextBoxColumn.HeaderText = "Max";
-            this.maxDataGridViewTextBoxColumn.Name = "maxDataGridViewTextBoxColumn";
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            // 
-            // labelDataGridViewTextBoxColumn
-            // 
-            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
-            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
-            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
-            // 
             // pointers_candidates
             // 
             this.pointers_candidates.DataMember = "pointerdump";
             this.pointers_candidates.DataSource = this.dataSet1;
             this.pointers_candidates.CurrentChanged += new System.EventHandler(this.pointers_candidates_CurrentChanged);
             // 
-            // Address1
-            // 
-            this.Address1.HeaderText = "Address";
-            this.Address1.Name = "Address1";
-            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(803, 502);
+            this.button7.Location = new System.Drawing.Point(807, 880);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 93;
@@ -1635,44 +1674,71 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // dataGridView5
+            // textBox8
             // 
-            this.dataGridView5.AutoGenerateColumns = false;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fromDataGridViewTextBoxColumn,
-            this.toDataGridViewTextBoxColumn});
-            this.dataGridView5.DataMember = "pointerdump";
-            this.dataGridView5.DataSource = this.dataSet1;
-            this.dataGridView5.Location = new System.Drawing.Point(634, 22);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.RowTemplate.Height = 23;
-            this.dataGridView5.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView5.TabIndex = 80;
-            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            this.textBox8.Location = new System.Drawing.Point(212, 542);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(100, 21);
+            this.textBox8.TabIndex = 94;
+            this.textBox8.Text = "0";
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged_1);
             // 
-            // fromDataGridViewTextBoxColumn
+            // textBox9
             // 
-            this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle2.Format = "X10";
-            dataGridViewCellStyle2.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.fromDataGridViewTextBoxColumn.HeaderText = "From";
-            this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
+            this.textBox9.Location = new System.Drawing.Point(350, 543);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 21);
+            this.textBox9.TabIndex = 95;
+            this.textBox9.Text = "0";
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
-            // toDataGridViewTextBoxColumn
+            // textBox10
             // 
-            this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle3.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.toDataGridViewTextBoxColumn.HeaderText = "To";
-            this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
+            this.textBox10.Location = new System.Drawing.Point(475, 542);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(100, 21);
+            this.textBox10.TabIndex = 96;
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(318, 546);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(26, 13);
+            this.label28.TabIndex = 97;
+            this.label28.Text = "XOR";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(456, 546);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(12, 13);
+            this.label29.TabIndex = 98;
+            this.label29.Text = "=";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(164, 541);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(39, 23);
+            this.button8.TabIndex = 99;
+            this.button8.Text = "Dec";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1109, 899);
+            this.ClientSize = new System.Drawing.Size(1125, 710);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.textBox10);
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.textBox8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView6);
             this.Controls.Add(this.testbutton);
@@ -1720,7 +1786,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5";
+            this.Text = "PointerSearcher SE 0.5.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1733,17 +1799,17 @@
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointerdump)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pointerdump)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pointers_candidates)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1915,6 +1981,12 @@
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.DataGridViewTextBoxColumn fromDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn toDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button button8;
     }
 }
 

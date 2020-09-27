@@ -447,7 +447,8 @@ namespace PointerSearcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //pictureBox1.BringToFront();
+            pictureBox1.BringToFront();
+            //this.tabControl1.SelectedIndex = 1;
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
             dataGridView1.Rows.Add();
@@ -456,7 +457,6 @@ namespace PointerSearcher
             s.Close();
             ipBox.Text = ConfigurationManager.AppSettings["ipAddress"];
             pictureBox2.BringToFront();
-            this.tabControl1.SelectedIndex = 1;
         }
 
         private void OnApplicationExit(object sender, EventArgs e)
@@ -1517,6 +1517,53 @@ namespace PointerSearcher
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            textBox8_TextChanged_1(sender, e);
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox8.Text != "" && textBox9.Text != "")
+                    if (button8.Text == "Dec")
+                        textBox10.Text = Convert.ToString(Convert.ToInt64(textBox8.Text) ^ Convert.ToInt64(textBox9.Text));
+                    else
+                        textBox10.Text = Convert.ToString(Convert.ToInt64(textBox8.Text, 16) ^ Convert.ToInt64(textBox9.Text, 16),16);
+            }
+            catch 
+            {
+                textBox10.Text = "err";
+            };
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (button8.Text == "Dec")
+                {
+                    button8.Text = "Hex";
+                    textBox8.Text = Convert.ToString(Convert.ToInt64(textBox8.Text), 16);
+                    textBox9.Text = Convert.ToString(Convert.ToInt64(textBox9.Text), 16);
+                }
+                else
+                {
+                    button8.Text = "Dec";
+                    textBox8.Text = Convert.ToString(Convert.ToInt64(textBox8.Text, 16));
+                    textBox9.Text = Convert.ToString(Convert.ToInt64(textBox9.Text, 16));
+                };
+            }
+            catch { textBox10.Text = "err"; };
+            textBox8_TextChanged_1(sender, e);
         }
     }
 }
