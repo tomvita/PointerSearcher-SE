@@ -334,7 +334,14 @@ namespace PointerSearcher
             sw.Start();
             PointerInfo pointerInfo = new PointerInfo();
 
-            ReadIndicate();
+            //ReadIndicate();
+            fileStream.BaseStream.Seek(0, SeekOrigin.Begin);
+            int magic = fileStream.ReadInt32();
+            if (magic == 0x4E5A4665)
+            {
+                m_compress = true;
+            }
+
             long start = 134 + 8 * 5; // Edizon start of data dump
             long length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
             fileStream.BaseStream.Seek(start, SeekOrigin.Begin);

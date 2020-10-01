@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -257,8 +257,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle22.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -862,17 +862,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle23.Format = "X10";
-            dataGridViewCellStyle23.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Format = "X10";
+            dataGridViewCellStyle5.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle24.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -1786,7 +1786,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.1";
+            this.Text = "PointerSearcher SE 0.5.2";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);

@@ -64,7 +64,7 @@ namespace PointerSearcher
                 {
                     throw new Exception("Invalid input" + Environment.NewLine + "Check highlighted cell");
                 }
-                reader.readsetup();
+                //reader.readsetup(); // not reading again so the change won't be overwritten by what is in the file
                 dataGridView1.Rows[0].Cells[1].Value = "0x" + Convert.ToString(reader.mainStartAddress(), 16);
                 dataGridView1.Rows[0].Cells[2].Value = "0x" + Convert.ToString(reader.mainEndAddress(), 16);
                 dataGridView1.Rows[0].Cells[3].Value = "0x" + Convert.ToString(reader.heapStartAddress(), 16);
@@ -390,6 +390,7 @@ namespace PointerSearcher
             long mainEnd = -1;
             long heapStart = -1;
             long heapEnd = -1;
+            long target = -1;
 
             if (row.Cells[0].Value != null)
             {
@@ -399,7 +400,82 @@ namespace PointerSearcher
             {
                 row.Cells[0].Style.BackColor = Color.Red;
                 canCreate = false;
+                return null;
             }
+            if (row.Cells[1].Value == null) 
+                return new NoexsDumpDataReader(path, mainStart, mainEnd, heapStart, heapEnd);
+
+            try
+            {
+                mainStart = Convert.ToInt64(row.Cells[1].Value.ToString(), 16);
+            }
+            catch
+            {
+                row.Cells[1].Style.BackColor = Color.Red;
+                canCreate = false;
+            }
+            try
+            {
+                mainEnd = Convert.ToInt64(row.Cells[2].Value.ToString(), 16);
+            }
+            catch
+            {
+                row.Cells[2].Style.BackColor = Color.Red;
+                canCreate = false;
+            }
+            try
+            {
+                heapStart = Convert.ToInt64(row.Cells[3].Value.ToString(), 16);
+            }
+            catch
+            {
+                row.Cells[3].Style.BackColor = Color.Red;
+                canCreate = false;
+            }
+            try
+            {
+                heapEnd = Convert.ToInt64(row.Cells[4].Value.ToString(), 16);
+            }
+            catch
+            {
+                row.Cells[4].Style.BackColor = Color.Red;
+                canCreate = false;
+            }
+            try
+            {
+                target = Convert.ToInt64(row.Cells[5].Value.ToString(), 16);
+            }
+            catch
+            {
+                row.Cells[5].Style.BackColor = Color.Red;
+                canCreate = false;
+            }
+            if (!canCreate)
+            {
+                return null;
+            }
+            //if (mainEnd <= mainStart)
+            //{
+            //    row.Cells[1].Style.BackColor = Color.Red;
+            //    row.Cells[2].Style.BackColor = Color.Red;
+            //    canCreate = false;
+            //}
+            //if (heapEnd <= heapStart)
+            //{
+            //    row.Cells[3].Style.BackColor = Color.Red;
+            //    row.Cells[4].Style.BackColor = Color.Red;
+            //    canCreate = false;
+            //}
+            //if (allowUnknownTarget && (target == 0))
+            //{
+            //    //if target address is set to 0,it means unknown address.
+            //}
+            //else if ((target < heapStart) || (heapEnd <= target))
+            //{
+            //    //if not unknown,target should be located at heap region
+            //    row.Cells[5].Style.BackColor = Color.Red;
+            //    canCreate = false;
+            //}
             if (!canCreate)
             {
                 return null;
