@@ -1206,7 +1206,8 @@ namespace PointerSearcher
 
         private void getbookmarkbutton_Click(object sender, EventArgs e)
         {
-            if (!is_attached()) return;
+            getbookmarkbutton.BackColor = System.Drawing.Color.White;
+            //if (!is_attached()) return;
             if (!command_available()) return;
             stopbutton.Enabled = true;
             //progressBar1.Value = 0;
@@ -1260,6 +1261,14 @@ namespace PointerSearcher
                 this.RecSizeBox.Invoke((MethodInvoker)delegate
                 {
                     showerror(b);
+                    if (BitConverter.ToInt32(b, 0) == 0)
+                    {
+                        getbookmarkbutton.BackColor = System.Drawing.Color.LightGreen;
+                    }
+                    else
+                    {
+                        getbookmarkbutton.BackColor = System.Drawing.Color.Red;
+                    }
                     progressBar2.Value = 100;
                     //progressBar1.Value = progressBar2.Value;
                     RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
