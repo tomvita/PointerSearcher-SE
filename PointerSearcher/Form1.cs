@@ -59,7 +59,7 @@ namespace PointerSearcher
                 buttonRead.Enabled = false;
 
 
-                IDumpDataReader reader = CreateDumpDataReader(dataGridView1.Rows[0], false);
+                IDumpDataReader reader = CreateDumpDataReader(dataGridView1.Rows[fileselect], false);
                 if (reader == null)
                 {
                     throw new Exception("Invalid input" + Environment.NewLine + "Check highlighted cell");
@@ -295,8 +295,9 @@ namespace PointerSearcher
             {
                 SetProgressBar(0);
                 Dictionary<IDumpDataReader, long> dumps = new Dictionary<IDumpDataReader, long>();
-                for (int i = 1; i < dataGridView1.Rows.Count; i++)
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
+                    if (i == fileselect) continue;
                     DataGridViewRow row = dataGridView1.Rows[i];
                     ClearRowBackColor(row);
                     if (IsBlankRow(row))
@@ -1649,6 +1650,42 @@ namespace PointerSearcher
             }
             catch { textBox10.Text = "err"; };
             textBox8_TextChanged_1(sender, e);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            button9.BackColor = System.Drawing.Color.White;
+            if (textBox2.Text == "") { MessageBox.Show("bookmark filename missing"); return; };
+            String filepath = textBox2.Text;
+            BinaryReader BM;
+            try
+            {
+                BM = new BinaryReader(new FileStream(filepath, FileMode.Open, FileAccess.Read));
+                BM.BaseStream.Seek(0, SeekOrigin.Begin);
+                int readSize = (int)(BM.BaseStream.Length);
+                byte[] buff;
+                buff = BM.ReadBytes(readSize);
+
+                if (!command_available()) return;
+                byte[] msg = { 0x1C }; //_putbookmark
+                int a = s.Send(msg);
+                while (s.Available < 4) ;
+                byte[] b = new byte[s.Available];
+                s.Receive(b);
+                if (!showerror(b))
+                {
+                    byte[] fsize = BitConverter.GetBytes(readSize);
+                    s.Send(fsize);
+                    s.Send(buff);
+                    while (s.Available < 4) ;
+                    b = new byte[s.Available];
+                    s.Receive(b);
+                    if (!showerror(b))
+                    { button9.BackColor = System.Drawing.Color.LightGreen; }
+                } else { MessageBox.Show("Remote file not accessible"); }
+                BM.BaseStream.Close();
+            }
+            catch (IOException) { textBox1.Text = "Cannot Read file"; }
         }
     }
 }

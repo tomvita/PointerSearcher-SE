@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -202,6 +202,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -257,8 +258,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -662,6 +663,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button9);
             this.tabPage1.Controls.Add(this.dataGridView4);
             this.tabPage1.Controls.Add(this.getbookmarkbutton);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -862,17 +864,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle2.Format = "X10";
-            dataGridViewCellStyle2.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Format = "X10";
+            dataGridViewCellStyle11.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle3.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -1728,6 +1730,16 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(769, 408);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(169, 23);
+            this.button9.TabIndex = 86;
+            this.button9.Text = "Push Export to EdiZon SE";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1786,7 +1798,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.3";
+            this.Text = "PointerSearcher SE 0.5.4";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1987,6 +1999,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 
