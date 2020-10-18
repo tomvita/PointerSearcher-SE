@@ -585,6 +585,8 @@ namespace PointerSearcher
 
         private void button2_Click(object sender, EventArgs e)
         {
+            getbookmarkbutton.BackColor = System.Drawing.Color.White;
+            button9.BackColor = System.Drawing.Color.White;
             if (connectBtn.Text == "Disconnect")
             {
                 button2_Click_1(sender, e);
@@ -1013,6 +1015,8 @@ namespace PointerSearcher
 
         private void attachdmntbutton_Click(object sender, EventArgs e)
         {
+            getbookmarkbutton.BackColor = System.Drawing.Color.White;
+            button9.BackColor = System.Drawing.Color.White;
             if (attached) return;
             if (!s.Connected)
             {
@@ -1217,6 +1221,7 @@ namespace PointerSearcher
         private void getbookmarkbutton_Click(object sender, EventArgs e)
         {
             getbookmarkbutton.BackColor = System.Drawing.Color.White;
+            button9.BackColor = System.Drawing.Color.White;
             //if (!is_attached()) return;
             if (!command_available()) return;
             stopbutton.Enabled = true;
@@ -1381,6 +1386,8 @@ namespace PointerSearcher
 
         private void button6_Click_1(object sender, EventArgs e)
         {
+            getbookmarkbutton.BackColor = System.Drawing.Color.White;
+            button9.BackColor = System.Drawing.Color.White;
             button2_Click_1(sender, e);
             s.Close();
             connectBtn.Text = "Connect";
