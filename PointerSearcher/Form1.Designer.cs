@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -82,6 +82,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.getbookmarkbutton = new System.Windows.Forms.Button();
@@ -202,7 +203,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.overwrite = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -227,7 +228,7 @@
             // 
             this.buttonRead.Location = new System.Drawing.Point(8, 226);
             this.buttonRead.Name = "buttonRead";
-            this.buttonRead.Size = new System.Drawing.Size(158, 25);
+            this.buttonRead.Size = new System.Drawing.Size(117, 25);
             this.buttonRead.TabIndex = 0;
             this.buttonRead.Text = "Read 1st Dump Data";
             this.buttonRead.UseVisualStyleBackColor = true;
@@ -258,8 +259,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle10.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -316,9 +317,9 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(172, 226);
+            this.buttonSearch.Location = new System.Drawing.Point(135, 226);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(158, 25);
+            this.buttonSearch.Size = new System.Drawing.Size(115, 25);
             this.buttonSearch.TabIndex = 3;
             this.buttonSearch.Text = "Reset and Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -348,9 +349,9 @@
             // 
             // buttonNarrowDown
             // 
-            this.buttonNarrowDown.Location = new System.Drawing.Point(336, 226);
+            this.buttonNarrowDown.Location = new System.Drawing.Point(257, 226);
             this.buttonNarrowDown.Name = "buttonNarrowDown";
-            this.buttonNarrowDown.Size = new System.Drawing.Size(158, 25);
+            this.buttonNarrowDown.Size = new System.Drawing.Size(117, 25);
             this.buttonNarrowDown.TabIndex = 7;
             this.buttonNarrowDown.Text = "Narrow Down Result";
             this.buttonNarrowDown.UseVisualStyleBackColor = true;
@@ -402,11 +403,11 @@
             // 
             // Export_button
             // 
-            this.Export_button.Location = new System.Drawing.Point(528, 226);
+            this.Export_button.Location = new System.Drawing.Point(430, 227);
             this.Export_button.Name = "Export_button";
-            this.Export_button.Size = new System.Drawing.Size(124, 25);
+            this.Export_button.Size = new System.Drawing.Size(98, 23);
             this.Export_button.TabIndex = 13;
-            this.Export_button.Text = "Export To EdiZon SE";
+            this.Export_button.Text = "Export To File";
             this.Export_button.UseVisualStyleBackColor = true;
             this.Export_button.Click += new System.EventHandler(this.Export_to_SE_Click);
             // 
@@ -423,18 +424,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(380, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.Size = new System.Drawing.Size(107, 13);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Book Mark File";
+            this.label4.Text = "Book Mark Export File";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(499, 226);
+            this.button1.Location = new System.Drawing.Point(380, 227);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
+            this.button1.Size = new System.Drawing.Size(44, 23);
             this.button1.TabIndex = 16;
-            this.button1.Text = "P";
+            this.button1.Text = "Stop";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -693,6 +694,16 @@
             this.tabPage1.Text = "Pointer Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(534, 227);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(118, 23);
+            this.button9.TabIndex = 86;
+            this.button9.Text = "Push File to EdiZon SE";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -712,7 +723,7 @@
             // 
             // getbookmarkbutton
             // 
-            this.getbookmarkbutton.Location = new System.Drawing.Point(769, 383);
+            this.getbookmarkbutton.Location = new System.Drawing.Point(769, 366);
             this.getbookmarkbutton.Name = "getbookmarkbutton";
             this.getbookmarkbutton.Size = new System.Drawing.Size(169, 23);
             this.getbookmarkbutton.TabIndex = 85;
@@ -864,17 +875,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle11.Format = "X10";
-            dataGridViewCellStyle11.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Format = "X10";
+            dataGridViewCellStyle14.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle12.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle15.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -1730,21 +1741,22 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
-            // button9
+            // overwrite
             // 
-            this.button9.Location = new System.Drawing.Point(769, 408);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(169, 23);
-            this.button9.TabIndex = 86;
-            this.button9.Text = "Push Export to EdiZon SE";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.overwrite.AutoSize = true;
+            this.overwrite.Location = new System.Drawing.Point(237, 486);
+            this.overwrite.Name = "overwrite";
+            this.overwrite.Size = new System.Drawing.Size(72, 17);
+            this.overwrite.TabIndex = 100;
+            this.overwrite.Text = "overwrite";
+            this.overwrite.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 710);
+            this.Controls.Add(this.overwrite);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
@@ -1798,7 +1810,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox2);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.4";
+            this.Text = "PointerSearcher SE 0.5.5";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -2000,6 +2012,7 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.CheckBox overwrite;
     }
 }
 

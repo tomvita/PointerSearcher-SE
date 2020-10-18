@@ -740,7 +740,7 @@ namespace PointerSearcher
             c = s.Receive(b);
             count = BitConverter.ToInt32(k, 0);
             statusBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
-            if (b[3] >= 147) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
+            if (b[3] >= 149) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
             f = s.Available;
             b = new byte[f];
             s.Receive(b);
@@ -868,6 +868,11 @@ namespace PointerSearcher
         private long[,] pointer_candidate;
         private void button3_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Rows[fileselect].Cells[0].Value !=null && overwrite.Checked == false)
+            {
+                MessageBox.Show("File exist, check overwrite if you wish to overwrite");
+                return;
+            }
             pausebutton_Click(sender, e);
             if (!is_attached()) return;
             if (!command_available()) return;
@@ -946,6 +951,9 @@ namespace PointerSearcher
                             info.AddPointer(from, to);
                         }
                         RecSizeBox.Text = Convert.ToString(totaldata+c1);
+                        long starta = BitConverter.ToInt64(dataset, 0);
+                        if (starta > address2)
+                        { starta = starta + 1; }
                         progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (((address2 - address1)==0)? 1: (address2 - address1)));
                         progressBar1.Value = progressBar2.Value;
                         timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
@@ -994,6 +1002,7 @@ namespace PointerSearcher
                     RecSizeBox.BackColor = System.Drawing.Color.LightGreen;
                     timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
                     stopbutton.Enabled = false;
+                    resumebutton_Click(sender, e);
                 });
             }).Start();
 
