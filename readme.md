@@ -8,7 +8,9 @@ Features:
 For more details please refer to https://github.com/tomvita/EdiZon-SE/wiki.
 
 Wireless dump directly from switch:
+
 To use this feature you need to install my noexs sysmodule fork. https://github.com/tomvita/Noexes/releases/latest
+
 On the switch run the game and use EdiZon SE to find the memory address you want to look for pointer chain. 
 
 1. Enter Switch IP address. 
