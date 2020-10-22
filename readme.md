@@ -7,6 +7,23 @@ Features:
 
 For more details please refer to https://github.com/tomvita/EdiZon-SE/wiki.
 
+Wireless dump directly from switch:
+To use this feature you need to install my noexs sysmodule fork. https://github.com/tomvita/Noexes/releases/latest
+On the switch run the game and use EdiZon SE to find the memory address you want to look for pointer chain. 
+
+1. Enter Switch IP address. 
+2. Click on "Attach to game" will connect to switch and pause the game. 
+3. Clock on "Get Bookmark from EdiZon SE" to fetch the addresses from the bookmark list. EdiZon SE must not be running. If you see the box turn red press "HOME" on switch to quit EdiZon SE and try again. Copy target address. 
+4. Click on "Dump ptr" will start the dump. Wait for the dump to be completed.
+5. After setting search option below, click on "Reset and Search".  
+Max Depth : Max pointer depth  
+Offset Range : Search range from target/pointer located address  
+Offset Num : Search num of nearest pointed address from target/pointer located address  
+6. If there is too many result restart the game and make additional dump(repeat the above steps). Click on "Narrow down result" to reduce the number. 
+7. Click on "Export to Bookmark Export File". 
+8. Click on "Push Bookmakr Export File to EdiZon SE"
+
+![pointerdump](https://user-images.githubusercontent.com/68505331/96844070-a4041600-1481-11eb-99ad-b00f91af5158.png)
 
 # Pointer Searcher
 ## warning
