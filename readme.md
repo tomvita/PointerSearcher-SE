@@ -23,7 +23,7 @@ Offset Range : Search range from target/pointer located address
 Offset Num : Search num of nearest pointed address from target/pointer located address  
 6. If there is too many result restart the game and make additional dump(repeat the above steps). Click on "Narrow down result" to reduce the number. 
 7. Click on "Export to Bookmark Export File". 
-8. Click on "Push Bookmakr Export File to EdiZon SE"
+8. Click on "Push Bookmark Export File to EdiZon SE"
 
 ![pointerdump](https://user-images.githubusercontent.com/68505331/96844070-a4041600-1481-11eb-99ad-b00f91af5158.png)
 
