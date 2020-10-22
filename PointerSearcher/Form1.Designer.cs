@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -82,10 +82,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button9 = new System.Windows.Forms.Button();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.getbookmarkbutton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -93,6 +89,17 @@
             this.radioButton9 = new System.Windows.Forms.RadioButton();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.overwrite = new System.Windows.Forms.CheckBox();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.getbookmarkbutton = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.resumebutton = new System.Windows.Forms.Button();
+            this.pausebutton = new System.Windows.Forms.Button();
+            this.disconnectbutton = new System.Windows.Forms.Button();
+            this.stopbutton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.fromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -158,13 +165,8 @@
             this.HeapStartBox = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.stopbutton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.disconnectbutton = new System.Windows.Forms.Button();
-            this.pausebutton = new System.Windows.Forms.Button();
-            this.resumebutton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.testbutton = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.datatypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -203,15 +205,15 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
-            this.overwrite = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -224,7 +226,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Search)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pointers_candidates)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRead
@@ -262,8 +263,8 @@
             this.ColumnTargetAddress3});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle13.NullValue = null;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 21;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 163);
             this.dataGridView1.TabIndex = 2;
@@ -695,43 +696,6 @@
             this.tabPage1.Text = "Pointer Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(18, 249);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(217, 23);
-            this.button9.TabIndex = 86;
-            this.button9.Text = "Push Bookmark Export File to EdiZon SE";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Address1});
-            this.dataGridView4.Location = new System.Drawing.Point(18, 88);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(247, 99);
-            this.dataGridView4.TabIndex = 22;
-            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
-            // 
-            // Address1
-            // 
-            this.Address1.HeaderText = "Address";
-            this.Address1.Name = "Address1";
-            // 
-            // getbookmarkbutton
-            // 
-            this.getbookmarkbutton.Location = new System.Drawing.Point(18, 193);
-            this.getbookmarkbutton.Name = "getbookmarkbutton";
-            this.getbookmarkbutton.Size = new System.Drawing.Size(169, 23);
-            this.getbookmarkbutton.TabIndex = 85;
-            this.getbookmarkbutton.Text = "Get Bookmark from EdiZon SE";
-            this.getbookmarkbutton.UseVisualStyleBackColor = true;
-            this.getbookmarkbutton.Click += new System.EventHandler(this.getbookmarkbutton_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radioButton11);
@@ -819,6 +783,131 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Target";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button9);
+            this.groupBox3.Controls.Add(this.overwrite);
+            this.groupBox3.Controls.Add(this.dataGridView4);
+            this.groupBox3.Controls.Add(this.getbookmarkbutton);
+            this.groupBox3.Controls.Add(this.ipBox);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.statusBox);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.attachdmntbutton);
+            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Controls.Add(this.resumebutton);
+            this.groupBox3.Controls.Add(this.pausebutton);
+            this.groupBox3.Controls.Add(this.disconnectbutton);
+            this.groupBox3.Controls.Add(this.stopbutton);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Location = new System.Drawing.Point(751, 173);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(336, 278);
+            this.groupBox3.TabIndex = 87;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Wireless feature";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(18, 249);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(217, 23);
+            this.button9.TabIndex = 86;
+            this.button9.Text = "Push Bookmark Export File to EdiZon SE";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // overwrite
+            // 
+            this.overwrite.AutoSize = true;
+            this.overwrite.Location = new System.Drawing.Point(109, 226);
+            this.overwrite.Name = "overwrite";
+            this.overwrite.Size = new System.Drawing.Size(72, 17);
+            this.overwrite.TabIndex = 100;
+            this.overwrite.Text = "overwrite";
+            this.overwrite.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Address1});
+            this.dataGridView4.Location = new System.Drawing.Point(18, 88);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowTemplate.Height = 23;
+            this.dataGridView4.Size = new System.Drawing.Size(247, 99);
+            this.dataGridView4.TabIndex = 22;
+            this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
+            // 
+            // Address1
+            // 
+            this.Address1.HeaderText = "Address";
+            this.Address1.Name = "Address1";
+            // 
+            // getbookmarkbutton
+            // 
+            this.getbookmarkbutton.Location = new System.Drawing.Point(18, 193);
+            this.getbookmarkbutton.Name = "getbookmarkbutton";
+            this.getbookmarkbutton.Size = new System.Drawing.Size(169, 23);
+            this.getbookmarkbutton.TabIndex = 85;
+            this.getbookmarkbutton.Text = "Get Bookmark from EdiZon SE";
+            this.getbookmarkbutton.UseVisualStyleBackColor = true;
+            this.getbookmarkbutton.Click += new System.EventHandler(this.getbookmarkbutton_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(251, 251);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(85, 27);
+            this.button6.TabIndex = 91;
+            this.button6.Text = "Debug extras";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_2);
+            // 
+            // resumebutton
+            // 
+            this.resumebutton.Enabled = false;
+            this.resumebutton.Location = new System.Drawing.Point(200, 56);
+            this.resumebutton.Name = "resumebutton";
+            this.resumebutton.Size = new System.Drawing.Size(85, 23);
+            this.resumebutton.TabIndex = 89;
+            this.resumebutton.Text = "Resume Game";
+            this.resumebutton.UseVisualStyleBackColor = true;
+            this.resumebutton.Click += new System.EventHandler(this.resumebutton_Click);
+            // 
+            // pausebutton
+            // 
+            this.pausebutton.Enabled = false;
+            this.pausebutton.Location = new System.Drawing.Point(109, 56);
+            this.pausebutton.Name = "pausebutton";
+            this.pausebutton.Size = new System.Drawing.Size(85, 23);
+            this.pausebutton.TabIndex = 88;
+            this.pausebutton.Text = "Pause Game";
+            this.pausebutton.UseVisualStyleBackColor = true;
+            this.pausebutton.Click += new System.EventHandler(this.pausebutton_Click);
+            // 
+            // disconnectbutton
+            // 
+            this.disconnectbutton.Enabled = false;
+            this.disconnectbutton.Location = new System.Drawing.Point(236, 27);
+            this.disconnectbutton.Name = "disconnectbutton";
+            this.disconnectbutton.Size = new System.Drawing.Size(85, 23);
+            this.disconnectbutton.TabIndex = 87;
+            this.disconnectbutton.Text = "Disconnect";
+            this.disconnectbutton.UseVisualStyleBackColor = true;
+            this.disconnectbutton.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // stopbutton
+            // 
+            this.stopbutton.Enabled = false;
+            this.stopbutton.Location = new System.Drawing.Point(187, 222);
+            this.stopbutton.Name = "stopbutton";
+            this.stopbutton.Size = new System.Drawing.Size(85, 23);
+            this.stopbutton.TabIndex = 22;
+            this.stopbutton.Text = "Stop";
+            this.stopbutton.UseVisualStyleBackColor = true;
+            this.stopbutton.Click += new System.EventHandler(this.stopbutton_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView5);
@@ -876,17 +965,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle14.Format = "X10";
-            dataGridViewCellStyle14.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Format = "X10";
+            dataGridViewCellStyle2.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle15.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -1400,17 +1489,6 @@
             this.label27.TabIndex = 84;
             this.label27.Text = "TID";
             // 
-            // stopbutton
-            // 
-            this.stopbutton.Enabled = false;
-            this.stopbutton.Location = new System.Drawing.Point(187, 222);
-            this.stopbutton.Name = "stopbutton";
-            this.stopbutton.Size = new System.Drawing.Size(85, 23);
-            this.stopbutton.TabIndex = 22;
-            this.stopbutton.Text = "Stop";
-            this.stopbutton.UseVisualStyleBackColor = true;
-            this.stopbutton.Click += new System.EventHandler(this.stopbutton_Click);
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(35, 618);
@@ -1421,39 +1499,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
-            // disconnectbutton
-            // 
-            this.disconnectbutton.Enabled = false;
-            this.disconnectbutton.Location = new System.Drawing.Point(236, 27);
-            this.disconnectbutton.Name = "disconnectbutton";
-            this.disconnectbutton.Size = new System.Drawing.Size(85, 23);
-            this.disconnectbutton.TabIndex = 87;
-            this.disconnectbutton.Text = "Disconnect";
-            this.disconnectbutton.UseVisualStyleBackColor = true;
-            this.disconnectbutton.Click += new System.EventHandler(this.button6_Click_1);
-            // 
-            // pausebutton
-            // 
-            this.pausebutton.Enabled = false;
-            this.pausebutton.Location = new System.Drawing.Point(109, 56);
-            this.pausebutton.Name = "pausebutton";
-            this.pausebutton.Size = new System.Drawing.Size(85, 23);
-            this.pausebutton.TabIndex = 88;
-            this.pausebutton.Text = "Pause Game";
-            this.pausebutton.UseVisualStyleBackColor = true;
-            this.pausebutton.Click += new System.EventHandler(this.pausebutton_Click);
-            // 
-            // resumebutton
-            // 
-            this.resumebutton.Enabled = false;
-            this.resumebutton.Location = new System.Drawing.Point(200, 56);
-            this.resumebutton.Name = "resumebutton";
-            this.resumebutton.Size = new System.Drawing.Size(85, 23);
-            this.resumebutton.TabIndex = 89;
-            this.resumebutton.Text = "Resume Game";
-            this.resumebutton.UseVisualStyleBackColor = true;
-            this.resumebutton.Click += new System.EventHandler(this.resumebutton_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Location = new System.Drawing.Point(5, 532);
@@ -1461,16 +1506,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(1104, 121);
             this.pictureBox2.TabIndex = 90;
             this.pictureBox2.TabStop = false;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(1019, 494);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(85, 27);
-            this.button6.TabIndex = 91;
-            this.button6.Text = "Debug extras";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_2);
             // 
             // testbutton
             // 
@@ -1742,39 +1777,6 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
-            // overwrite
-            // 
-            this.overwrite.AutoSize = true;
-            this.overwrite.Location = new System.Drawing.Point(109, 226);
-            this.overwrite.Name = "overwrite";
-            this.overwrite.Size = new System.Drawing.Size(72, 17);
-            this.overwrite.TabIndex = 100;
-            this.overwrite.Text = "overwrite";
-            this.overwrite.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button9);
-            this.groupBox3.Controls.Add(this.overwrite);
-            this.groupBox3.Controls.Add(this.dataGridView4);
-            this.groupBox3.Controls.Add(this.getbookmarkbutton);
-            this.groupBox3.Controls.Add(this.ipBox);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.statusBox);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.attachdmntbutton);
-            this.groupBox3.Controls.Add(this.resumebutton);
-            this.groupBox3.Controls.Add(this.pausebutton);
-            this.groupBox3.Controls.Add(this.disconnectbutton);
-            this.groupBox3.Controls.Add(this.stopbutton);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(751, 173);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(336, 278);
-            this.groupBox3.TabIndex = 87;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Wireless feature";
-            // 
             // groupBox4
             // 
             this.groupBox4.Location = new System.Drawing.Point(5, 484);
@@ -1784,11 +1786,22 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "XOR calculator";
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(368, 671);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(222, 23);
+            this.button10.TabIndex = 101;
+            this.button10.Text = "Special Export To Bookmark Export File";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 658);
+            this.ClientSize = new System.Drawing.Size(1114, 919);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label28);
@@ -1798,7 +1811,6 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView6);
             this.Controls.Add(this.testbutton);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.label27);
@@ -1833,17 +1845,19 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox4);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.6";
+            this.Text = "PointerSearcher SE 0.5.8";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
@@ -1857,8 +1871,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Search)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pointers_candidates)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2040,6 +2052,7 @@
         private System.Windows.Forms.CheckBox overwrite;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button10;
     }
 }
 

@@ -259,7 +259,56 @@ namespace PointerSearcher
                 textBox1.Text = "not found";
             }
         }
-
+        private void ExportPath2()
+        {
+            textBox1.Text = "Special chain exporting result to file ... " + result.Count.ToString();
+            String filepath = textBox2.Text;
+            BinaryWriter BM;
+            try
+            {
+                BM = new BinaryWriter(new FileStream(filepath, FileMode.Create, FileAccess.Write));
+                BM.BaseStream.Seek(0, SeekOrigin.Begin);
+                int magic = 0x4E5A4445;
+                BM.Write(magic);
+                long fileindex = 0;
+                long depth = 0;
+                long[] chain = new long[13];
+                long runindex = 0, s_index = 1, s_offset = 1;
+                foreach (List<IReverseOrderPath> path in result)
+                {
+                    runindex++;
+                    if (runindex != s_index) continue;
+                    for (long x = 0x10; x <= 0x300; x += 8)
+                    {
+                        BM.BaseStream.Seek(134 + fileindex * 8 * 14, SeekOrigin.Begin); // sizeof(pointer_chain_t)  Edizon header size = 134
+                        depth = 0;
+                        for (int i = path.Count - 1; i >= 0; i--)
+                        {
+                            if (path[i] is ReverseOrderPathOffset)
+                            {
+                                chain[depth] = (path[i] as ReverseOrderPathOffset).getOffset();
+                            }
+                            else
+                            {
+                                depth++;
+                                chain[depth] = 0;
+                            }
+                        }
+                        BM.Write(depth);
+                        chain[s_offset] = x;
+                        for (long z = depth; z >= 0; z--)
+                            BM.Write(chain[z]);
+                        fileindex++;
+                    }
+                };
+                for (long z = depth + 1; z < 13; z++)
+                    BM.Write(chain[z]);
+                BM.BaseStream.Seek(5, SeekOrigin.Begin);
+                BM.Write(fileindex * 8 * 14);
+                BM.BaseStream.Close();
+            }
+            catch (IOException) { textBox1.Text = "Cannot create file"; }
+        }
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             if (e.ColumnIndex == 0)
@@ -911,6 +960,8 @@ namespace PointerSearcher
 
             // create dump file
             BinaryWriter fileStream = new BinaryWriter(new FileStream("DirectTransfer.dmp" + Convert.ToString(fileselect), FileMode.Create, FileAccess.Write));
+            BinaryWriter fileStream2 = new BinaryWriter(new FileStream("DirectTransfer.tmp" + Convert.ToString(fileselect), FileMode.Create, FileAccess.Write));
+            fileStream2.BaseStream.Seek(0, SeekOrigin.Begin);
             fileStream.BaseStream.Seek(0, SeekOrigin.Begin);
             int magic = 0x4E5A4445;
             byte[] buffer = BitConverter.GetBytes(magic); 
@@ -941,7 +992,10 @@ namespace PointerSearcher
                 {
                     c1 = receivedata(ref dataset);
                     if (c1 == 0) break;
-                    fileStream.BaseStream.Write(dataset, 0, c1);
+                    if (address1 > address3)
+                        fileStream2.BaseStream.Write(dataset, 0, c1);
+                    else 
+                        fileStream.BaseStream.Write(dataset, 0, c1);
                     this.RecSizeBox.Invoke((MethodInvoker)delegate
                     {
                         for (int i = 0; i < c1; i +=16)
@@ -953,9 +1007,9 @@ namespace PointerSearcher
                             info.AddPointer(from, to);
                         }
                         RecSizeBox.Text = Convert.ToString(totaldata+c1);
-                        long starta = BitConverter.ToInt64(dataset, 0);
-                        if (starta > address2)
-                        { starta = starta + 1; }
+                        //long starta = BitConverter.ToInt64(dataset, 0);
+                        //if (starta > address2)
+                        //{ starta = starta + 1; }
                         progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (((address2 - address1)==0)? 1: (address2 - address1)));
                         progressBar1.Value = progressBar2.Value;
                         timeusedBox.Text = Convert.ToString(sw.ElapsedMilliseconds);
@@ -988,6 +1042,16 @@ namespace PointerSearcher
                     } while (c1 > 0);
                 }
                 info.MakeList();
+                fileStream2.BaseStream.Close();
+                if (address1 > address3)
+                {
+                    BinaryReader fileStream3 = new BinaryReader(new FileStream("DirectTransfer.tmp" + Convert.ToString(fileselect), FileMode.Open, FileAccess.Read));
+                    fileStream3.BaseStream.CopyTo(fileStream.BaseStream);
+                    //fileStream3.BaseStream.Seek(0, SeekOrigin.Begin);
+                    //byte[] cbuff = fileStream3.ReadBytes((int)fileStream.BaseStream.Length);
+                    //fileStream.BaseStream.Write(cbuff, 0, (int)fileStream.BaseStream.Length);
+                    fileStream3.Close();
+                }
                 fileStream.BaseStream.Close();
                 this.RecSizeBox.Invoke((MethodInvoker)delegate
                 {
@@ -1702,6 +1766,11 @@ namespace PointerSearcher
                 BM.BaseStream.Close();
             }
             catch (IOException) { textBox1.Text = "Cannot Read file"; }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            ExportPath2();
         }
     }
 }
