@@ -227,7 +227,7 @@ namespace PointerSearcher
                     foreach (List<IReverseOrderPath> path in result)
                     {
 
-                        BM.BaseStream.Seek(134 + fileindex * 8 * 14, SeekOrigin.Begin); // sizeof(pointer_chain_t)  Edizon header size = 134
+                        BM.BaseStream.Seek(135 + fileindex * 8 * 14, SeekOrigin.Begin); // sizeof(pointer_chain_t)  Edizon header size = 135
                         depth = 0;
                         for (int i = path.Count - 1; i >= 0; i--)
                         {
@@ -280,7 +280,7 @@ namespace PointerSearcher
                     if (runindex != s_index) continue;
                     for (long x = 0x10; x <= 0x300; x += 8)
                     {
-                        BM.BaseStream.Seek(134 + fileindex * 8 * 14, SeekOrigin.Begin); // sizeof(pointer_chain_t)  Edizon header size = 134
+                        BM.BaseStream.Seek(135 + fileindex * 8 * 14, SeekOrigin.Begin); // sizeof(pointer_chain_t)  Edizon header size = 135
                         depth = 0;
                         for (int i = path.Count - 1; i >= 0; i--)
                         {
@@ -791,7 +791,7 @@ namespace PointerSearcher
             c = s.Receive(b);
             count = BitConverter.ToInt32(k, 0);
             statusBox.Text = Convert.ToString(b[0]) + " . " + Convert.ToString(b[1]) + " . " + Convert.ToString(b[2]) + " . " + Convert.ToString(b[3]);
-            if (b[3] >= 149) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
+            if (b[3] >= 151) statusBox.BackColor = System.Drawing.Color.LightGreen; else statusBox.BackColor = System.Drawing.Color.Red;
             f = s.Available;
             b = new byte[f];
             s.Receive(b);
@@ -966,7 +966,7 @@ namespace PointerSearcher
             int magic = 0x4E5A4445;
             byte[] buffer = BitConverter.GetBytes(magic); 
             fileStream.BaseStream.Write(buffer, 0, 4);
-            fileStream.BaseStream.Seek(134, SeekOrigin.Begin);
+            fileStream.BaseStream.Seek(135, SeekOrigin.Begin);
             buffer = BitConverter.GetBytes(address1);
             fileStream.BaseStream.Write(buffer, 0, 8);
             buffer = BitConverter.GetBytes(address2);
@@ -1550,7 +1550,7 @@ namespace PointerSearcher
             int magic = 0x4E5A4445;
             byte[] buffer = BitConverter.GetBytes(magic);
             fileStream.BaseStream.Write(buffer, 0, 4);
-            fileStream.BaseStream.Seek(134, SeekOrigin.Begin);
+            fileStream.BaseStream.Seek(135, SeekOrigin.Begin);
             buffer = BitConverter.GetBytes(address1);
             fileStream.BaseStream.Write(buffer, 0, 8);
             buffer = BitConverter.GetBytes(address2);

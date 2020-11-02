@@ -120,7 +120,7 @@ namespace PointerSearcher
         {
             if (firstread)
             {
-                long start = 134 + 8 * 5; // Edizon start of data dump
+                long start = 135 + 8 * 5; // Edizon start of data dump
                 length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
                 fileStream.BaseStream.Seek(start, SeekOrigin.Begin);
                 int readSize = (int)(fileStream.BaseStream.Length - start);
@@ -185,7 +185,7 @@ namespace PointerSearcher
                 fileStream.Close();
                 throw new Exception("illegal file format");
             } 
-            fileStream.BaseStream.Seek(134, SeekOrigin.Begin); // Edizon header size = 134
+            fileStream.BaseStream.Seek(135, SeekOrigin.Begin); // Edizon header size = 135
             mainStartAddress = fileStream.ReadInt64();
             mainEndAddress = fileStream.ReadInt64();
             heapStartAddress = fileStream.ReadInt64();
@@ -342,7 +342,7 @@ namespace PointerSearcher
                 m_compress = true;
             }
 
-            long start = 134 + 8 * 5; // Edizon start of data dump
+            long start = 135 + 8 * 5; // Edizon start of data dump
             long length = (fileStream.BaseStream.Length - start) / 16;// from Address+ to address
             fileStream.BaseStream.Seek(start, SeekOrigin.Begin);
             int readSize = (int)(fileStream.BaseStream.Length - start);

@@ -1845,7 +1845,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox4);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.7";
+            this.Text = "PointerSearcher SE 0.5.8";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
