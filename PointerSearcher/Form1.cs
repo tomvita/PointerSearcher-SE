@@ -1517,7 +1517,7 @@ namespace PointerSearcher
                      {
                          break;
                      }
-
+                     c1 = c1 - c1 % 26;
                      this.RecSizeBox.Invoke( (MethodInvoker)delegate
                      {
                          dgvBookmarks.Rows.Clear();
