@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.txtPointerSearchResults = new System.Windows.Forms.TextBox();
             this.dgvDumpTargets = new System.Windows.Forms.DataGridView();
@@ -95,8 +95,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.overwrite = new System.Windows.Forms.CheckBox();
             this.dgvBookmarks = new System.Windows.Forms.DataGridView();
-            this.lblRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.getbookmarkbutton = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.resumebutton = new System.Windows.Forms.Button();
@@ -210,6 +208,9 @@
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button10 = new System.Windows.Forms.Button();
+            this.lblRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDumpTargets)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -256,6 +257,7 @@
             this.dgvDumpTargets.AllowDrop = true;
             this.dgvDumpTargets.AllowUserToAddRows = false;
             this.dgvDumpTargets.AllowUserToDeleteRows = false;
+            this.dgvDumpTargets.AllowUserToOrderColumns = true;
             this.dgvDumpTargets.AllowUserToResizeRows = false;
             this.dgvDumpTargets.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -275,8 +277,8 @@
             this.dgvDumpTargets.Name = "dgvDumpTargets";
             this.dgvDumpTargets.RowHeadersVisible = false;
             this.dgvDumpTargets.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.NullValue = null;
-            this.dgvDumpTargets.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvDumpTargets.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDumpTargets.RowTemplate.Height = 21;
             this.dgvDumpTargets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvDumpTargets.Size = new System.Drawing.Size(1088, 163);
@@ -342,8 +344,8 @@
             // ColumnFileRow
             // 
             this.ColumnFileRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnFileRow.HeaderText = "File";
             this.ColumnFileRow.MinimumWidth = 25;
             this.ColumnFileRow.Name = "ColumnFileRow";
@@ -861,8 +863,7 @@
             // 
             // dgvBookmarks
             // 
-            this.dgvBookmarks.AllowUserToAddRows = false;
-            this.dgvBookmarks.AllowUserToDeleteRows = false;
+            this.dgvBookmarks.AllowUserToOrderColumns = true;
             this.dgvBookmarks.AllowUserToResizeColumns = false;
             this.dgvBookmarks.AllowUserToResizeRows = false;
             this.dgvBookmarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -871,7 +872,8 @@
             this.dgvBookmarks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBookmarks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.lblRow,
-            this.Address1});
+            this.Address1,
+            this.Label});
             this.dgvBookmarks.Location = new System.Drawing.Point(6, 84);
             this.dgvBookmarks.MultiSelect = false;
             this.dgvBookmarks.Name = "dgvBookmarks";
@@ -880,25 +882,6 @@
             this.dgvBookmarks.ShowEditingIcon = false;
             this.dgvBookmarks.Size = new System.Drawing.Size(336, 99);
             this.dgvBookmarks.TabIndex = 22;
-            // 
-            // lblRow
-            // 
-            this.lblRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.lblRow.FillWeight = 1F;
-            this.lblRow.HeaderText = "";
-            this.lblRow.MinimumWidth = 10;
-            this.lblRow.Name = "lblRow";
-            this.lblRow.ReadOnly = true;
-            this.lblRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.lblRow.Width = 10;
-            // 
-            // Address1
-            // 
-            this.Address1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Address1.HeaderText = "Address";
-            this.Address1.Name = "Address1";
-            this.Address1.ReadOnly = true;
-            this.Address1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // getbookmarkbutton
             // 
@@ -1022,17 +1005,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle7.Format = "X10";
-            dataGridViewCellStyle7.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Format = "X10";
+            dataGridViewCellStyle3.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle8.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -1846,6 +1829,30 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
+            // lblRow
+            // 
+            this.lblRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lblRow.FillWeight = 1F;
+            this.lblRow.HeaderText = "";
+            this.lblRow.MinimumWidth = 10;
+            this.lblRow.Name = "lblRow";
+            this.lblRow.ReadOnly = true;
+            this.lblRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Address1
+            // 
+            this.Address1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Address1.HeaderText = "Address";
+            this.Address1.Name = "Address1";
+            this.Address1.ReadOnly = true;
+            this.Address1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Label
+            // 
+            this.Label.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Label.HeaderText = "Label";
+            this.Label.Name = "Label";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2094,8 +2101,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lblRow;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMainStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMainEnd;
@@ -2105,6 +2110,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTargetAddress3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFileRow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lblRow;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Label;
     }
 }
 
