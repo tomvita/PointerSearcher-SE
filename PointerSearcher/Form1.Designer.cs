@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.txtPointerSearchResults = new System.Windows.Forms.TextBox();
             this.dgvDumpTargets = new System.Windows.Forms.DataGridView();
@@ -277,8 +277,8 @@
             this.dgvDumpTargets.Name = "dgvDumpTargets";
             this.dgvDumpTargets.RowHeadersVisible = false;
             this.dgvDumpTargets.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.NullValue = null;
-            this.dgvDumpTargets.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.NullValue = null;
+            this.dgvDumpTargets.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvDumpTargets.RowTemplate.Height = 21;
             this.dgvDumpTargets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvDumpTargets.Size = new System.Drawing.Size(1088, 163);
@@ -344,8 +344,8 @@
             // ColumnFileRow
             // 
             this.ColumnFileRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle9;
             this.ColumnFileRow.HeaderText = "File";
             this.ColumnFileRow.MinimumWidth = 25;
             this.ColumnFileRow.Name = "ColumnFileRow";
@@ -863,7 +863,8 @@
             // 
             // dgvBookmarks
             // 
-            this.dgvBookmarks.AllowUserToOrderColumns = true;
+            this.dgvBookmarks.AllowUserToAddRows = false;
+            this.dgvBookmarks.AllowUserToDeleteRows = false;
             this.dgvBookmarks.AllowUserToResizeColumns = false;
             this.dgvBookmarks.AllowUserToResizeRows = false;
             this.dgvBookmarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -877,6 +878,7 @@
             this.dgvBookmarks.Location = new System.Drawing.Point(6, 84);
             this.dgvBookmarks.MultiSelect = false;
             this.dgvBookmarks.Name = "dgvBookmarks";
+            this.dgvBookmarks.ReadOnly = true;
             this.dgvBookmarks.RowHeadersVisible = false;
             this.dgvBookmarks.RowTemplate.Height = 23;
             this.dgvBookmarks.ShowEditingIcon = false;
@@ -1005,17 +1007,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle3.Format = "X10";
-            dataGridViewCellStyle3.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Format = "X10";
+            dataGridViewCellStyle11.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle4.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -1831,17 +1833,19 @@
             // 
             // lblRow
             // 
-            this.lblRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.lblRow.FillWeight = 1F;
+            this.lblRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.lblRow.FillWeight = 14.28426F;
             this.lblRow.HeaderText = "";
             this.lblRow.MinimumWidth = 10;
             this.lblRow.Name = "lblRow";
             this.lblRow.ReadOnly = true;
             this.lblRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.lblRow.Width = 10;
             // 
             // Address1
             // 
             this.Address1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Address1.FillWeight = 93.35786F;
             this.Address1.HeaderText = "Address";
             this.Address1.Name = "Address1";
             this.Address1.ReadOnly = true;
@@ -1849,9 +1853,12 @@
             // 
             // Label
             // 
-            this.Label.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Label.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Label.FillWeight = 93.35786F;
             this.Label.HeaderText = "Label";
             this.Label.Name = "Label";
+            this.Label.ReadOnly = true;
+            this.Label.Width = 58;
             // 
             // Form1
             // 
