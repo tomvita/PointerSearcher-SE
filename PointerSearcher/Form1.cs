@@ -1523,11 +1523,13 @@ namespace PointerSearcher
                          dgvBookmarks.Rows.Clear();
                          for ( int i = 0; i < c1; i += 8 )
                          {
-                             for ( int j = 0; j < 18; j++ )
-                                 label[j] = dataset[i + j];
+                             //for ( int j = 0; j < 18; j++ )
+                             //    label[j] = dataset[i + j];
+                             var bkmLabel = System.Text.Encoding.UTF8.GetString( dataset, i,18);
                              i += 18;
+                             dgvBookmarks.Rows.Add( new object[] { ++index, bkmLabel } );
                              var bkmAddress = "0x" + BitConverter.ToInt64( dataset, i ).ToString( "X" );
-                             dgvBookmarks.Rows.Add( new object[] { ++index, bkmAddress } );
+                             dgvBookmarks.Rows.Add( new object[] { index, bkmAddress } );
                              RecSizeBox.Text = Convert.ToString( index );
                          }
                          //progressBar2.Value = (int)(100 * (BitConverter.ToInt64(dataset, 0) - address1) / (((address2 - address1) == 0) ? 1 : (address2 - address1)));
