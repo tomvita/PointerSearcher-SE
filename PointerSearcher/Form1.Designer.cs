@@ -30,12 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.txtPointerSearchResults = new System.Windows.Forms.TextBox();
             this.dgvDumpTargets = new System.Windows.Forms.DataGridView();
+            this.ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMainStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMainEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHeapStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHeapEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTargetAddress1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTargetAddress2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTargetAddress3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFileRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxDepth = new System.Windows.Forms.TextBox();
             this.textBoxOffsetNum = new System.Windows.Forms.TextBox();
@@ -86,6 +95,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.overwrite = new System.Windows.Forms.CheckBox();
             this.dgvBookmarks = new System.Windows.Forms.DataGridView();
+            this.lblRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.getbookmarkbutton = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.resumebutton = new System.Windows.Forms.Button();
@@ -199,17 +210,6 @@
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button10 = new System.Windows.Forms.Button();
-            this.lblRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMainStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMainEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnHeapStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnHeapEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTargetAddress1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTargetAddress2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTargetAddress3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnFileRow = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDumpTargets)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -283,6 +283,74 @@
             this.dgvDumpTargets.TabIndex = 2;
             this.dgvDumpTargets.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             this.dgvDumpTargets.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
+            // 
+            // ColumnPath
+            // 
+            this.ColumnPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnPath.HeaderText = "Path";
+            this.ColumnPath.Name = "ColumnPath";
+            this.ColumnPath.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnPath.ToolTipText = "Path of Noexs dump data";
+            // 
+            // ColumnMainStart
+            // 
+            this.ColumnMainStart.HeaderText = "MainStart";
+            this.ColumnMainStart.Name = "ColumnMainStart";
+            this.ColumnMainStart.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnMainStart.ToolTipText = "main start address";
+            // 
+            // ColumnMainEnd
+            // 
+            this.ColumnMainEnd.HeaderText = "MainEnd";
+            this.ColumnMainEnd.Name = "ColumnMainEnd";
+            this.ColumnMainEnd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnMainEnd.ToolTipText = "main end address";
+            // 
+            // ColumnHeapStart
+            // 
+            this.ColumnHeapStart.HeaderText = "HeapStart";
+            this.ColumnHeapStart.Name = "ColumnHeapStart";
+            this.ColumnHeapStart.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnHeapStart.ToolTipText = "heap start address";
+            // 
+            // ColumnHeapEnd
+            // 
+            this.ColumnHeapEnd.HeaderText = "HeapEnd";
+            this.ColumnHeapEnd.Name = "ColumnHeapEnd";
+            this.ColumnHeapEnd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnHeapEnd.ToolTipText = "heap end address";
+            // 
+            // ColumnTargetAddress1
+            // 
+            this.ColumnTargetAddress1.HeaderText = "TargetAddress1";
+            this.ColumnTargetAddress1.Name = "ColumnTargetAddress1";
+            this.ColumnTargetAddress1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnTargetAddress1.ToolTipText = "address you want to find a pointer of this dump data";
+            // 
+            // ColumnTargetAddress2
+            // 
+            this.ColumnTargetAddress2.HeaderText = "TargetAddress2";
+            this.ColumnTargetAddress2.Name = "ColumnTargetAddress2";
+            this.ColumnTargetAddress2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnTargetAddress3
+            // 
+            this.ColumnTargetAddress3.HeaderText = "TargetAddress3";
+            this.ColumnTargetAddress3.Name = "ColumnTargetAddress3";
+            this.ColumnTargetAddress3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnFileRow
+            // 
+            this.ColumnFileRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ColumnFileRow.HeaderText = "File";
+            this.ColumnFileRow.MinimumWidth = 25;
+            this.ColumnFileRow.Name = "ColumnFileRow";
+            this.ColumnFileRow.ReadOnly = true;
+            this.ColumnFileRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnFileRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnFileRow.Width = 25;
             // 
             // buttonSearch
             // 
@@ -474,6 +542,7 @@
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(100, 20);
             this.statusBox.TabIndex = 23;
+            this.statusBox.TextChanged += new System.EventHandler(this.statusBox_TextChanged);
             // 
             // getstatus
             // 
@@ -812,6 +881,25 @@
             this.dgvBookmarks.Size = new System.Drawing.Size(336, 99);
             this.dgvBookmarks.TabIndex = 22;
             // 
+            // lblRow
+            // 
+            this.lblRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.lblRow.FillWeight = 1F;
+            this.lblRow.HeaderText = "";
+            this.lblRow.MinimumWidth = 10;
+            this.lblRow.Name = "lblRow";
+            this.lblRow.ReadOnly = true;
+            this.lblRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.lblRow.Width = 10;
+            // 
+            // Address1
+            // 
+            this.Address1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Address1.HeaderText = "Address";
+            this.Address1.Name = "Address1";
+            this.Address1.ReadOnly = true;
+            this.Address1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // getbookmarkbutton
             // 
             this.getbookmarkbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -911,7 +999,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(969, 454);
+            this.tabPage2.Size = new System.Drawing.Size(1100, 454);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Memory Search";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1758,93 +1846,6 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
-            // lblRow
-            // 
-            this.lblRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.lblRow.FillWeight = 1F;
-            this.lblRow.HeaderText = "";
-            this.lblRow.MinimumWidth = 10;
-            this.lblRow.Name = "lblRow";
-            this.lblRow.ReadOnly = true;
-            this.lblRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.lblRow.Width = 10;
-            // 
-            // Address1
-            // 
-            this.Address1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Address1.HeaderText = "Address";
-            this.Address1.Name = "Address1";
-            this.Address1.ReadOnly = true;
-            this.Address1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnPath
-            // 
-            this.ColumnPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnPath.HeaderText = "Path";
-            this.ColumnPath.Name = "ColumnPath";
-            this.ColumnPath.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnPath.ToolTipText = "Path of Noexs dump data";
-            // 
-            // ColumnMainStart
-            // 
-            this.ColumnMainStart.HeaderText = "MainStart";
-            this.ColumnMainStart.Name = "ColumnMainStart";
-            this.ColumnMainStart.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnMainStart.ToolTipText = "main start address";
-            // 
-            // ColumnMainEnd
-            // 
-            this.ColumnMainEnd.HeaderText = "MainEnd";
-            this.ColumnMainEnd.Name = "ColumnMainEnd";
-            this.ColumnMainEnd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnMainEnd.ToolTipText = "main end address";
-            // 
-            // ColumnHeapStart
-            // 
-            this.ColumnHeapStart.HeaderText = "HeapStart";
-            this.ColumnHeapStart.Name = "ColumnHeapStart";
-            this.ColumnHeapStart.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnHeapStart.ToolTipText = "heap start address";
-            // 
-            // ColumnHeapEnd
-            // 
-            this.ColumnHeapEnd.HeaderText = "HeapEnd";
-            this.ColumnHeapEnd.Name = "ColumnHeapEnd";
-            this.ColumnHeapEnd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnHeapEnd.ToolTipText = "heap end address";
-            // 
-            // ColumnTargetAddress1
-            // 
-            this.ColumnTargetAddress1.HeaderText = "TargetAddress1";
-            this.ColumnTargetAddress1.Name = "ColumnTargetAddress1";
-            this.ColumnTargetAddress1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnTargetAddress1.ToolTipText = "address you want to find a pointer of this dump data";
-            // 
-            // ColumnTargetAddress2
-            // 
-            this.ColumnTargetAddress2.HeaderText = "TargetAddress2";
-            this.ColumnTargetAddress2.Name = "ColumnTargetAddress2";
-            this.ColumnTargetAddress2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnTargetAddress3
-            // 
-            this.ColumnTargetAddress3.HeaderText = "TargetAddress3";
-            this.ColumnTargetAddress3.Name = "ColumnTargetAddress3";
-            this.ColumnTargetAddress3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColumnFileRow
-            // 
-            this.ColumnFileRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ColumnFileRow.HeaderText = "File";
-            this.ColumnFileRow.MinimumWidth = 25;
-            this.ColumnFileRow.Name = "ColumnFileRow";
-            this.ColumnFileRow.ReadOnly = true;
-            this.ColumnFileRow.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnFileRow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColumnFileRow.Width = 25;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1894,7 +1895,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox4);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.8";
+            this.Text = "PointerSearcher SE 0.5.9";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDumpTargets)).EndInit();
             this.tabControl1.ResumeLayout(false);

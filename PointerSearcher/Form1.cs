@@ -884,7 +884,7 @@ namespace PointerSearcher
             c = s.Receive( b );
             count = BitConverter.ToInt32( k, 0 );
             statusBox.Text = Convert.ToString( b[0] ) + " . " + Convert.ToString( b[1] ) + " . " + Convert.ToString( b[2] ) + " . " + Convert.ToString( b[3] );
-            if ( b[3] >= 151 ) { statusBox.BackColor = System.Drawing.Color.LightGreen; }
+            if ( b[3] >= 152 ) { statusBox.BackColor = System.Drawing.Color.LightGreen; }
             else
             {
                 statusBox.BackColor = System.Drawing.Color.Red;
@@ -1498,7 +1498,7 @@ namespace PointerSearcher
             RecSizeBox.Text = "0";
             byte[] msg = { 0x1B }; //_getbookmark
             int a = s.Send( msg );
-
+            byte[] label = new byte[18];
             //byte[] k = new byte[8];
             //long k1 = Convert.ToInt64(pid0Box.Text);
             //k = BitConverter.GetBytes(k1);
@@ -1523,7 +1523,10 @@ namespace PointerSearcher
                          dgvBookmarks.Rows.Clear();
                          for ( int i = 0; i < c1; i += 8 )
                          {
-                             var bkmAddress = "0x" + BitConverter.ToInt64( dataset, i ).ToString( "X" ); ;
+                             for ( int j = 0; j < 18; j++ )
+                                 label[j] = dataset[i + j];
+                             i += 18;
+                             var bkmAddress = "0x" + BitConverter.ToInt64( dataset, i ).ToString( "X" );
                              dgvBookmarks.Rows.Add( new object[] { ++index, bkmAddress } );
                              RecSizeBox.Text = Convert.ToString( index );
                          }
@@ -1995,6 +1998,11 @@ namespace PointerSearcher
         private void button10_Click( object sender, EventArgs e )
         {
             ExportPath2();
+        }
+
+        private void statusBox_TextChanged( Object sender, EventArgs e )
+        {
+
         }
     }
 }
