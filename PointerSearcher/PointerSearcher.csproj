@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="IDumpDataReader.cs" />
     <Compile Include="MemoryType.cs" />
+    <Compile Include="NoexsCommands.cs" />
     <Compile Include="NoexsDumpDataReader.cs" />
     <Compile Include="NoexsMemoryType.cs" />
     <Compile Include="PointedAddress.cs" />
