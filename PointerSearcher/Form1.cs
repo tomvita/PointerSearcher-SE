@@ -678,7 +678,7 @@ namespace PointerSearcher
         private void OnApplicationExit( object sender, EventArgs e )
         {
             //byte[] msg = { 0x1D }; //_dmnt_resume
-            //int a = s.Send(msg);
+            //int a = SendMessage(msg);
         }
 
         private void Export_to_SE_Click( object sender, EventArgs e )
@@ -858,8 +858,7 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x10 }; // _list_pids
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.ListPids );
             byte[] k = new byte[4];
             int c = s.Receive( k );
             int count = BitConverter.ToInt32( k, 0 );
@@ -873,8 +872,7 @@ namespace PointerSearcher
             pidBox.Text = Convert.ToString( pid );
             pid0Box.Text = Convert.ToString( pid0 );
 
-            msg[0] = 0x01; // _status
-            a = s.Send( msg );
+            a = SendMessage( NoexsCommands.Status );
             b = new byte[4];
             while ( s.Available < 4 )
             {
@@ -894,8 +892,7 @@ namespace PointerSearcher
             b = new byte[f];
             s.Receive( b );
 
-            msg[0] = 0x0E; //_current_pid
-            a = s.Send( msg );
+            a = SendMessage( NoexsCommands.CurrentPid );
             k = new byte[8];
             while ( s.Available < 8 )
             {
@@ -915,11 +912,12 @@ namespace PointerSearcher
             showerror( b );
             return;
 
+            /*
             msg[0] = 0x11; //_get_titleid
-            a = s.Send( msg );
+            a = SendMessage( msg );
             k = new byte[8];
             k = BitConverter.GetBytes( pid );
-            a = s.Send( k );
+            a = SendMessage( k );
             while ( s.Available < 8 )
             {
                 ;
@@ -937,10 +935,10 @@ namespace PointerSearcher
             s.Receive( b );
 
             msg[0] = 0x11; //_get_titleid
-            a = s.Send( msg );
+            a = SendMessage( msg );
             k = new byte[8];
             k = BitConverter.GetBytes( pid0 );
-            a = s.Send( k );
+            a = SendMessage( k );
             while ( s.Available < 8 )
             {
                 ;
@@ -959,9 +957,9 @@ namespace PointerSearcher
 
 
             msg[0] = 0x0A; //_attach
-            a = s.Send( msg );
+            a = SendMessage( msg );
             k = BitConverter.GetBytes( curpid );
-            a = s.Send( k );
+            a = SendMessage( k );
             while ( s.Available < 4 )
             {
                 ;
@@ -969,7 +967,7 @@ namespace PointerSearcher
 
             b = new byte[s.Available];
             s.Receive( b );
-
+            */
 
         }
 
@@ -980,10 +978,9 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x0B }; //_detatch
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.detach );
             //k = BitConverter.GetBytes(curpid);
-            //a = s.Send(k);
+            //a = SendMessage(k);
             while ( s.Available < 4 )
             {
                 ;
@@ -1030,17 +1027,25 @@ namespace PointerSearcher
             return (int)outpos;
         }
 
+        private int SendMessage( NoexsCommands cmd )
+        {
+            return s.Send( new byte[] { (byte)cmd } );
+        }
+
+        private int SendData( byte[] data )
+        {
+            return s.Send( data );
+        }
+
         private int receivedata( ref byte[] dataset )
         {
             if ( !user_abort )
             {
-                byte[] msg = { 0x1 }; // _status; anything other than 0 
-                int a = s.Send( msg );
+                int a = SendMessage( NoexsCommands.Status ); // anything other than 0 
             }
             else
             {
-                byte[] msg = { 0x0 }; // 0 to abort
-                int a = s.Send( msg );
+                int a = SendMessage( NoexsCommands.Abort );
                 user_abort2 = true;
             }
             byte[] k = new byte[4];
@@ -1094,13 +1099,12 @@ namespace PointerSearcher
             stopbutton.Enabled = true;
             RecSizeBox.BackColor = System.Drawing.Color.White;
             RecSizeBox.Text = "0";
-            byte[] msg = { 0x19 }; //_dump_ptr
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.DumpPtr );
             byte[] b;
-            a = s.Send( msg );
-            a = s.Send( msg );
-            a = s.Send( msg );
-            a = s.Send( msg );
+            a = SendMessage( NoexsCommands.DumpPtr );
+            a = SendMessage( NoexsCommands.DumpPtr );
+            a = SendMessage( NoexsCommands.DumpPtr );
+            a = SendMessage( NoexsCommands.DumpPtr );
             //while (s.Available < 4) ;
             //b = new byte[s.Available];
             //s.Receive(b);
@@ -1281,10 +1285,9 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x1A }; //_attach_dmnt
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.AttachDmnt );
             //k = BitConverter.GetBytes(curpid);
-            //a = s.Send(k);
+            //a = SendMessage(k);
             while ( s.Available < 4 )
             {
                 ;
@@ -1312,10 +1315,9 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x18 }; //_detach_dmnt
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.DetachDmnt );
             //k = BitConverter.GetBytes(curpid);
-            //a = s.Send(k);
+            //a = SendMessage(k);
             while ( s.Available < 4 )
             {
                 ;
@@ -1337,12 +1339,11 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x0A }; //_attach
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.Attach );
             byte[] k = new byte[8];
             long k1 = Convert.ToInt64( pidBox.Text );
             k = BitConverter.GetBytes( k1 );
-            a = s.Send( k );
+            a = SendData( k );
             while ( s.Available < 4 )
             {
                 ;
@@ -1365,12 +1366,11 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x0A }; //_attach
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.Attach );
             byte[] k = new byte[8];
             long k1 = Convert.ToInt64( pid0Box.Text );
             k = BitConverter.GetBytes( k1 );
-            a = s.Send( k );
+            a = SendData( k );
             while ( s.Available < 4 )
             {
                 ;
@@ -1388,12 +1388,11 @@ namespace PointerSearcher
 
         private void pidBox_TextChanged( object sender, EventArgs e )
         {
-            byte[] msg = { 0x11 }; //_get_titleid
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.GetTitleId );
             byte[] k = new byte[8];
             long pid = Convert.ToInt64( pidBox.Text );
             k = BitConverter.GetBytes( pid );
-            a = s.Send( k );
+            a = SendData( k );
             while ( s.Available < 8 )
             {
                 ;
@@ -1414,12 +1413,11 @@ namespace PointerSearcher
 
         private void pid0Box_TextChanged( object sender, EventArgs e )
         {
-            byte[] msg = { 0x11 }; //_get_titleid
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.GetTitleId );
             byte[] k = new byte[8];
             long pid = Convert.ToInt64( pid0Box.Text );
             k = BitConverter.GetBytes( pid );
-            a = s.Send( k );
+            a = SendData( k );
             while ( s.Available < 8 )
             {
                 ;
@@ -1496,13 +1494,12 @@ namespace PointerSearcher
             getbookmarkbutton.Enabled = false;
             RecSizeBox.BackColor = System.Drawing.Color.White;
             RecSizeBox.Text = "0";
-            byte[] msg = { 0x1B }; //_getbookmark
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.GetBookmark );
             byte[] label = new byte[18];
             //byte[] k = new byte[8];
             //long k1 = Convert.ToInt64(pid0Box.Text);
             //k = BitConverter.GetBytes(k1);
-            //a = s.Send(k);
+            //a = SendMessage(k);
             int index = 0;
             new Thread( () =>
              {
@@ -1682,8 +1679,7 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x09 }; //_pause
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.Pause );
             while ( s.Available < 4 )
             {
                 ;
@@ -1705,8 +1701,7 @@ namespace PointerSearcher
                 return;
             }
 
-            byte[] msg = { 0x08 }; //_resume
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.Resume );
             while ( s.Available < 4 )
             {
                 ;
@@ -1752,8 +1747,7 @@ namespace PointerSearcher
 
             stopbutton.Enabled = true;
             RecSizeBox.BackColor = System.Drawing.Color.White;
-            byte[] msg = { 0x19 }; //_dump_ptr { 0x16 }; //_search_local
-            int a = s.Send( msg );
+            int a = SendMessage( NoexsCommands.DumpPtr );
             byte[] b;
 
             //while (s.Available < 4) ;
@@ -1966,8 +1960,7 @@ namespace PointerSearcher
                     return;
                 }
 
-                byte[] msg = { 0x1C }; //_putbookmark
-                int a = s.Send( msg );
+                int a = SendMessage( NoexsCommands.PutBookmark );
                 while ( s.Available < 4 )
                 {
                     ;
@@ -1978,8 +1971,8 @@ namespace PointerSearcher
                 if ( !showerror( b ) )
                 {
                     byte[] fsize = BitConverter.GetBytes( readSize );
-                    s.Send( fsize );
-                    s.Send( buff );
+                    SendData( fsize );
+                    SendData( buff );
                     while ( s.Available < 4 )
                     {
                         ;
@@ -1999,11 +1992,6 @@ namespace PointerSearcher
         private void button10_Click( object sender, EventArgs e )
         {
             ExportPath2();
-        }
-
-        private void statusBox_TextChanged( Object sender, EventArgs e )
-        {
-
         }
     }
 }

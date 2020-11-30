@@ -544,7 +544,6 @@
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(100, 20);
             this.statusBox.TabIndex = 23;
-            this.statusBox.TextChanged += new System.EventHandler(this.statusBox_TextChanged);
             // 
             // getstatus
             // 
