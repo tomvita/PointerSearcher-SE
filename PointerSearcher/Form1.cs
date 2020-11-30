@@ -1026,7 +1026,92 @@ namespace PointerSearcher
             } while ( inpos < insize );
             return (int)outpos;
         }
-
+        private int rle_Uncompress( byte[] inbuf, ref byte[] outbuf, int insize )
+        {
+            int inpos, outpos;
+            byte value, len;
+            if ( insize < 1 )
+            {
+                return 0;
+            }
+            inpos = 0;
+            outpos = 0;
+            do
+            {
+                value = inbuf[inpos];
+                len = inbuf[inpos + 1];
+                for ( byte i = 0; i < len; i++ )
+                    outbuf[outpos] = inbuf[inpos + i];
+                inpos += 2;
+                outpos += len;
+            } while ( inpos < insize );
+            return outpos;
+        }
+        private bool noerror()
+        {
+            while ( s.Available < 4 ) { }
+            byte[] b = new byte[4];
+            s.Receive( b );
+            return !showerror( b );
+        }
+        private bool readmemblock(ref byte[] outbuf, long address, int size)
+        {
+            if ( !command_available() )
+            {
+                return false;
+            }
+            byte[] k = new byte[5];
+            int len;
+            int pos = 0;
+            byte[] inbuf;
+            int a = SendMessage( NoexsCommands.ReadMem );
+            a = SendData( BitConverter.GetBytes( address ) );
+            a = SendData( BitConverter.GetBytes( size ) );
+            if ( noerror() )
+            {
+                while (size >0)
+                {
+                    if ( noerror() )
+                    {
+                        while ( s.Available < 5 ) { }
+                        s.Receive( k );
+                        len = BitConverter.ToInt32( k, 1 );
+                        if (k[0] == 0) // no compression
+                        {
+                            inbuf = new byte[len];
+                            while ( s.Available < len ) { }
+                            s.Receive( inbuf );
+                            for ( int i = 0; i < len; i++ )
+                                outbuf[pos + i] = inbuf[i];
+                            pos += len;
+                            size -= len;
+                        }
+                        else
+                        {
+                            k = new byte[4];
+                            while ( s.Available < 4 ) { }
+                            s.Receive( k );
+                            int rlesize = BitConverter.ToInt32( k, 0 );
+                            inbuf = new byte[rlesize];
+                            while ( s.Available < rlesize ) { }
+                            s.Receive( inbuf );
+                            int urlesize = 0;
+                            for ( int i = 0; urlesize < len; i += 2 )
+                            {
+                                for ( int m = 0; m < inbuf[1]; m++ )
+                                    outbuf[pos + urlesize + m] = inbuf[i];
+                                urlesize += inbuf[i + 1];
+                            }
+                            pos += urlesize;
+                            size -= urlesize;
+                        }
+                    }
+                    
+                }
+                
+            }
+            return noerror();
+        } 
         private int SendMessage( NoexsCommands cmd )
         {
             return s.Send( new byte[] { (byte)cmd } );
@@ -1992,6 +2077,16 @@ namespace PointerSearcher
         private void button10_Click( object sender, EventArgs e )
         {
             ExportPath2();
+        }
+
+
+        private void button11_Click_1( Object sender, EventArgs e )
+        {
+            long targetAddress = Convert.ToInt64( dgvDumpTargets.Rows[fileselect].Cells[5 + targetselect].Value.ToString(), 16 );
+            int size = Convert.ToInt32( dgvDumpTargets.Rows[fileselect].Cells[6 + targetselect].Value.ToString(), 16 );
+            byte[] outbuf = new byte[size];
+            readmemblock( ref outbuf, targetAddress, size );
+            int a = 1;
         }
     }
 }
