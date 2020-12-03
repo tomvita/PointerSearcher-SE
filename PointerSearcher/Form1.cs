@@ -882,7 +882,7 @@ namespace PointerSearcher
             c = s.Receive( b );
             count = BitConverter.ToInt32( k, 0 );
             statusBox.Text = Convert.ToString( b[0] ) + " . " + Convert.ToString( b[1] ) + " . " + Convert.ToString( b[2] ) + " . " + Convert.ToString( b[3] );
-            if ( b[3] >= 152 ) { statusBox.BackColor = System.Drawing.Color.LightGreen; }
+            if ( b[3] >= 153 ) { statusBox.BackColor = System.Drawing.Color.LightGreen; }
             else
             {
                 statusBox.BackColor = System.Drawing.Color.Red;
@@ -1054,6 +1054,20 @@ namespace PointerSearcher
             s.Receive( b );
             return !showerror( b );
         }
+        private bool resolvepointers( ref byte[] inbuf, ref byte[] outbuf )
+        {
+            if ( !command_available() )
+            {
+                return false;
+            }
+            int a = SendMessage( NoexsCommands.ResolvePointers );
+            a = SendData( inbuf );
+            int size = BitConverter.ToInt32( inbuf, 0 );
+            outbuf = new byte[size*22];
+            while ( s.Available < size*22 ) { }
+            s.Receive( outbuf );
+            return noerror();
+        }
         private bool readmemblock(ref byte[] outbuf, long address, int size)
         {
             if ( !command_available() )
@@ -1069,14 +1083,14 @@ namespace PointerSearcher
             a = SendData( BitConverter.GetBytes( size ) );
             if ( noerror() )
             {
-                while (size >0)
+                while ( size > 0 )
                 {
                     if ( noerror() )
                     {
                         while ( s.Available < 5 ) { }
                         s.Receive( k );
                         len = BitConverter.ToInt32( k, 1 );
-                        if (k[0] == 0) // no compression
+                        if ( k[0] == 0 ) // no compression
                         {
                             inbuf = new byte[len];
                             while ( s.Available < len ) { }
@@ -1105,11 +1119,12 @@ namespace PointerSearcher
                             pos += urlesize;
                             size -= urlesize;
                         }
-                    }
-                    
-                }
-                
+                    } else return false;
+
+                } 
+
             }
+            else return false;
             return noerror();
         } 
         private int SendMessage( NoexsCommands cmd )
@@ -2086,6 +2101,29 @@ namespace PointerSearcher
             int size = Convert.ToInt32( dgvDumpTargets.Rows[fileselect].Cells[6 + targetselect].Value.ToString(), 16 );
             byte[] outbuf = new byte[size];
             readmemblock( ref outbuf, targetAddress, size );
+            int a = 1;
+        }
+
+        private void button12_Click( Object sender, EventArgs e )
+        {
+            byte[] inbuf= { }, outbuf= { };
+            UInt32 size = 1;
+            Int16 depth = 6;
+            UInt32 offset1=0x487FEB0, offset2=0xb8, offset3=8, offset4=0xA0, offset5=0x78, offset6=0xb4;
+            inbuf = inbuf.Concat(BitConverter.GetBytes( size )).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( depth ) ).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( offset1 ) ).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( offset2 ) ).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( offset3 ) ).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( offset4 ) ).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( offset5 ) ).ToArray();
+            inbuf = inbuf.Concat( BitConverter.GetBytes( offset6 ) ).ToArray();
+            resolvepointers( ref inbuf, ref outbuf );
+            int idx = BitConverter.ToInt32( outbuf, 0 ) + 1; // index to the list of candidates  
+            depth = BitConverter.ToInt16( outbuf, 4 ); //last depth, match set depth means good otherwise at the depth the value is probably no good so can't continue
+            long address = BitConverter.ToInt64( outbuf, 6 ); // last address 
+            long value = BitConverter.ToInt64( outbuf, 14 ); // value at last address if the read was successful otherwise the value of last successful read
+
             int a = 1;
         }
     }

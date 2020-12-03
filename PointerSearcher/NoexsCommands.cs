@@ -31,6 +31,7 @@
         AttachDmnt = 0x1A,
         GetBookmark = 0x1B,
         PutBookmark = 0x1C,
-        DmntResume = 0x1D
+        DmntResume = 0x1D,
+        ResolvePointers = 0x1E
     }
 }
