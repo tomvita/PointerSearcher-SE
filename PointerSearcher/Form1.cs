@@ -116,12 +116,17 @@ namespace PointerSearcher
         private void Form1_Load( object sender, EventArgs e )
         {
             pictureBox1.BringToFront();
-            dgvDumpTargets.Rows.Add( 5 );
+            dgvDumpTargets.Rows.Add( 10 );
             dgvDumpTargets[8, 0].Value = 1;
             dgvDumpTargets[8, 1].Value = 2;
             dgvDumpTargets[8, 2].Value = 3;
             dgvDumpTargets[8, 3].Value = 4;
             dgvDumpTargets[8, 4].Value = 5;
+            dgvDumpTargets[8, 5].Value = 6;
+            dgvDumpTargets[8, 6].Value = 7;
+            dgvDumpTargets[8, 7].Value = 8;
+            dgvDumpTargets[8, 8].Value = 9;
+            dgvDumpTargets[8, 9].Value = 10;
 
             s = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
             s.Close();
@@ -2125,6 +2130,31 @@ namespace PointerSearcher
             long value = BitConverter.ToInt64( outbuf, 14 ); // value at last address if the read was successful otherwise the value of last successful read
 
             int a = 1;
+        }
+
+        private void radioButton17_CheckedChanged( Object sender, EventArgs e )
+        {
+            fileselect = 5;
+        }
+
+        private void radioButton16_CheckedChanged( Object sender, EventArgs e )
+        {
+            fileselect = 6;
+        }
+
+        private void radioButton15_CheckedChanged( Object sender, EventArgs e )
+        {
+            fileselect = 7;
+        }
+
+        private void radioButton14_CheckedChanged( Object sender, EventArgs e )
+        {
+            fileselect = 8;
+        }
+
+        private void radioButton13_CheckedChanged( Object sender, EventArgs e )
+        {
+            fileselect = 9;
         }
     }
 }
