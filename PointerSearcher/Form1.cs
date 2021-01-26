@@ -893,7 +893,7 @@ namespace PointerSearcher
             c = s.Receive( b );
             count = BitConverter.ToInt32( k, 0 );
             statusBox.Text = Convert.ToString( b[0] ) + " . " + Convert.ToString( b[1] ) + " . " + Convert.ToString( b[2] ) + " . " + Convert.ToString( b[3] );
-            if ( b[3] >= 153 ) { statusBox.BackColor = System.Drawing.Color.LightGreen; }
+            if ( b[3] >= 152 ) { statusBox.BackColor = System.Drawing.Color.LightGreen; }
             else
             {
                 statusBox.BackColor = System.Drawing.Color.Red;
