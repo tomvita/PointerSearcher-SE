@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonRead = new System.Windows.Forms.Button();
             this.txtPointerSearchResults = new System.Windows.Forms.TextBox();
             this.dgvDumpTargets = new System.Windows.Forms.DataGridView();
@@ -84,6 +84,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonNarrowDownMinus = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton14 = new System.Windows.Forms.RadioButton();
@@ -284,8 +285,8 @@
             this.dgvDumpTargets.Name = "dgvDumpTargets";
             this.dgvDumpTargets.RowHeadersVisible = false;
             this.dgvDumpTargets.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.NullValue = null;
-            this.dgvDumpTargets.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvDumpTargets.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDumpTargets.RowTemplate.Height = 21;
             this.dgvDumpTargets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvDumpTargets.Size = new System.Drawing.Size(1088, 163);
@@ -351,8 +352,8 @@
             // ColumnFileRow
             // 
             this.ColumnFileRow.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnFileRow.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnFileRow.HeaderText = "File";
             this.ColumnFileRow.MinimumWidth = 25;
             this.ColumnFileRow.Name = "ColumnFileRow";
@@ -363,7 +364,7 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(129, 215);
+            this.buttonSearch.Location = new System.Drawing.Point(119, 215);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(115, 25);
             this.buttonSearch.TabIndex = 3;
@@ -394,11 +395,11 @@
             // 
             // buttonNarrowDown
             // 
-            this.buttonNarrowDown.Location = new System.Drawing.Point(250, 215);
+            this.buttonNarrowDown.Location = new System.Drawing.Point(229, 215);
             this.buttonNarrowDown.Name = "buttonNarrowDown";
-            this.buttonNarrowDown.Size = new System.Drawing.Size(117, 25);
+            this.buttonNarrowDown.Size = new System.Drawing.Size(92, 25);
             this.buttonNarrowDown.TabIndex = 7;
-            this.buttonNarrowDown.Text = "Narrow Down Result";
+            this.buttonNarrowDown.Text = "Narrow Down";
             this.buttonNarrowDown.UseVisualStyleBackColor = true;
             this.buttonNarrowDown.Click += new System.EventHandler(this.buttonNarrowDown_Click);
             // 
@@ -448,9 +449,9 @@
             // 
             // Export_button
             // 
-            this.Export_button.Location = new System.Drawing.Point(423, 215);
+            this.Export_button.Location = new System.Drawing.Point(472, 215);
             this.Export_button.Name = "Export_button";
-            this.Export_button.Size = new System.Drawing.Size(233, 25);
+            this.Export_button.Size = new System.Drawing.Size(184, 25);
             this.Export_button.TabIndex = 13;
             this.Export_button.Text = "Export To Bookmark Export File";
             this.Export_button.UseVisualStyleBackColor = true;
@@ -474,9 +475,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(373, 215);
+            this.button1.Location = new System.Drawing.Point(421, 215);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(44, 25);
+            this.button1.Size = new System.Drawing.Size(56, 25);
             this.button1.TabIndex = 16;
             this.button1.Text = "Stop";
             this.button1.UseVisualStyleBackColor = true;
@@ -705,6 +706,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.buttonNarrowDownMinus);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.dgvDumpTargets);
@@ -733,6 +735,16 @@
             this.tabPage1.Text = "Pointer Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // buttonNarrowDownMinus
+            // 
+            this.buttonNarrowDownMinus.Location = new System.Drawing.Point(318, 215);
+            this.buttonNarrowDownMinus.Name = "buttonNarrowDownMinus";
+            this.buttonNarrowDownMinus.Size = new System.Drawing.Size(102, 25);
+            this.buttonNarrowDownMinus.TabIndex = 88;
+            this.buttonNarrowDownMinus.Text = "Narrow Down -1";
+            this.buttonNarrowDownMinus.UseVisualStyleBackColor = true;
+            this.buttonNarrowDownMinus.Click += new System.EventHandler(this.button13_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radioButton13);
@@ -759,7 +771,6 @@
             this.radioButton13.Name = "radioButton13";
             this.radioButton13.Size = new System.Drawing.Size(37, 17);
             this.radioButton13.TabIndex = 26;
-            this.radioButton13.TabStop = true;
             this.radioButton13.Text = "10";
             this.radioButton13.UseVisualStyleBackColor = true;
             this.radioButton13.CheckedChanged += new System.EventHandler(this.radioButton13_CheckedChanged);
@@ -771,7 +782,6 @@
             this.radioButton14.Name = "radioButton14";
             this.radioButton14.Size = new System.Drawing.Size(31, 17);
             this.radioButton14.TabIndex = 25;
-            this.radioButton14.TabStop = true;
             this.radioButton14.Text = "9";
             this.radioButton14.UseVisualStyleBackColor = true;
             this.radioButton14.CheckedChanged += new System.EventHandler(this.radioButton14_CheckedChanged);
@@ -783,7 +793,6 @@
             this.radioButton15.Name = "radioButton15";
             this.radioButton15.Size = new System.Drawing.Size(31, 17);
             this.radioButton15.TabIndex = 24;
-            this.radioButton15.TabStop = true;
             this.radioButton15.Text = "8";
             this.radioButton15.UseVisualStyleBackColor = true;
             this.radioButton15.CheckedChanged += new System.EventHandler(this.radioButton15_CheckedChanged);
@@ -795,7 +804,6 @@
             this.radioButton16.Name = "radioButton16";
             this.radioButton16.Size = new System.Drawing.Size(31, 17);
             this.radioButton16.TabIndex = 23;
-            this.radioButton16.TabStop = true;
             this.radioButton16.Text = "7";
             this.radioButton16.UseVisualStyleBackColor = true;
             this.radioButton16.CheckedChanged += new System.EventHandler(this.radioButton16_CheckedChanged);
@@ -803,12 +811,10 @@
             // radioButton17
             // 
             this.radioButton17.AutoSize = true;
-            this.radioButton17.Checked = true;
             this.radioButton17.Location = new System.Drawing.Point(41, 26);
             this.radioButton17.Name = "radioButton17";
             this.radioButton17.Size = new System.Drawing.Size(31, 17);
             this.radioButton17.TabIndex = 22;
-            this.radioButton17.TabStop = true;
             this.radioButton17.Text = "6";
             this.radioButton17.UseVisualStyleBackColor = true;
             this.radioButton17.CheckedChanged += new System.EventHandler(this.radioButton17_CheckedChanged);
@@ -820,7 +826,6 @@
             this.radioButton11.Name = "radioButton11";
             this.radioButton11.Size = new System.Drawing.Size(31, 17);
             this.radioButton11.TabIndex = 21;
-            this.radioButton11.TabStop = true;
             this.radioButton11.Text = "5";
             this.radioButton11.UseVisualStyleBackColor = true;
             this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged_1);
@@ -832,7 +837,6 @@
             this.radioButton12.Name = "radioButton12";
             this.radioButton12.Size = new System.Drawing.Size(31, 17);
             this.radioButton12.TabIndex = 20;
-            this.radioButton12.TabStop = true;
             this.radioButton12.Text = "4";
             this.radioButton12.UseVisualStyleBackColor = true;
             this.radioButton12.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged_1);
@@ -844,7 +848,6 @@
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(31, 17);
             this.radioButton8.TabIndex = 19;
-            this.radioButton8.TabStop = true;
             this.radioButton8.Text = "3";
             this.radioButton8.UseVisualStyleBackColor = true;
             this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
@@ -856,7 +859,6 @@
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(31, 17);
             this.radioButton9.TabIndex = 18;
-            this.radioButton9.TabStop = true;
             this.radioButton9.Text = "2";
             this.radioButton9.UseVisualStyleBackColor = true;
             this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
@@ -1108,17 +1110,17 @@
             // fromDataGridViewTextBoxColumn
             // 
             this.fromDataGridViewTextBoxColumn.DataPropertyName = "From";
-            dataGridViewCellStyle11.Format = "X10";
-            dataGridViewCellStyle11.NullValue = null;
-            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Format = "X10";
+            dataGridViewCellStyle3.NullValue = null;
+            this.fromDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.fromDataGridViewTextBoxColumn.HeaderText = "From";
             this.fromDataGridViewTextBoxColumn.Name = "fromDataGridViewTextBoxColumn";
             // 
             // toDataGridViewTextBoxColumn
             // 
             this.toDataGridViewTextBoxColumn.DataPropertyName = "To";
-            dataGridViewCellStyle12.Format = "X10";
-            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Format = "X10";
+            this.toDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             // 
@@ -2003,7 +2005,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox4);
             this.Name = "Form1";
-            this.Text = "PointerSearcher SE 0.5.9a";
+            this.Text = "PointerSearcher SE 0.5.10";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDumpTargets)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -2221,6 +2223,7 @@
         private System.Windows.Forms.RadioButton radioButton15;
         private System.Windows.Forms.RadioButton radioButton16;
         private System.Windows.Forms.RadioButton radioButton17;
+        private System.Windows.Forms.Button buttonNarrowDownMinus;
     }
 }
 

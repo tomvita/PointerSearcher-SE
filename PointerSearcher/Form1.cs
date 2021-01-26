@@ -50,6 +50,7 @@ namespace PointerSearcher
             textBoxOffsetAddress.Text = maxOffsetAddress.ToString( "X" );
             buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = false;
+            buttonNarrowDownMinus.Enabled = false;
             buttonCancel.Enabled = false;
             progressBar1.Maximum = 100;
 
@@ -155,6 +156,7 @@ namespace PointerSearcher
                 //              dataGridView1.Rows[0].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
                 buttonSearch.Enabled = false;
                 buttonNarrowDown.Enabled = false;
+                buttonNarrowDownMinus.Enabled = false;
                 buttonCancel.Enabled = true;
 
                 cancel = new CancellationTokenSource();
@@ -196,6 +198,7 @@ namespace PointerSearcher
             buttonRead.Enabled = false;
             //buttonSearch.Enabled = false;
             buttonNarrowDown.Enabled = true;
+            buttonNarrowDownMinus.Enabled = true;
             textBox2.Text = dgvDumpTargets.Rows[fileselect].Cells[0].Value.ToString();
             textBox2.Text = textBox2.Text.Remove( textBox2.Text.Length - 4, 4 ) + "bmk";
             SetProgressBar( 0 );
@@ -237,6 +240,7 @@ namespace PointerSearcher
                     System.Media.SystemSounds.Asterisk.Play();
 
                     buttonNarrowDown.Enabled = true;
+                    buttonNarrowDownMinus.Enabled = true;
                 }
             }
             catch ( System.OperationCanceledException )
@@ -487,6 +491,7 @@ namespace PointerSearcher
                 buttonRead.Enabled = false;
                 buttonSearch.Enabled = false;
                 buttonNarrowDown.Enabled = false;
+                buttonNarrowDownMinus.Enabled = false;
                 buttonCancel.Enabled = true;
 
                 cancel = new CancellationTokenSource();
@@ -520,6 +525,7 @@ namespace PointerSearcher
                 buttonRead.Enabled = true;
                 buttonSearch.Enabled = true;
                 buttonNarrowDown.Enabled = true;
+                buttonNarrowDownMinus.Enabled = true;
                 buttonCancel.Enabled = false;
             }
         }
@@ -2155,6 +2161,87 @@ namespace PointerSearcher
         private void radioButton13_CheckedChanged( Object sender, EventArgs e )
         {
             fileselect = 9;
+        }
+
+        private async void button13_Click( Object sender, EventArgs e )
+        {
+
+
+            try
+            {
+                SetProgressBar( 0 );
+                Dictionary<IDumpDataReader, long> dumps = new Dictionary<IDumpDataReader, long>();
+                for ( int i = 0; i < dgvDumpTargets.Rows.Count; i++ )
+                {
+                    if ( i == fileselect )
+                    {
+                        continue;
+                    }
+
+                    DataGridViewRow row = dgvDumpTargets.Rows[i];
+                    ClearRowBackColor( row );
+                    if ( IsBlankRow( row ) )
+                    {
+                        continue;
+                    }
+                    IDumpDataReader reader = CreateDumpDataReader( row, true );
+                    if ( reader != null )
+                    {
+                        reader.readsetup();
+                        dgvDumpTargets.Rows[i].Cells[1].Value = "0x" + Convert.ToString( reader.mainStartAddress(), 16 );
+                        dgvDumpTargets.Rows[i].Cells[2].Value = "0x" + Convert.ToString( reader.mainEndAddress(), 16 );
+                        dgvDumpTargets.Rows[i].Cells[3].Value = "0x" + Convert.ToString( reader.heapStartAddress(), 16 );
+                        dgvDumpTargets.Rows[i].Cells[4].Value = "0x" + Convert.ToString( reader.heapEndAddress(), 16 );
+                        //                     dataGridView1.Rows[i].Cells[5].Value = "0x" + Convert.ToString(reader.TargetAddress(), 16);
+                        long target = Convert.ToInt64( row.Cells[5 + targetselect].Value.ToString(), 16 );
+
+                        dumps.Add( reader, target );
+                    }
+                }
+                if ( dumps.Count == 0 )
+                {
+                    throw new Exception( "Fill out 2nd line to narrow down" );
+                }
+                buttonRead.Enabled = false;
+                buttonSearch.Enabled = false;
+                buttonNarrowDown.Enabled = false;
+                buttonNarrowDownMinus.Enabled = false;
+                buttonCancel.Enabled = true;
+
+                cancel = new CancellationTokenSource();
+                Progress<int> prog = new Progress<int>( SetProgressBar );
+
+                List<List<IReverseOrderPath>> copyList = new List<List<IReverseOrderPath>>( result );
+
+                result = await Task.Run( () => FindPath.NarrowDownMinus( cancel.Token, prog, result, dumps ) );
+
+                SetProgressBar( 100 );
+                System.Media.SystemSounds.Asterisk.Play();
+            }
+            catch ( System.OperationCanceledException )
+            {
+                SetProgressBar( 0 );
+                System.Media.SystemSounds.Asterisk.Play();
+            }
+            catch ( Exception ex )
+            {
+                SetProgressBar( 0 );
+                MessageBox.Show( Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
+            finally
+            {
+                if ( cancel != null )
+                {
+                    cancel.Dispose();
+                }
+                PrintPath();
+
+                buttonRead.Enabled = true;
+                buttonSearch.Enabled = true;
+                buttonNarrowDown.Enabled = true;
+                buttonNarrowDownMinus.Enabled = true;
+                buttonCancel.Enabled = false;
+            }
         }
     }
 }

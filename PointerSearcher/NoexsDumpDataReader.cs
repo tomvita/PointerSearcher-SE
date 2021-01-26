@@ -127,7 +127,7 @@ namespace PointerSearcher
                 if (m_compress)
                 {
                     byte[] cbuff = fileStream.ReadBytes(readSize);
-                    buffN = new byte[readSize * 4];
+                    buffN = new byte[readSize * 5];
                     length = LZ_Uncompress(cbuff, buffN, readSize) / 16;
                 }
                 else
@@ -350,7 +350,7 @@ namespace PointerSearcher
             if (m_compress)
             {
                 byte[] cbuff = fileStream.ReadBytes(readSize);
-                buff = new byte[readSize * 4];
+                buff = new byte[readSize * 5];
                 length = LZ_Uncompress(cbuff, buff, readSize) / 16;
             }
             else

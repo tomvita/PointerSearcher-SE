@@ -211,5 +211,59 @@ namespace PointerSearcher
             prog.Report(100);
             return ndlist;
         }
+        static public async Task<List<List<IReverseOrderPath>>> NarrowDownMinus( CancellationToken token, IProgress<int> prog, List<List<IReverseOrderPath>> list, Dictionary<IDumpDataReader, long> dumps )
+        {
+            int totalCount = list.Count;
+            int checkedCount = 0;
+            int reportMin = 5;//report by 5%
+            int reportCount = ( totalCount + 100 / reportMin - 1 ) / ( 100 / reportMin ); //report every this count of path checked
+
+            reportCount = reportCount < 100 ? reportCount : 100;    //at least report every 100 times
+
+            List<List<IReverseOrderPath>> ndlist = new List<List<IReverseOrderPath>>( list );
+            for ( int i = 0; i < ndlist.Count; i++ )
+            {
+                List<IReverseOrderPath> path = ndlist[i];
+                foreach ( IDumpDataReader dump in dumps.Keys )
+                {
+                    if ( token.IsCancellationRequested )
+                    {
+                        token.ThrowIfCancellationRequested();
+                    }
+                    long parseAddress = await Task.Run( () => dump.TryToParseAbs( path ) );
+                    long targetAddress = dumps[dump];
+                    bool remove = false;
+                    if ( targetAddress == 0 )
+                    {
+                        //if target address is 0,only check path is valid,can reach heap region
+                        if ( !dump.IsHeap( parseAddress ) )
+                        {
+                            remove = true;
+                        }
+                    }
+                    else
+                    {
+                        //if target address isn't 0,check if parsed address is equal to target address
+                        if ( parseAddress != targetAddress )
+                        {
+                            //remove = true;
+                        }
+                    }
+                    if ( remove )
+                    {
+                        ndlist.Remove( path );
+                        i--;
+                        break;
+                    }
+                }
+                checkedCount++;
+                if ( ( checkedCount % reportCount ) == 0 )
+                {
+                    prog.Report( 100 * checkedCount / totalCount );
+                }
+            }
+            prog.Report( 100 );
+            return ndlist;
+        }
     }
 }
